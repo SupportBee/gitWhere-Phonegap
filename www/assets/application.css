@@ -370,8 +370,8 @@ th {
 }
 @font-face {
   font-family: 'Glyphicons Halflings';
-  src: url("/www/assets/flat-ui-pro/flat-ui-icons-regular.eot");
-  src: url("/www/assets/flat-ui-pro/flat-ui-icons-regular.eot?#iefix") format("embedded-opentype"), url("/home/maximus/code/phonegap/hackinat/www/assets/flat-ui-pro/flat-ui-icons-regular.woff") format("woff"), url("/assets/flat-ui-pro/flat-ui-icons-regular.ttf") format("truetype"), url("/assets/flat-ui-pro/flat-ui-icons-regular.svg#flat-ui-icons-regular") format("svg");
+  src: url("/assets/flat-ui-pro/flat-ui-icons-regular.eot");
+  src: url("/assets/flat-ui-pro/flat-ui-icons-regular.eot?#iefix") format("embedded-opentype"), url("/assets/flat-ui-pro/flat-ui-icons-regular.woff") format("woff"), url("/assets/flat-ui-pro/flat-ui-icons-regular.ttf") format("truetype"), url("/assets/flat-ui-pro/flat-ui-icons-regular.svg#flat-ui-icons-regular") format("svg");
 }
 
 /* line 25, /home/maximus/.rvm/gems/ruby-2.0.0-p481/gems/bootstrap-sass-3.2.0.1/assets/stylesheets/bootstrap/_glyphicons.scss */
@@ -17235,6 +17235,93 @@ ul.places li {
 /* line 70, /home/maximus/code/gitWhere/app/assets/stylesheets/gitwhere.css.scss */
 i.where {
   margin-right: 10px;
+}
+
+/* TOP BAR */
+/* line 75, /home/maximus/code/gitWhere/app/assets/stylesheets/gitwhere.css.scss */
+.top_bar {
+  background-color: #7f8c99;
+}
+
+/* line 79, /home/maximus/code/gitWhere/app/assets/stylesheets/gitwhere.css.scss */
+.checkin-btn {
+  float: right;
+  margin: 10px 0 10px 0;
+}
+
+/* TABS BAR */
+/* line 86, /home/maximus/code/gitWhere/app/assets/stylesheets/gitwhere.css.scss */
+div.tabs {
+  position: fixed;
+  bottom: 0;
+  border-top: 1px solid #b8b8b8;
+  width: 100%;
+}
+
+/* line 93, /home/maximus/code/gitWhere/app/assets/stylesheets/gitwhere.css.scss */
+.tabs ul {
+  margin-bottom: 0;
+  padding-left: 0;
+}
+/* line 97, /home/maximus/code/gitWhere/app/assets/stylesheets/gitwhere.css.scss */
+.tabs ul li {
+  list-style: none;
+  float: left;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+/* line 104, /home/maximus/code/gitWhere/app/assets/stylesheets/gitwhere.css.scss */
+.tabs ul li a {
+  font-weight: normal;
+  font-size: 20px;
+}
+
+/* line 112, /home/maximus/code/gitWhere/app/assets/stylesheets/gitwhere.css.scss */
+.tabs > ul > li.active {
+  background-color: #16a085;
+}
+/* line 114, /home/maximus/code/gitWhere/app/assets/stylesheets/gitwhere.css.scss */
+.tabs > ul > li.active > a {
+  color: white;
+}
+
+/* line 119, /home/maximus/code/gitWhere/app/assets/stylesheets/gitwhere.css.scss */
+.people_nearby {
+  max-height: 500px;
+  overflow-y: scroll;
+}
+
+/* line 124, /home/maximus/code/gitWhere/app/assets/stylesheets/gitwhere.css.scss */
+.people_nearby p {
+  font-size: 26px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+/* line 130, /home/maximus/code/gitWhere/app/assets/stylesheets/gitwhere.css.scss */
+.people_nearby > ul {
+  padding: 0;
+}
+
+/* line 134, /home/maximus/code/gitWhere/app/assets/stylesheets/gitwhere.css.scss */
+.people_nearby > ul > li {
+  list-style: none;
+}
+/* line 137, /home/maximus/code/gitWhere/app/assets/stylesheets/gitwhere.css.scss */
+.people_nearby > ul > li > img {
+  border-radius: 3px;
+}
+/* line 141, /home/maximus/code/gitWhere/app/assets/stylesheets/gitwhere.css.scss */
+.people_nearby > ul > li > span {
+  margin-left: 10px;
+}
+/* line 145, /home/maximus/code/gitWhere/app/assets/stylesheets/gitwhere.css.scss */
+.people_nearby > ul > li > hr {
+  margin-top: 9px;
+  margin-bottom: 9px;
+  border-top: 1px dotted #7f8c99;
 }
 /* line 1, /home/maximus/code/gitWhere/app/assets/stylesheets/social_buttons.css.scss */
 .btn-social {

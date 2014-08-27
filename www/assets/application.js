@@ -14814,7 +14814,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<div class=\"row\">\n  <div class=\"col-xs-12 col-md-8\">\n    <h1>What ya Hackin.at!</h1>\n    <a class=\"btn btn-primary new_log\">Log!</a>\n  </div>\n</div>\n<div class=\"row\">\n  <div class=\"col-xs-12 col-md-8 last_log\"></div>\n</div>\n<div class=\"row\">\n  <div class=\"col-xs-12 col-md-8 people_nearby\"></div>\n</div>";
+  return "<div class=\"row\">\n  <div class=\"col-xs-12 col-md-8 top_bar\">\n  </div>\n</div>\n<div class=\"row\">\n  <div class=\"col-xs-12 col-md-8 people_nearby\">\n    <p> Near You </p>\n  </div>\n</div>\n<div class=\"row\">\n  <div class=\"col-xs-12 col-md-8 tabs\"></div>\n</div>";
   });
   return this.HandlebarsTemplates["dashboard/index"];
 }).call(this);
@@ -14881,6 +14881,41 @@ function program1(depth0,data) {
   else { return ''; }
   });
   return this.HandlebarsTemplates["hackers/profile"];
+}).call(this);
+(function() {
+  this.HandlebarsTemplates || (this.HandlebarsTemplates = {});
+  this.HandlebarsTemplates["hackers/summary"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var stack1, helper, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
+
+function program1(depth0,data) {
+  
+  var buffer = "", stack1, helper;
+  buffer += "  \n  <img src=\"";
+  if (helper = helpers.avatar_url) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.avatar_url); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "&size=40\" alt=\"";
+  if (helper = helpers.login) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.login); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\"/>\n  <span>";
+  if (helper = helpers.login) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.login); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "</span>\n  <hr>\n";
+  return buffer;
+  }
+
+  options={hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data}
+  if (helper = helpers.hacker) { stack1 = helper.call(depth0, options); }
+  else { helper = (depth0 && depth0.hacker); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
+  if (!helpers.hacker) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data}); }
+  if(stack1 || stack1 === 0) { return stack1; }
+  else { return ''; }
+  });
+  return this.HandlebarsTemplates["hackers/summary"];
 }).call(this);
 (function() {
   this.HandlebarsTemplates || (this.HandlebarsTemplates = {});
@@ -15342,7 +15377,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   GW.Models.Log = Backbone.Model.extend({
     name: 'log',
     urlRoot: function() {
-      return GW.Utils.getRelativeUrl() + "/logs.json?auth_key=dK-6tzPTzF5leJJX5zZTIw";
+      return GW.Utils.getRelativeUrl() + "/logs.json?auth_key=oMh8Fmcekapk3mHbOHAuLQ";
     }
   });
 
@@ -15365,10 +15400,8 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
     },
     url: function() {
       var base_url;
-      base_url = GW.Utils.getRelativeUrl() + "/hackers/";
-      if (this.nearby) {
-        return "" + base_url + "nearby.json?ll=" + this.latlong.lat + "," + this.latlong.lon + "&auth_key=dK-6tzPTzF5leJJX5zZTIw";
-      }
+      base_url = GW.Utils.getRelativeUrl() + "/hackers/nearby.json?";
+      return "" + base_url + "ll=" + this.latlong.lat + "," + this.latlong.lon;
     }
   });
 
@@ -15381,7 +15414,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
       return this.latlong = options.latlong;
     },
     url: function() {
-      return GW.Utils.getRelativeUrl() + ("/places.json?auth_key=dK-6tzPTzF5leJJX5zZTIw&ll=" + this.latlong);
+      return GW.Utils.getRelativeUrl() + ("/places.json?ll=" + this.latlong);
     }
   });
 
@@ -15392,7 +15425,10 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
     className: 'btn btn-primary',
     title: 'Button',
     initialize: function() {
-      return this.$el.html(this.title);
+      this.$el.html(this.title);
+      if (this.customClassName != null) {
+        return this.$el.addClass(this.customClassName);
+      }
     }
   });
 
@@ -15411,7 +15447,8 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 }).call(this);
 (function() {
   GW.Views.CheckinButton = GW.Views.BaseButton.extend({
-    title: 'Checkin'
+    title: 'Checkin',
+    customClassName: 'checkin-btn'
   });
 
 }).call(this);
@@ -15429,7 +15466,8 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 }).call(this);
 (function() {
   GW.Views.NewLogButton = GW.Views.BaseButton.extend({
-    title: 'Log'
+    title: 'Log',
+    customClassName: 'log-btn'
   });
 
 }).call(this);
@@ -15558,7 +15596,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
       return this.hacker = options.hacker;
     },
     render: function() {
-      this.$el.html("<li>@" + (this.hacker.get('login')) + "</li>");
+      this.$el.html(HandlebarsTemplates['hackers/summary'](this.hacker.toJSON()));
       return this;
     },
     clicked: function() {
@@ -15570,16 +15608,30 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 (function() {
   GW.Views.Home = Backbone.View.extend({
     events: {
-      'click a.new_log': 'new_log'
+      'click button.checkin-btn': 'new_checkin'
     },
     initialize: function(options) {
       var tmpl;
       this.latlong = options.latlong;
-      _.bindAll(this, 'new_log');
+      _.bindAll(this, 'new_checkin');
       tmpl = HandlebarsTemplates['dashboard/index']();
       this.$el.html(tmpl);
       this.people_nearby_el = this.$('.people_nearby');
-      return this.show_hackers_nearby();
+      this.show_hackers_nearby();
+      this.renderButtons();
+      return this.renderTabs();
+    },
+    renderButtons: function() {
+      this.top_bar_el = this.$('.top_bar');
+      return this.top_bar_el.append((new GW.Views.CheckinButton).el);
+    },
+    renderTabs: function() {
+      var tab_list;
+      this.tabs_el = this.$('.tabs');
+      tab_list = new GW.Views.TabList({
+        tabs: [GW.Views.DiscoverTab, GW.Views.LogTab, GW.Views.NotificationsTab, GW.Views.MoreTab]
+      });
+      return this.tabs_el.append(tab_list.el);
     },
     show_hackers_nearby: function() {
       var view;
@@ -15587,9 +15639,9 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
         nearby: true,
         latlong: this.latlong
       });
-      return this.people_nearby_el.html(view.render().el);
+      return this.people_nearby_el.append(view.render().el);
     },
-    new_log: function() {
+    new_checkin: function() {
       return this.trigger('log:new');
     },
     set_last_log: function(log) {
@@ -15796,7 +15848,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 (function() {
   GW.Views.TabList = Backbone.View.extend({
     tagName: 'ul',
-    className: 'nav nav-tabs',
+    className: 'clearfix',
     initialize: function(options) {
       this.tabs = options.tabs;
       return this.renderTabs();
