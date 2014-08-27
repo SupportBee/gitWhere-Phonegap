@@ -15562,8 +15562,8 @@ select[multiple].navbar-input,
  */
 @font-face {
   font-family: "FontAwesome";
-  src: url(/www/assets/fontawesome-webfont.eot);
-  src: url(/www/assets/fontawesome-webfont.eot?#iefix) format("embedded-opentype"), url(/www/assets/fontawesome-webfont.woff) format("woff"), url(/www/assets/fontawesome-webfont.ttf) format("truetype");
+  src: url(/assets/fontawesome-webfont.eot);
+  src: url(/assets/fontawesome-webfont.eot?#iefix) format("embedded-opentype"), url(fontawesome-webfont.woff) format("woff"), url(fontawesome-webfont.ttf) format("truetype");
   font-weight: normal;
   font-style: normal;
 }

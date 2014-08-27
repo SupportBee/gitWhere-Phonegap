@@ -14919,6 +14919,135 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   GW.Views = {};
 
 }).call(this);
+/* ========================================================================
+ * Bootstrap: tab.js v3.2.0
+ * http://getbootstrap.com/javascript/#tabs
+ * ========================================================================
+ * Copyright 2011-2014 Twitter, Inc.
+ * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
+ * ======================================================================== */
+
+
+
++function ($) {
+  'use strict';
+
+  // TAB CLASS DEFINITION
+  // ====================
+
+  var Tab = function (element) {
+    this.element = $(element)
+  }
+
+  Tab.VERSION = '3.2.0'
+
+  Tab.prototype.show = function () {
+    var $this    = this.element
+    var $ul      = $this.closest('ul:not(.dropdown-menu)')
+    var selector = $this.data('target')
+
+    if (!selector) {
+      selector = $this.attr('href')
+      selector = selector && selector.replace(/.*(?=#[^\s]*$)/, '') // strip for ie7
+    }
+
+    if ($this.parent('li').hasClass('active')) return
+
+    var previous = $ul.find('.active:last a')[0]
+    var e        = $.Event('show.bs.tab', {
+      relatedTarget: previous
+    })
+
+    $this.trigger(e)
+
+    if (e.isDefaultPrevented()) return
+
+    var $target = $(selector)
+
+    this.activate($this.closest('li'), $ul)
+    this.activate($target, $target.parent(), function () {
+      $this.trigger({
+        type: 'shown.bs.tab',
+        relatedTarget: previous
+      })
+    })
+  }
+
+  Tab.prototype.activate = function (element, container, callback) {
+    var $active    = container.find('> .active')
+    var transition = callback
+      && $.support.transition
+      && $active.hasClass('fade')
+
+    function next() {
+      $active
+        .removeClass('active')
+        .find('> .dropdown-menu > .active')
+        .removeClass('active')
+
+      element.addClass('active')
+
+      if (transition) {
+        element[0].offsetWidth // reflow for transition
+        element.addClass('in')
+      } else {
+        element.removeClass('fade')
+      }
+
+      if (element.parent('.dropdown-menu')) {
+        element.closest('li.dropdown').addClass('active')
+      }
+
+      callback && callback()
+    }
+
+    transition ?
+      $active
+        .one('bsTransitionEnd', next)
+        .emulateTransitionEnd(150) :
+      next()
+
+    $active.removeClass('in')
+  }
+
+
+  // TAB PLUGIN DEFINITION
+  // =====================
+
+  function Plugin(option) {
+    return this.each(function () {
+      var $this = $(this)
+      var data  = $this.data('bs.tab')
+
+      if (!data) $this.data('bs.tab', (data = new Tab(this)))
+      if (typeof option == 'string') data[option]()
+    })
+  }
+
+  var old = $.fn.tab
+
+  $.fn.tab             = Plugin
+  $.fn.tab.Constructor = Tab
+
+
+  // TAB NO CONFLICT
+  // ===============
+
+  $.fn.tab.noConflict = function () {
+    $.fn.tab = old
+    return this
+  }
+
+
+  // TAB DATA-API
+  // ============
+
+  $(document).on('click.bs.tab.data-api', '[data-toggle="tab"], [data-toggle="pill"]', function (e) {
+    e.preventDefault()
+    Plugin.call($(this), 'show')
+  })
+
+}(jQuery);
 (function() {
   _.extend(Backbone.View.prototype, {
     responds_to: function(formats) {
@@ -15213,7 +15342,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   GW.Models.Log = Backbone.Model.extend({
     name: 'log',
     urlRoot: function() {
-      return "http://10.1.200.38:3000/logs.json/?auth_key=dK-6tzPTzF5leJJX5zZTIw";
+      return GW.Utils.getRelativeUrl() + "/logs.json?auth_key=dK-6tzPTzF5leJJX5zZTIw";
     }
   });
 
@@ -15236,9 +15365,9 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
     },
     url: function() {
       var base_url;
-      base_url = "http://10.1.200.38:3000/hackers.json?auth_key=dK-6tzPTzF5leJJX5zZTIw";
+      base_url = GW.Utils.getRelativeUrl() + "/hackers/";
       if (this.nearby) {
-        return "" + base_url + "&nearby=true&ll=" + this.latlong.lat + "," + this.latlong.lon;
+        return "" + base_url + "nearby.json?ll=" + this.latlong.lat + "," + this.latlong.lon + "&auth_key=dK-6tzPTzF5leJJX5zZTIw";
       }
     }
   });
@@ -15252,9 +15381,55 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
       return this.latlong = options.latlong;
     },
     url: function() {
-      return "http://10.1.200.38:3000/places?auth_key=dK-6tzPTzF5leJJX5zZTIw&ll=" + this.latlong;
-      //dK-6tzPTzF5leJJX5zZTIw
+      return GW.Utils.getRelativeUrl() + ("/places.json?auth_key=dK-6tzPTzF5leJJX5zZTIw&ll=" + this.latlong);
     }
+  });
+
+}).call(this);
+(function() {
+  GW.Views.BaseButton = Backbone.View.extend({
+    tagName: 'button',
+    className: 'btn btn-primary',
+    title: 'Button',
+    initialize: function() {
+      return this.$el.html(this.title);
+    }
+  });
+
+}).call(this);
+(function() {
+  GW.Views.BackToLogButton = GW.Views.BaseButton.extend({
+    title: "Back to Log"
+  });
+
+}).call(this);
+(function() {
+  GW.Views.CancelButton = GW.Views.BaseButton.extend({
+    title: 'Cancel'
+  });
+
+}).call(this);
+(function() {
+  GW.Views.CheckinButton = GW.Views.BaseButton.extend({
+    title: 'Checkin'
+  });
+
+}).call(this);
+(function() {
+  GW.Views.HomeButton = GW.Views.BaseButton.extend({
+    title: 'Home'
+  });
+
+}).call(this);
+(function() {
+  GW.Views.LogItButton = GW.Views.BaseButton.extend({
+    title: 'Log it'
+  });
+
+}).call(this);
+(function() {
+  GW.Views.NewLogButton = GW.Views.BaseButton.extend({
+    title: 'Log'
   });
 
 }).call(this);
@@ -15266,32 +15441,19 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
       return this.get_location();
     },
     get_location: function() {
-      console.log("inside get_location");
       return navigator.geolocation.getCurrentPosition(this.record_location);
-      //var loc;
-      //this.record_location(loc);
     },
     record_location: function(loc) {
-      //console.log("lat = " + loc.coords.latitude);
-      console.log("inside record location");
       this.location = loc;
       this.latlong = {
         lat: loc.coords.latitude,
         lon: loc.coords.longitude
       };
-      // this.latlong = {
-      //   lat: 12,
-      //   lon: 79
-      // };
-      //console.log("lat = " + loc.coords.latitude);
       return this.trigger('location:recorded', this.location);
     },
     show_home: function() {
-      console.log("inside show home");
       return this.on('location:recorded', (function(_this) {
-      	console.log('inside location:RECORDED');
         return function() {
-          console.log("inside location recorded function");         
           _this.home_view = new GW.Views.Home({
             latlong: _this.latlong
           });
@@ -15411,7 +15573,6 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
       'click a.new_log': 'new_log'
     },
     initialize: function(options) {
-      console.log("insode home view");
       var tmpl;
       this.latlong = options.latlong;
       _.bindAll(this, 'new_log');
@@ -15472,7 +15633,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
         insert_tpl: "<span id='${login}'>${login}</span>",
         callbacks: {
           remote_filter: function(query, callback) {
-            return $.getJSON("/hackers/search", {
+            return $.getJSON(GW.Utils.getRelativeUrl() + "/hackers/search.json", {
               q: query
             }, function(data) {
               return callback(data.hackers);
@@ -15591,7 +15752,65 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 
 }).call(this);
 (function() {
+  GW.Views.BaseTab = Backbone.View.extend({
+    tagName: 'li',
+    title: "Tab",
+    events: {
+      'click': 'clickHandler'
+    },
+    initialize: function() {
+      var a_el;
+      a_el = $('<a>').html(this.title);
+      return $(this.el).html(a_el);
+    },
+    clickHandler: function() {
+      return this.$el.tab('show');
+    }
+  });
 
+}).call(this);
+(function() {
+  GW.Views.DiscoverTab = GW.Views.BaseTab.extend({
+    title: 'Discover'
+  });
+
+}).call(this);
+(function() {
+  GW.Views.LogTab = GW.Views.BaseTab.extend({
+    title: 'Log'
+  });
+
+}).call(this);
+(function() {
+  GW.Views.MoreTab = GW.Views.BaseTab.extend({
+    title: 'More'
+  });
+
+}).call(this);
+(function() {
+  GW.Views.NotificationsTab = GW.Views.BaseTab.extend({
+    title: 'Notifications'
+  });
+
+}).call(this);
+(function() {
+  GW.Views.TabList = Backbone.View.extend({
+    tagName: 'ul',
+    className: 'nav nav-tabs',
+    initialize: function(options) {
+      this.tabs = options.tabs;
+      return this.renderTabs();
+    },
+    renderTabs: function() {
+      return _.each(this.tabs, (function(_this) {
+        return function(tab) {
+          var tabView;
+          tabView = new tab;
+          return _this.$el.append(tabView.el);
+        };
+      })(this));
+    }
+  });
 
 }).call(this);
 (function() {
@@ -15612,6 +15831,37 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 }).call(this);
 (function() {
 
+
+}).call(this);
+(function() {
+
+
+}).call(this);
+(function() {
+  GW.Utils = {
+    getRelativeUrl: function() {
+      var relativeUrl;
+      switch (window.location.hostname) {
+        case "localhost":
+        case "127.0.0.1":
+        case "lvh.me":
+          relativeUrl = "http://lvh.me:3000";
+          break;
+        case "hackin.at":
+          relativeUrl = "http://hackin.at";
+          break;
+        case "":
+          relativeUrl = "http://10.1.200.38:3000";
+          break;
+        default:
+          throw "Unknown environment: " + window.location.hostname;
+      }
+      return relativeUrl;
+    },
+    isMobileApp: function() {
+      return navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/);
+    }
+  };
 
 }).call(this);
 // This is a manifest file that'll be compiled into application.js, which will include all the files
@@ -15626,6 +15876,8 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
+
+
 
 
 
