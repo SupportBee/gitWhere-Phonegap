@@ -15357,7 +15357,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
       })(this));
     },
     follow_url: function() {
-      return GW.Utils.getRelativeUrl() + "/" + (this.get('login')) + "/follow.json?auth_key=AnSCCphfRN8aOapOCQGw5Q";
+      return GW.Utils.getRelativeUrl() + "/" + (this.get('login')) + "/follow.json?auth_key="+localStorage.auth_key;
     },
     unfollow: function() {
       return $.ajax({
@@ -15377,7 +15377,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   GW.Models.Log = Backbone.Model.extend({
     name: 'log',
     urlRoot: function() {
-      return GW.Utils.getRelativeUrl() + "/logs.json?auth_key=AnSCCphfRN8aOapOCQGw5Q";
+      return GW.Utils.getRelativeUrl() + "/logs.json?auth_key="+localStorage.auth_key;
     }
   });
 
@@ -15400,7 +15400,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
     },
     url: function() {
       var base_url;
-      base_url = GW.Utils.getRelativeUrl() + "/hackers/nearby.json?auth_key=AnSCCphfRN8aOapOCQGw5Q";
+      base_url = GW.Utils.getRelativeUrl() + "/hackers/nearby.json?auth_key="+localStorage.auth_key;
       return "" + base_url + "&ll=" + this.latlong.lat + "," + this.latlong.lon;
     }
   });
