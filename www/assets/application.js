@@ -15357,7 +15357,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
       })(this));
     },
     follow_url: function() {
-      return "" + (this.get('login')) + "/follow";
+      return GW.Utils.getRelativeUrl() + "/" + (this.get('login')) + "/follow.json?auth_key=AnSCCphfRN8aOapOCQGw5Q";
     },
     unfollow: function() {
       return $.ajax({
@@ -15377,7 +15377,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   GW.Models.Log = Backbone.Model.extend({
     name: 'log',
     urlRoot: function() {
-      return GW.Utils.getRelativeUrl() + "/logs.json?auth_key=oMh8Fmcekapk3mHbOHAuLQ";
+      return GW.Utils.getRelativeUrl() + "/logs.json?auth_key=AnSCCphfRN8aOapOCQGw5Q";
     }
   });
 
@@ -15400,8 +15400,8 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
     },
     url: function() {
       var base_url;
-      base_url = GW.Utils.getRelativeUrl() + "/hackers/nearby.json?";
-      return "" + base_url + "ll=" + this.latlong.lat + "," + this.latlong.lon;
+      base_url = GW.Utils.getRelativeUrl() + "/hackers/nearby.json?auth_key=AnSCCphfRN8aOapOCQGw5Q";
+      return "" + base_url + "&ll=" + this.latlong.lat + "," + this.latlong.lon;
     }
   });
 
@@ -15903,7 +15903,8 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
           relativeUrl = "http://hackin.at";
           break;
         case "":
-          relativeUrl = "http://10.1.200.38:3000";
+        	relativeUrl = "http://hackin.at";
+          //relativeUrl = "http://10.1.200.38:3000";
           break;
         default:
           throw "Unknown environment: " + window.location.hostname;

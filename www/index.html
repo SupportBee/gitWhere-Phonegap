@@ -39,16 +39,16 @@
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="assets/application.js"></script>
         <script type="text/javascript">
-            //document.addEventListener("deviceready", onDeviceReady, false);
+            document.addEventListener("deviceready", onDeviceReady, false);
 
              // PhoneGap is loaded and it is now safe to make calls PhoneGap methods
              //
-             //function onDeviceReady() {
+             function onDeviceReady() {
                  // Now safe to use the PhoneGap API
                  window.current_view = new GW.Views.CurrentView({el: $('#main')});
                  new GW.Views.Dashboard({current_view: current_view}); 
 
-             //}
+             }
 
        
         </script>
