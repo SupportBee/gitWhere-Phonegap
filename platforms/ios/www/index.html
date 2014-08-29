@@ -52,6 +52,10 @@
 
                 console.log("inside device ready###");
 
+                if (device.platform === 'iOS' && parseFloat(device.version) >= 7.0) {
+                      document.body.style.marginTop = "20px";
+                  }
+
                 $('#login a').on('click', function() {
 
                     console.log("inside button click");

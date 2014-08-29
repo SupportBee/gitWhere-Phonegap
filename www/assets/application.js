@@ -14802,7 +14802,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<form role=\"form\">\n  <textarea class=\"form-control\" rows=\"3\" placeholder=\"What are you hackin on? Who with?\"></textarea>\n  <br/>\n  <i class=\"icon icon-map-marker where\"></i><span class=\"place_name\"></span>\n  <br/>\n  <a class=\"btn btn-primary\" rows=\"3\">Log It!</a>\n</form>";
+  return "<form role=\"form\">\n  <textarea class=\"form-control\" rows=\"3\" placeholder=\"What are you hackin on? Who with?\"></textarea>\n  <br/>\n  <i class=\"icon icon-foursquare_2 where\"></i><span class=\"place_name\"></span>\n  <br/>\n  <a class=\"btn btn-primary\" rows=\"3\">Log It!</a>\n</form>";
   });
   return this.HandlebarsTemplates["checkins/new"];
 }).call(this);
@@ -14865,11 +14865,34 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 function program1(depth0,data) {
   
   var buffer = "", stack1, helper;
-  buffer += "\n  <div class=\"row\">\n    <div class=\"col-xs-12 col-md-8\">\n      <h1>@";
+  buffer += "\n  <div class=\"row\">\n    <div class=\"col-xs-12 col-md-8 top_bar\">\n      <span class=\"screen_title\">Profile</span> \n    </div>\n  </div>\n\n  <div class=\"row\">\n    <div class=\"col-xs-12 col-md-8 profile\">\n      <img src=\"";
+  if (helper = helpers.avatar_url) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.avatar_url); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\" height=\"60\" width=\"60\" alt=\"";
+  if (helper = helpers.login) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.login); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\"/>\n      <span>@";
   if (helper = helpers.login) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.login); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</h1>\n    </div>\n  </div>\n  <div class=\"row\">\n    <div class=\"col-xs-12 col-md-8 follow_unfollow\"></div>\n  </div>\n  <div class=\"row\">\n    <div class=\"col-xs-12 col-md-8 log\"></div>\n  </div>\n";
+    + "</span>\n    </div>\n  </div>\n  \n  <br/>\n\n  <div class=\"row\">\n    <div class=\"col-xs-12 col-md-8 stickers\" style=\"font-size: 36px;\">\n      ";
+  stack1 = helpers.each.call(depth0, (depth0 && depth0.stickers), {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data});
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\n    </div>\n  </div>\n\n  <br/>\n  \n  <div class=\"row\">\n    <div class=\"col-xs-12 col-md-8 follow_unfollow\"></div>\n  </div>\n\n  <div class=\"row\">\n    <div class=\"col-xs-12 col-md-8 statistics\"></div>\n  </div>\n  <hr>\n\n  <div class=\"row\">\n    <div class=\"col-xs-12 col-md-8 last_checkin\">\n      <span class=\"title\"> Last Checkin </span>\n      <span class=\"message\">"
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.last_checkin)),stack1 == null || stack1 === false ? stack1 : stack1.message)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</span>\n    </div>\n  </div>\n\n  <div class=\"row\">\n    <div class=\"col-xs-12 col-md-8 tabs\"></div>\n  </div>\n";
+  return buffer;
+  }
+function program2(depth0,data) {
+  
+  var buffer = "", stack1, helper;
+  buffer += "\n        <span class=\"icon-";
+  if (helper = helpers.icon_key) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.icon_key); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  buffer += escapeExpression(stack1)
+    + "\"></span>\n      ";
   return buffer;
   }
 
@@ -15345,6 +15368,9 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   GW.Models.Hacker = Backbone.Model.extend({
     name: 'hacker',
     keepInSync: true,
+    url: function() {
+      return GW.Utils.getRelativeUrl()+"/"+(this.get('login'))+".json";
+    },
     follow: function() {
       return $.ajax({
         url: this.follow_url(),
@@ -15357,7 +15383,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
       })(this));
     },
     follow_url: function() {
-      return GW.Utils.getRelativeUrl() + "/" + (this.get('login')) + "/follow.json?auth_key="+localStorage.auth_key;
+    	return GW.Utils.getRelativeUrl() + "/" + (this.get('login')) + "/follow.json?auth_key="+localStorage.auth_key;
     },
     unfollow: function() {
       return $.ajax({
@@ -15558,17 +15584,29 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
     },
     initialize: function(options) {
       var tmpl;
-      _.bindAll(this, 'follow', 'unfollow', 'render_follow_button');
+      _.bindAll(this, 'follow', 'unfollow', 'render_follow_button', 'render_additional_info');
       this.hacker = options.hacker;
+      this.hacker.on("fetched", this.render_additional_info);
+      this.hacker.fetch();
       tmpl = HandlebarsTemplates['hackers/profile'](this.hacker.toJSON());
       this.$el.html(tmpl);
       this.follow_unfollow_el = this.$('.follow_unfollow');
-      return this.setup_follow_button();
+      this.setup_follow_button();
+      this.last_checkin_message_el = this.$('.last_checkin span.message');
+      return this.renderTabs();
     },
     setup_follow_button: function() {
       this.hacker.on('hacker:followed', this.render_follow_button);
       this.hacker.on('hacker:unfollowed', this.render_follow_button);
       return this.render_follow_button();
+    },
+    renderTabs: function() {
+      var tab_list;
+      this.tabs_el = this.$('.tabs');
+      tab_list = new GW.Views.TabList({
+        tabs: [GW.Views.DiscoverTab, GW.Views.PingsTab, GW.Views.NotificationsTab, GW.Views.MeTab]
+      });
+      return this.tabs_el.append(tab_list.el);
     },
     render_follow_button: function() {
       var tmpl;
@@ -15576,6 +15614,17 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
       return this.follow_unfollow_el.html(tmpl);
     },
     render_follow_unfollow_button: function() {},
+    render_additional_info: function() {
+      return this.renderLastCheckinMessage();
+    },
+    renderLastCheckinMessage: function() {
+      var last_checkin_message;
+      last_checkin_message = this.hacker.get('last_checkin')['message'];
+      if (last_checkin_message == null) {
+        last_checkin_message = "Yet to checkin to hackin.at";
+      }
+      return this.last_checkin_message_el.html(last_checkin_message);
+    },
     follow: function() {
       return this.hacker.follow();
     },
@@ -15629,7 +15678,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
       var tab_list;
       this.tabs_el = this.$('.tabs');
       tab_list = new GW.Views.TabList({
-        tabs: [GW.Views.DiscoverTab, GW.Views.LogTab, GW.Views.NotificationsTab, GW.Views.MoreTab]
+        tabs: [GW.Views.DiscoverTab, GW.Views.PingsTab, GW.Views.NotificationsTab, GW.Views.MeTab]
       });
       return this.tabs_el.append(tab_list.el);
     },
@@ -15813,7 +15862,10 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
     initialize: function() {
       var a_el;
       a_el = $('<a>').html(this.title);
-      return $(this.el).html(a_el);
+      $(this.el).html(a_el);
+      if (this.customClassName != null) {
+        return this.$el.addClass(this.customClassName);
+      }
     },
     clickHandler: function() {
       return this.$el.tab('show');
@@ -15823,13 +15875,21 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 }).call(this);
 (function() {
   GW.Views.DiscoverTab = GW.Views.BaseTab.extend({
-    title: 'Discover'
+    title: 'Discover',
+    customClassName: 'discover_tab'
   });
 
 }).call(this);
 (function() {
   GW.Views.LogTab = GW.Views.BaseTab.extend({
     title: 'Log'
+  });
+
+}).call(this);
+(function() {
+  GW.Views.MeTab = GW.Views.BaseTab.extend({
+    title: 'Me',
+    customClassName: 'me_tab'
   });
 
 }).call(this);
@@ -15841,7 +15901,15 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 }).call(this);
 (function() {
   GW.Views.NotificationsTab = GW.Views.BaseTab.extend({
-    title: 'Notifications'
+    title: 'Notifications',
+    customClassName: 'notifications_tab'
+  });
+
+}).call(this);
+(function() {
+  GW.Views.PingsTab = GW.Views.BaseTab.extend({
+    title: 'Pings',
+    customClassName: 'pings_tab'
   });
 
 }).call(this);
@@ -15890,6 +15958,10 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 
 }).call(this);
 (function() {
+
+
+}).call(this);
+(function() {
   GW.Utils = {
     getRelativeUrl: function() {
       var relativeUrl;
@@ -15903,16 +15975,13 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
           relativeUrl = "http://hackin.at";
           break;
         case "":
-        	relativeUrl = "http://hackin.at";
           //relativeUrl = "http://10.1.200.38:3000";
+          relativeUrl = "http://hackin.at";
           break;
         default:
           throw "Unknown environment: " + window.location.hostname;
       }
       return relativeUrl;
-    },
-    isMobileApp: function() {
-      return navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/);
     }
   };
 

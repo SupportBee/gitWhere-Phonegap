@@ -1,4 +1,18 @@
 /home/maximus/code/gitWhere-Phonegap/platforms/android/ant-build/classes.dex : \
+/home/maximus/code/gitWhere-Phonegap/platforms/android/ant-build/classes/org/apache/cordova/inappbrowser/InAppBrowser$5.class \
+/home/maximus/code/gitWhere-Phonegap/platforms/android/ant-build/classes/org/apache/cordova/inappbrowser/InAppBrowser$InAppBrowserClient.class \
+/home/maximus/code/gitWhere-Phonegap/platforms/android/ant-build/classes/org/apache/cordova/inappbrowser/InAppBrowser$5$2.class \
+/home/maximus/code/gitWhere-Phonegap/platforms/android/ant-build/classes/org/apache/cordova/inappbrowser/InAppBrowser.class \
+/home/maximus/code/gitWhere-Phonegap/platforms/android/ant-build/classes/org/apache/cordova/inappbrowser/InAppBrowser$2.class \
+/home/maximus/code/gitWhere-Phonegap/platforms/android/ant-build/classes/org/apache/cordova/inappbrowser/InAppBrowser$4$1.class \
+/home/maximus/code/gitWhere-Phonegap/platforms/android/ant-build/classes/org/apache/cordova/inappbrowser/InAppBrowserDialog.class \
+/home/maximus/code/gitWhere-Phonegap/platforms/android/ant-build/classes/org/apache/cordova/inappbrowser/InAppBrowser$5$3.class \
+/home/maximus/code/gitWhere-Phonegap/platforms/android/ant-build/classes/org/apache/cordova/inappbrowser/InAppBrowser$1.class \
+/home/maximus/code/gitWhere-Phonegap/platforms/android/ant-build/classes/org/apache/cordova/inappbrowser/InAppBrowser$5$1.class \
+/home/maximus/code/gitWhere-Phonegap/platforms/android/ant-build/classes/org/apache/cordova/inappbrowser/InAppChromeClient.class \
+/home/maximus/code/gitWhere-Phonegap/platforms/android/ant-build/classes/org/apache/cordova/inappbrowser/InAppBrowser$3.class \
+/home/maximus/code/gitWhere-Phonegap/platforms/android/ant-build/classes/org/apache/cordova/inappbrowser/InAppBrowser$4.class \
+/home/maximus/code/gitWhere-Phonegap/platforms/android/ant-build/classes/org/apache/cordova/inappbrowser/InAppBrowser$5$4.class \
 /home/maximus/code/gitWhere-Phonegap/platforms/android/ant-build/classes/org/apache/cordova/device/Device.class \
 /home/maximus/code/gitWhere-Phonegap/platforms/android/ant-build/classes/com/supportbee/hackinat/hackinat.class \
 /home/maximus/code/gitWhere-Phonegap/platforms/android/ant-build/classes/com/supportbee/hackinat/R$attr.class \

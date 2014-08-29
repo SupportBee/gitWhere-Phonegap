@@ -32,9 +32,19 @@
     		
     		<div id="main">
                 <div id="login">
-                    <a>Sign In With GitHub</a>
-                    <p></p>
+                   <!--  <a>Sign In With GitHub</a>
+                    <p></p> -->
+                    <br><br><br><br><br><br><br>
+                    <a class="btn btn-block btn-social btn-github">
+                      <i class="fa fa-github">
+                        <span class="icon-github-01">
+                        </span>
+                      </i>
+                      Sign in with Github
+                      </a>
+
                 </div>
+              
     		</div>    	
     	</div>
         
@@ -45,12 +55,16 @@
             
             console.log("app initi");
             
-              onDeviceReady();
+              //onDeviceReady();
 
              
              function onDeviceReady() {
 
                 console.log("inside device ready###");
+
+                if (device.platform === 'iOS' && parseFloat(device.version) >= 7.0) {
+                      document.body.style.marginTop = "20px";
+                  }
 
                 $('#login a').on('click', function() {
 
