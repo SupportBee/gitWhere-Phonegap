@@ -6,6 +6,13 @@ module.exports = [
         "clobbers": [
             "device"
         ]
+    },
+    {
+        "file": "plugins/org.apache.cordova.inappbrowser/www/inappbrowser.js",
+        "id": "org.apache.cordova.inappbrowser.inappbrowser",
+        "clobbers": [
+            "window.open"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -13,7 +20,8 @@ module.exports.metadata =
 {
     "org.apache.cordova.console": "0.2.10",
     "org.apache.cordova.device": "0.2.11",
-    "org.apache.cordova.geolocation": "0.3.9"
+    "org.apache.cordova.geolocation": "0.3.9",
+    "org.apache.cordova.inappbrowser": "0.5.1"
 }
 // BOTTOM OF METADATA
 });
