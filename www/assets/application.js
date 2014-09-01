@@ -14877,7 +14877,7 @@ function program1(depth0,data) {
   if (helper = helpers.login) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.login); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</span>\n    </div>\n  </div>\n  \n  <br/>\n\n  <div class=\"row\">\n    <div class=\"col-xs-12 col-md-8 stickers\" style=\"font-size: 36px;\">\n      ";
+    + "</span>\n    </div>\n  </div>\n  \n  <br/>\n\n  <div class=\"row\">\n    <div class=\"col-xs-12 col-md-8 stickers\">\n      ";
   stack1 = helpers.each.call(depth0, (depth0 && depth0.stickers), {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data});
   if(stack1 || stack1 === 0) { buffer += stack1; }
   buffer += "\n    </div>\n  </div>\n\n  <br/>\n  \n  <div class=\"row\">\n    <div class=\"col-xs-12 col-md-8 follow_unfollow\"></div>\n  </div>\n\n  <div class=\"row\">\n    <div class=\"col-xs-12 col-md-8 statistics\"></div>\n  </div>\n  <hr>\n\n  <div class=\"row\">\n    <div class=\"col-xs-12 col-md-8 last_checkin\">\n      <span class=\"title\"> Last Checkin </span>\n      <span class=\"message\">"
@@ -15369,7 +15369,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
     name: 'hacker',
     keepInSync: true,
     url: function() {
-      return GW.Utils.getRelativeUrl()+"/"+(this.get('login'))+".json";
+      return "" + (this.get('login'));
     },
     follow: function() {
       return $.ajax({
@@ -15383,7 +15383,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
       })(this));
     },
     follow_url: function() {
-    	return GW.Utils.getRelativeUrl() + "/" + (this.get('login')) + "/follow.json?auth_key="+localStorage.auth_key;
+      return GW.Utils.getRelativeUrl() + "/" + (this.get('login')) + "/follow";
     },
     unfollow: function() {
       return $.ajax({
@@ -15403,7 +15403,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   GW.Models.Log = Backbone.Model.extend({
     name: 'log',
     urlRoot: function() {
-      return GW.Utils.getRelativeUrl() + "/logs.json?auth_key="+localStorage.auth_key;
+      return GW.Utils.getRelativeUrl() + "/logs";
     }
   });
 
@@ -15426,8 +15426,8 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
     },
     url: function() {
       var base_url;
-      base_url = GW.Utils.getRelativeUrl() + "/hackers/nearby.json?auth_key="+localStorage.auth_key;
-      return "" + base_url + "&ll=" + this.latlong.lat + "," + this.latlong.lon;
+      base_url = GW.Utils.getRelativeUrl() + "/hackers/nearby?";
+      return "" + base_url + "ll=" + this.latlong.lat + "," + this.latlong.lon;
     }
   });
 
@@ -15440,7 +15440,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
       return this.latlong = options.latlong;
     },
     url: function() {
-      return GW.Utils.getRelativeUrl() + ("/places.json?ll=" + this.latlong);
+      return GW.Utils.getRelativeUrl() + ("/places?ll=" + this.latlong);
     }
   });
 
@@ -15734,7 +15734,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
         insert_tpl: "<span id='${login}'>${login}</span>",
         callbacks: {
           remote_filter: function(query, callback) {
-            return $.getJSON(GW.Utils.getRelativeUrl() + "/hackers/search.json", {
+            return $.getJSON(GW.Utils.getRelativeUrl() + "/hackers/search", {
               q: query
             }, function(data) {
               return callback(data.hackers);
@@ -15982,6 +15982,17 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
           throw "Unknown environment: " + window.location.hostname;
       }
       return relativeUrl;
+    },
+    setupAjax: function() {
+      return $.ajaxSetup({
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+          data: localStorage.auth_key ? {
+            auth_key: localStorage.auth_key
+          } : void 0
+        }
+      });
     }
   };
 
