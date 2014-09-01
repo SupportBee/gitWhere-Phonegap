@@ -60,6 +60,13 @@
              
              function onDeviceReady() {
 
+                $.ajaxSetup({
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    }
+                });
+
                 console.log("inside device ready###");
 
                 if (device.platform === 'iOS' && parseFloat(device.version) >= 7.0) {
