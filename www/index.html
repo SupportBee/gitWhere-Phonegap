@@ -59,13 +59,10 @@
 
              
              function onDeviceReady() {
+                
+                
+                GW.Utils.setupAjax();            
 
-                $.ajaxSetup({
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    }
-                });
 
                 console.log("inside device ready###");
 
