@@ -15975,8 +15975,8 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
           relativeUrl = "http://hackin.at";
           break;
         case "":
-          relativeUrl = "http://10.1.200.38:3000";
-          //relativeUrl = "http://hackin.at";
+          //relativeUrl = "http://10.1.200.38:3000";
+          relativeUrl = "http://hackin.at";
           break;
         default:
           throw "Unknown environment: " + window.location.hostname;
