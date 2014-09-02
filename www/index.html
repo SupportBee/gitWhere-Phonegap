@@ -37,8 +37,7 @@
         <script type="text/javascript" src="assets/application.js"></script>
         <script type="text/javascript">
 
-            console.log("app init");
-            GW.Utils.setupAjax();
+        
             document.addEventListener("deviceready", onDeviceReady, false);
 
             
@@ -64,7 +63,8 @@
           
 
             function storeUserData(auth_key, login){
-              console.log("login_name =", login);
+              console.log("login_name =" + login);
+              console.log("auth_key =" +auth_key);
               localStorage.auth_key = auth_key;
               url = GW.Utils.getRelativeUrl()+"/"+login;
               $.getJSON(url,function(result){
@@ -91,7 +91,7 @@
 
                      var url = (typeof e.url !== 'undefined' ? e.url : e.originalEvent.url);
 
-                     var auth_key = /\?auth_key=(.+)$/.exec(url);
+                     var auth_key = /\?auth_key=(.+)\&login/.exec(url);
                      var login_name = /\&login=(.+)$/.exec(url); 
                      var error = /\?error=(.+)$/.exec(url);
 
@@ -109,6 +109,9 @@
             }
 
             function onDeviceReady() {
+
+                console.log("app init");
+                GW.Utils.setupAjax();
 
                 console.log("Inside device ready");
                 initialSetup();                

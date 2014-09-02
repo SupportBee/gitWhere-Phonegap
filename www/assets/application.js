@@ -15986,13 +15986,18 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
     setupAjax: function() {
       console.log("auth_key = "+localStorage.auth_key)
       return $.ajaxSetup({
+      	
         headers: {
           "Content-Type": "application/json",
           "Accept": "application/json",
-          data: localStorage.auth_key ? {
+         /* data: localStorage.auth_key ? {
             auth_key: localStorage.auth_key
-          } : void 0
+          } : void 0*/
+        },
+        data: {
+        	auth_key: localStorage.auth_key
         }
+
       });
     }
   };
