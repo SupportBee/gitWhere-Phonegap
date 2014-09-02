@@ -15975,8 +15975,8 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
           relativeUrl = "http://hackin.at";
           break;
         case "":
-          //relativeUrl = "http://10.1.200.38:3000";
-          relativeUrl = "http://hackin.at";
+          relativeUrl = "http://10.1.200.38:3000";
+          //relativeUrl = "http://hackin.at";
           break;
         default:
           throw "Unknown environment: " + window.location.hostname;
@@ -15984,6 +15984,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
       return relativeUrl;
     },
     setupAjax: function() {
+      console.log("auth_key = "+localStorage.auth_key)
       return $.ajaxSetup({
         headers: {
           "Content-Type": "application/json",

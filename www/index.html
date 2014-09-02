@@ -28,81 +28,105 @@
         <title>Hackin At!</title>
     </head>
     <body>
-    	<div class="container">
-    		
-    		<div id="main">
-                <div id="login">
-                   <!--  <a>Sign In With GitHub</a>
-                    <p></p> -->
-                    <br><br><br><br><br><br><br>
-                    <a class="btn btn-block btn-social btn-github">
-                      <i class="fa fa-github">
-                        <span class="icon-github-01">
-                        </span>
-                      </i>
-                      Sign in with Github
-                      </a>
-
-                </div>
-              
+    	<div class="container">    		
+    		<div id="main">                  
     		</div>    	
     	</div>
         
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="assets/application.js"></script>
         <script type="text/javascript">
+            GW.Utils.setupAjax();
+            console.log("app init");
+
             document.addEventListener("deviceready", onDeviceReady, false);
+
             
-            console.log("app initi");
-            
-              //onDeviceReady();
 
-             
-             function onDeviceReady() {
-                
-                
-                GW.Utils.setupAjax();            
+            function showDashboard() {
+              console.log("inside show dashboard")
+              $('#main').empty();
+              window.current_view = new GW.Views.CurrentView({el: $('#main')});
+              new GW.Views.Dashboard({current_view: current_view});    
+            }
+
+            function showLoginForm(){
+              console.log("inside login form");
+              $("#main").html("<div id='login'><br><br><br><br><br><br><br><a class='btn btn-block btn-social btn-github'<i class='fa fa-github'><span class='icon-github-01'></span></i>Sign in with Github</a></div>");
+              onLoginClick();
+            }
+
+            function initialSetup(){
+              if (device.platform === 'iOS' && parseFloat(device.version) >= 7.0) {
+                    document.body.style.marginTop = "20px";
+                }
+            }
+
+            function storeUserData(auth_key, user){
+              //store user data and auth_key in localStorage
+
+            }
+
+            function getUserData(login){
+
+            }
 
 
-                console.log("inside device ready###");
 
-                if (device.platform === 'iOS' && parseFloat(device.version) >= 7.0) {
-                      document.body.style.marginTop = "20px";
-                  }
 
-                $('#login a').on('click', function() {
+            function onLoginClick()
+            {
+              $('#login a').on('click', function() {
+                console.log("inside button click");
 
-                    console.log("inside button click");
+                 //inapp browser
+                 var authWindow = window.open('http://hackin.at/auth/github?api=true', '_blank', 'location=no,toolbar=no');
+                 authWindow.addEventListener('loadstart', githubCallback);
 
-                   // opens inapp browser
-                   var authWindow = window.open('http://hackin.at/auth/github?api=true', '_blank', 'location=no,toolbar=no');
-                   authWindow.addEventListener('loadstart', githubCallback);
+                 function githubCallback(e) {
 
-                   function githubCallback(e) {
+                    console.log("inside github callback");
 
-                        console.log("inside github callback");
+                     var url = (typeof e.url !== 'undefined' ? e.url : e.originalEvent.url);
+                     var auth_key = /\?auth_key=(.+)$/.exec(url);
+                     var login_name = /\&login=(.+)$/.exec(url); 
+                     var error = /\?error=(.+)$/.exec(url);
 
-                       var url = (typeof e.url !== 'undefined' ? e.url : e.originalEvent.url);
-                       var auth_key = /\?auth_key=(.+)$/.exec(url);
-                       var error = /\?error=(.+)$/.exec(url);
+                     if (auth_key || error) {
+                         authWindow.close();
+                     }
 
-                       //close login window
-                       if (auth_key || error) {
-                           authWindow.close();
-                       }
+                     if(auth_key){
+                          console.log("inside auth_key");
+                         //store auth key to websql
+                         //console.log("login_name =", login_name[1]);
+                         localStorage.auth_key = auth_key[1];
+                         showDashboard();                                                                            
+                     }
+                 }                         
+              });
+            }
 
-                       //store auth_key 
-                       if(auth_key){
-                            console.log("inside auth_key");
-                           localStorage.auth_key = auth_key[1];
-                           $('#main').empty();
-                           window.current_view = new GW.Views.CurrentView({el: $('#main')});
-                           new GW.Views.Dashboard({current_view: current_view});                            
-                       }
-                   }                         
-                });        
+            function onDeviceReady() {
+
+                console.log("Inside device ready");
+                initialSetup();                
+              
+
+                if (localStorage.auth_key) {
+                  console.log("logged in");
+                  showDashboard();    
+
+                }else{
+                  console.log("not logged in");
+                  showLoginForm()                 
+                }    
+
+                  
 
              }
+
+
 
        
         </script>
