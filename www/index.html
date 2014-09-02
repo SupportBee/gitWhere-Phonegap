@@ -36,9 +36,9 @@
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="assets/application.js"></script>
         <script type="text/javascript">
-            GW.Utils.setupAjax();
-            console.log("app init");
 
+            console.log("app init");
+            GW.Utils.setupAjax();
             document.addEventListener("deviceready", onDeviceReady, false);
 
             
@@ -61,15 +61,17 @@
                     document.body.style.marginTop = "20px";
                 }
             }
+          
 
-            function storeUserData(auth_key, user){
-              //store user data and auth_key in localStorage
-
-            }
-
-            function getUserData(login){
-
-            }
+            function storeUserData(auth_key, login){
+              console.log("login_name =", login);
+              localStorage.auth_key = auth_key;
+              url = GW.Utils.getRelativeUrl()+"/"+login;
+              $.getJSON(url,function(result){
+                console.log("user_data = "+JSON.stringify(result));
+                localStorage.hacker = JSON.stringify(result.hacker);
+              });
+            }         
 
 
 
@@ -88,6 +90,7 @@
                     console.log("inside github callback");
 
                      var url = (typeof e.url !== 'undefined' ? e.url : e.originalEvent.url);
+
                      var auth_key = /\?auth_key=(.+)$/.exec(url);
                      var login_name = /\&login=(.+)$/.exec(url); 
                      var error = /\?error=(.+)$/.exec(url);
@@ -97,10 +100,8 @@
                      }
 
                      if(auth_key){
-                          console.log("inside auth_key");
-                         //store auth key to websql
-                         //console.log("login_name =", login_name[1]);
-                         localStorage.auth_key = auth_key[1];
+                          console.log("inside auth_key");                        
+                         storeUserData(auth_key[1], login_name[1]);
                          showDashboard();                                                                            
                      }
                  }                         
