@@ -8,8 +8,14 @@
         Apache Cordova Team
     </author>
     <content src="index.html" />
-    <access origin="*"/>
+    <access origin="*"/>  
+    <feature name="Device">
+        <param name="android-package" value="org.apache.cordova.device.Device" />
+    </feature>
     <feature name="Geolocation">
         <param name="android-package" value="org.apache.cordova.GeoBroker" />
+    </feature>
+    <feature name="InAppBrowser">
+        <param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser" />
     </feature>
 </widget>

@@ -14802,7 +14802,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<form role=\"form\">\n  <textarea class=\"form-control\" rows=\"3\" placeholder=\"What are you hackin on? Who with?\"></textarea>\n  <br/>\n  <i class=\"icon icon-foursquare_2 where\"></i><span class=\"place_name\"></span>\n  <br/>\n  <a class=\"btn btn-primary\" rows=\"3\">Log It!</a>\n</form>";
+  return "<form role=\"form\">\n  <textarea class=\"form-control\" rows=\"3\" placeholder=\"What are you hackin on? Who with?\"></textarea>\n  <br/>\n  <i class=\"icon icon-map-marker where\"></i><span class=\"place_name\"></span>\n  <br/>\n  <a class=\"btn btn-primary\" rows=\"3\">Log It!</a>\n</form>";
   });
   return this.HandlebarsTemplates["checkins/new"];
 }).call(this);
@@ -14814,7 +14814,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<div class=\"row\">\n  <div class=\"col-xs-12 col-md-8 top_bar\">\n  </div>\n</div>\n<div class=\"row\">\n  <div class=\"col-xs-12 col-md-8 people_nearby\">\n    <p> Near You </p>\n  </div>\n</div>\n<div class=\"row\">\n  <div class=\"col-xs-12 col-md-8 tabs\"></div>\n</div>";
+  return "<div class=\"row\">\n  <div class=\"col-xs-12 col-md-8\">\n    <h1>What ya Hackin.at!</h1>\n    <a class=\"btn btn-primary new_log\">Log!</a>\n  </div>\n</div>\n<div class=\"row\">\n  <div class=\"col-xs-12 col-md-8 last_log\"></div>\n</div>\n<div class=\"row\">\n  <div class=\"col-xs-12 col-md-8 people_nearby\"></div>\n</div>";
   });
   return this.HandlebarsTemplates["dashboard/index"];
 }).call(this);
@@ -14865,34 +14865,11 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 function program1(depth0,data) {
   
   var buffer = "", stack1, helper;
-  buffer += "\n  <div class=\"row\">\n    <div class=\"col-xs-12 col-md-8 top_bar\">\n      <span class=\"screen_title\">Profile</span> \n    </div>\n  </div>\n\n  <div class=\"row\">\n    <div class=\"col-xs-12 col-md-8 profile\">\n      <img src=\"";
-  if (helper = helpers.avatar_url) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.avatar_url); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\" height=\"60\" width=\"60\" alt=\"";
-  if (helper = helpers.login) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.login); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\"/>\n      <span>@";
+  buffer += "\n  <div class=\"row\">\n    <div class=\"col-xs-12 col-md-8\">\n      <h1>@";
   if (helper = helpers.login) { stack1 = helper.call(depth0, {hash:{},data:data}); }
   else { helper = (depth0 && depth0.login); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
   buffer += escapeExpression(stack1)
-    + "</span>\n    </div>\n  </div>\n  \n  <br/>\n\n  <div class=\"row\">\n    <div class=\"col-xs-12 col-md-8 stickers\">\n      ";
-  stack1 = helpers.each.call(depth0, (depth0 && depth0.stickers), {hash:{},inverse:self.noop,fn:self.program(2, program2, data),data:data});
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\n    </div>\n  </div>\n\n  <br/>\n  \n  <div class=\"row\">\n    <div class=\"col-xs-12 col-md-8 follow_unfollow\"></div>\n  </div>\n\n  <div class=\"row\">\n    <div class=\"col-xs-12 col-md-8 statistics\"></div>\n  </div>\n  <hr>\n\n  <div class=\"row\">\n    <div class=\"col-xs-12 col-md-8 last_checkin\">\n      <span class=\"title\"> Last Checkin </span>\n      <span class=\"message\">"
-    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.last_checkin)),stack1 == null || stack1 === false ? stack1 : stack1.message)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
-    + "</span>\n    </div>\n  </div>\n\n  <div class=\"row\">\n    <div class=\"col-xs-12 col-md-8 tabs\"></div>\n  </div>\n";
-  return buffer;
-  }
-function program2(depth0,data) {
-  
-  var buffer = "", stack1, helper;
-  buffer += "\n        <span class=\"icon-";
-  if (helper = helpers.icon_key) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.icon_key); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "\"></span>\n      ";
+    + "</h1>\n    </div>\n  </div>\n  <div class=\"row\">\n    <div class=\"col-xs-12 col-md-8 follow_unfollow\"></div>\n  </div>\n  <div class=\"row\">\n    <div class=\"col-xs-12 col-md-8 log\"></div>\n  </div>\n";
   return buffer;
   }
 
@@ -14904,41 +14881,6 @@ function program2(depth0,data) {
   else { return ''; }
   });
   return this.HandlebarsTemplates["hackers/profile"];
-}).call(this);
-(function() {
-  this.HandlebarsTemplates || (this.HandlebarsTemplates = {});
-  this.HandlebarsTemplates["hackers/summary"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [4,'>= 1.0.0'];
-helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
-  var stack1, helper, options, functionType="function", escapeExpression=this.escapeExpression, self=this, blockHelperMissing=helpers.blockHelperMissing;
-
-function program1(depth0,data) {
-  
-  var buffer = "", stack1, helper;
-  buffer += "  \n  <img src=\"";
-  if (helper = helpers.avatar_url) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.avatar_url); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "&size=40\" width=\"40\" height=\"40\" alt=\"";
-  if (helper = helpers.login) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.login); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  if(stack1 || stack1 === 0) { buffer += stack1; }
-  buffer += "\"/>\n  <span>";
-  if (helper = helpers.login) { stack1 = helper.call(depth0, {hash:{},data:data}); }
-  else { helper = (depth0 && depth0.login); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
-  buffer += escapeExpression(stack1)
-    + "</span>\n  <hr>\n";
-  return buffer;
-  }
-
-  options={hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data}
-  if (helper = helpers.hacker) { stack1 = helper.call(depth0, options); }
-  else { helper = (depth0 && depth0.hacker); stack1 = typeof helper === functionType ? helper.call(depth0, options) : helper; }
-  if (!helpers.hacker) { stack1 = blockHelperMissing.call(depth0, stack1, {hash:{},inverse:self.noop,fn:self.program(1, program1, data),data:data}); }
-  if(stack1 || stack1 === 0) { return stack1; }
-  else { return ''; }
-  });
-  return this.HandlebarsTemplates["hackers/summary"];
 }).call(this);
 (function() {
   this.HandlebarsTemplates || (this.HandlebarsTemplates = {});
@@ -15368,9 +15310,6 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   GW.Models.Hacker = Backbone.Model.extend({
     name: 'hacker',
     keepInSync: true,
-    url: function() {
-      return "" + (this.get('login'));
-    },
     follow: function() {
       return $.ajax({
         url: this.follow_url(),
@@ -15383,7 +15322,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
       })(this));
     },
     follow_url: function() {
-      return GW.Utils.getRelativeUrl() + "/" + (this.get('login')) + "/follow";
+      return "" + (this.get('login')) + "/follow";
     },
     unfollow: function() {
       return $.ajax({
@@ -15426,8 +15365,10 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
     },
     url: function() {
       var base_url;
-      base_url = GW.Utils.getRelativeUrl() + "/hackers/nearby?";
-      return "" + base_url + "ll=" + this.latlong.lat + "," + this.latlong.lon;
+      base_url = GW.Utils.getRelativeUrl() + "/hackers/";
+      if (this.nearby) {
+        return "" + base_url + "nearby?ll=" + this.latlong.lat + "," + this.latlong.lon;
+      }
     }
   });
 
@@ -15451,10 +15392,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
     className: 'btn btn-primary',
     title: 'Button',
     initialize: function() {
-      this.$el.html(this.title);
-      if (this.customClassName != null) {
-        return this.$el.addClass(this.customClassName);
-      }
+      return this.$el.html(this.title);
     }
   });
 
@@ -15473,8 +15411,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 }).call(this);
 (function() {
   GW.Views.CheckinButton = GW.Views.BaseButton.extend({
-    title: 'Checkin',
-    customClassName: 'checkin-btn'
+    title: 'Checkin'
   });
 
 }).call(this);
@@ -15492,8 +15429,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 }).call(this);
 (function() {
   GW.Views.NewLogButton = GW.Views.BaseButton.extend({
-    title: 'Log',
-    customClassName: 'log-btn'
+    title: 'Log'
   });
 
 }).call(this);
@@ -15584,29 +15520,17 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
     },
     initialize: function(options) {
       var tmpl;
-      _.bindAll(this, 'follow', 'unfollow', 'render_follow_button', 'render_additional_info');
+      _.bindAll(this, 'follow', 'unfollow', 'render_follow_button');
       this.hacker = options.hacker;
-      this.hacker.on("fetched", this.render_additional_info);
-      this.hacker.fetch();
       tmpl = HandlebarsTemplates['hackers/profile'](this.hacker.toJSON());
       this.$el.html(tmpl);
       this.follow_unfollow_el = this.$('.follow_unfollow');
-      this.setup_follow_button();
-      this.last_checkin_message_el = this.$('.last_checkin span.message');
-      return this.renderTabs();
+      return this.setup_follow_button();
     },
     setup_follow_button: function() {
       this.hacker.on('hacker:followed', this.render_follow_button);
       this.hacker.on('hacker:unfollowed', this.render_follow_button);
       return this.render_follow_button();
-    },
-    renderTabs: function() {
-      var tab_list;
-      this.tabs_el = this.$('.tabs');
-      tab_list = new GW.Views.TabList({
-        tabs: [GW.Views.DiscoverTab, GW.Views.PingsTab, GW.Views.NotificationsTab, GW.Views.MeTab]
-      });
-      return this.tabs_el.append(tab_list.el);
     },
     render_follow_button: function() {
       var tmpl;
@@ -15614,17 +15538,6 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
       return this.follow_unfollow_el.html(tmpl);
     },
     render_follow_unfollow_button: function() {},
-    render_additional_info: function() {
-      return this.renderLastCheckinMessage();
-    },
-    renderLastCheckinMessage: function() {
-      var last_checkin_message;
-      last_checkin_message = this.hacker.get('last_checkin')['message'];
-      if (last_checkin_message == null) {
-        last_checkin_message = "Yet to checkin to hackin.at";
-      }
-      return this.last_checkin_message_el.html(last_checkin_message);
-    },
     follow: function() {
       return this.hacker.follow();
     },
@@ -15645,7 +15558,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
       return this.hacker = options.hacker;
     },
     render: function() {
-      this.$el.html(HandlebarsTemplates['hackers/summary'](this.hacker.toJSON()));
+      this.$el.html("<li>@" + (this.hacker.get('login')) + "</li>");
       return this;
     },
     clicked: function() {
@@ -15657,30 +15570,16 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 (function() {
   GW.Views.Home = Backbone.View.extend({
     events: {
-      'click button.checkin-btn': 'new_checkin'
+      'click a.new_log': 'new_log'
     },
     initialize: function(options) {
       var tmpl;
       this.latlong = options.latlong;
-      _.bindAll(this, 'new_checkin');
+      _.bindAll(this, 'new_log');
       tmpl = HandlebarsTemplates['dashboard/index']();
       this.$el.html(tmpl);
       this.people_nearby_el = this.$('.people_nearby');
-      this.show_hackers_nearby();
-      this.renderButtons();
-      return this.renderTabs();
-    },
-    renderButtons: function() {
-      this.top_bar_el = this.$('.top_bar');
-      return this.top_bar_el.append((new GW.Views.CheckinButton).el);
-    },
-    renderTabs: function() {
-      var tab_list;
-      this.tabs_el = this.$('.tabs');
-      tab_list = new GW.Views.TabList({
-        tabs: [GW.Views.DiscoverTab, GW.Views.PingsTab, GW.Views.NotificationsTab, GW.Views.MeTab]
-      });
-      return this.tabs_el.append(tab_list.el);
+      return this.show_hackers_nearby();
     },
     show_hackers_nearby: function() {
       var view;
@@ -15688,9 +15587,9 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
         nearby: true,
         latlong: this.latlong
       });
-      return this.people_nearby_el.append(view.render().el);
+      return this.people_nearby_el.html(view.render().el);
     },
-    new_checkin: function() {
+    new_log: function() {
       return this.trigger('log:new');
     },
     set_last_log: function(log) {
@@ -15862,10 +15761,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
     initialize: function() {
       var a_el;
       a_el = $('<a>').html(this.title);
-      $(this.el).html(a_el);
-      if (this.customClassName != null) {
-        return this.$el.addClass(this.customClassName);
-      }
+      return $(this.el).html(a_el);
     },
     clickHandler: function() {
       return this.$el.tab('show');
@@ -15875,21 +15771,13 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 }).call(this);
 (function() {
   GW.Views.DiscoverTab = GW.Views.BaseTab.extend({
-    title: 'Discover',
-    customClassName: 'discover_tab'
+    title: 'Discover'
   });
 
 }).call(this);
 (function() {
   GW.Views.LogTab = GW.Views.BaseTab.extend({
     title: 'Log'
-  });
-
-}).call(this);
-(function() {
-  GW.Views.MeTab = GW.Views.BaseTab.extend({
-    title: 'Me',
-    customClassName: 'me_tab'
   });
 
 }).call(this);
@@ -15901,22 +15789,14 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 }).call(this);
 (function() {
   GW.Views.NotificationsTab = GW.Views.BaseTab.extend({
-    title: 'Notifications',
-    customClassName: 'notifications_tab'
-  });
-
-}).call(this);
-(function() {
-  GW.Views.PingsTab = GW.Views.BaseTab.extend({
-    title: 'Pings',
-    customClassName: 'pings_tab'
+    title: 'Notifications'
   });
 
 }).call(this);
 (function() {
   GW.Views.TabList = Backbone.View.extend({
     tagName: 'ul',
-    className: 'clearfix',
+    className: 'nav nav-tabs',
     initialize: function(options) {
       this.tabs = options.tabs;
       return this.renderTabs();
@@ -15958,10 +15838,6 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 
 }).call(this);
 (function() {
-
-
-}).call(this);
-(function() {
   GW.Utils = {
     getRelativeUrl: function() {
       var relativeUrl;
@@ -15975,30 +15851,15 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
           relativeUrl = "http://hackin.at";
           break;
         case "":
-          //relativeUrl = "http://10.1.200.38:3000";
-          relativeUrl = "http://hackin.at";
+          relativeUrl = "http://10.1.200.38:3000";
           break;
         default:
           throw "Unknown environment: " + window.location.hostname;
       }
       return relativeUrl;
     },
-    setupAjax: function() {
-      console.log("auth_key = "+localStorage.auth_key)
-      return $.ajaxSetup({
-      	
-        headers: {
-          "Content-Type": "application/json",
-          "Accept": "application/json",
-         /* data: localStorage.auth_key ? {
-            auth_key: localStorage.auth_key
-          } : void 0*/
-        },
-        data: {
-        	auth_key: localStorage.auth_key
-        }
-
-      });
+    isMobileApp: function() {
+      return navigator.userAgent.match(/(iPhone|iPod|iPad|Android|BlackBerry|IEMobile)/);
     }
   };
 
@@ -16033,3 +15894,4188 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 
 
 ;
+/*!
+Jasmine-jQuery: a set of jQuery helpers for Jasmine tests.
+
+Version 2.0.5
+
+https://github.com/velesin/jasmine-jquery
+
+Copyright (c) 2010-2014 Wojciech Zawistowski, Travis Jeffery
+
+Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+"Software"), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE
+LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
+OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
+WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+*/
+
+
++function (window, jasmine, $) { "use strict";
+
+  jasmine.spiedEventsKey = function (selector, eventName) {
+    return [$(selector).selector, eventName].toString()
+  }
+
+  jasmine.getFixtures = function () {
+    return jasmine.currentFixtures_ = jasmine.currentFixtures_ || new jasmine.Fixtures()
+  }
+
+  jasmine.getStyleFixtures = function () {
+    return jasmine.currentStyleFixtures_ = jasmine.currentStyleFixtures_ || new jasmine.StyleFixtures()
+  }
+
+  jasmine.Fixtures = function () {
+    this.containerId = 'jasmine-fixtures'
+    this.fixturesCache_ = {}
+    this.fixturesPath = 'spec/javascripts/fixtures'
+  }
+
+  jasmine.Fixtures.prototype.set = function (html) {
+    this.cleanUp()
+    return this.createContainer_(html)
+  }
+
+  jasmine.Fixtures.prototype.appendSet= function (html) {
+    this.addToContainer_(html)
+  }
+
+  jasmine.Fixtures.prototype.preload = function () {
+    this.read.apply(this, arguments)
+  }
+
+  jasmine.Fixtures.prototype.load = function () {
+    this.cleanUp()
+    this.createContainer_(this.read.apply(this, arguments))
+  }
+
+  jasmine.Fixtures.prototype.appendLoad = function () {
+    this.addToContainer_(this.read.apply(this, arguments))
+  }
+
+  jasmine.Fixtures.prototype.read = function () {
+    var htmlChunks = []
+      , fixtureUrls = arguments
+
+    for(var urlCount = fixtureUrls.length, urlIndex = 0; urlIndex < urlCount; urlIndex++) {
+      htmlChunks.push(this.getFixtureHtml_(fixtureUrls[urlIndex]))
+    }
+
+    return htmlChunks.join('')
+  }
+
+  jasmine.Fixtures.prototype.clearCache = function () {
+    this.fixturesCache_ = {}
+  }
+
+  jasmine.Fixtures.prototype.cleanUp = function () {
+    $('#' + this.containerId).remove()
+  }
+
+  jasmine.Fixtures.prototype.sandbox = function (attributes) {
+    var attributesToSet = attributes || {}
+    return $('<div id="sandbox" />').attr(attributesToSet)
+  }
+
+  jasmine.Fixtures.prototype.createContainer_ = function (html) {
+    var container = $('<div>')
+    .attr('id', this.containerId)
+    .html(html)
+
+    $(document.body).append(container)
+    return container
+  }
+
+  jasmine.Fixtures.prototype.addToContainer_ = function (html){
+    var container = $(document.body).find('#'+this.containerId).append(html)
+
+    if (!container.length) {
+      this.createContainer_(html)
+    }
+  }
+
+  jasmine.Fixtures.prototype.getFixtureHtml_ = function (url) {
+    if (typeof this.fixturesCache_[url] === 'undefined') {
+      this.loadFixtureIntoCache_(url)
+    }
+    return this.fixturesCache_[url]
+  }
+
+  jasmine.Fixtures.prototype.loadFixtureIntoCache_ = function (relativeUrl) {
+    var self = this
+      , url = this.makeFixtureUrl_(relativeUrl)
+      , htmlText = ''
+      , request = $.ajax({
+        async: false, // must be synchronous to guarantee that no tests are run before fixture is loaded
+        cache: false,
+        url: url,
+        success: function (data, status, $xhr) {
+          htmlText = $xhr.responseText
+        }
+      }).fail(function ($xhr, status, err) {
+          throw new Error('Fixture could not be loaded: ' + url + ' (status: ' + status + ', message: ' + err.message + ')')
+      })
+
+      var scripts = $($.parseHTML(htmlText, true)).find('script[src]') || [];
+
+      scripts.each(function(){
+        $.ajax({
+            async: false, // must be synchronous to guarantee that no tests are run before fixture is loaded
+            cache: false,
+            dataType: 'script',
+            url: $(this).attr('src'),
+            success: function (data, status, $xhr) {
+                htmlText += '<script>' + $xhr.responseText + '</script>'
+            },
+            error: function ($xhr, status, err) {
+                throw new Error('Script could not be loaded: ' + scriptSrc + ' (status: ' + status + ', message: ' + err.message + ')')
+            }
+        });
+      })
+
+      self.fixturesCache_[relativeUrl] = htmlText;
+  }
+
+  jasmine.Fixtures.prototype.makeFixtureUrl_ = function (relativeUrl){
+    return this.fixturesPath.match('/$') ? this.fixturesPath + relativeUrl : this.fixturesPath + '/' + relativeUrl
+  }
+
+  jasmine.Fixtures.prototype.proxyCallTo_ = function (methodName, passedArguments) {
+    return this[methodName].apply(this, passedArguments)
+  }
+
+
+  jasmine.StyleFixtures = function () {
+    this.fixturesCache_ = {}
+    this.fixturesNodes_ = []
+    this.fixturesPath = 'spec/javascripts/fixtures'
+  }
+
+  jasmine.StyleFixtures.prototype.set = function (css) {
+    this.cleanUp()
+    this.createStyle_(css)
+  }
+
+  jasmine.StyleFixtures.prototype.appendSet = function (css) {
+    this.createStyle_(css)
+  }
+
+  jasmine.StyleFixtures.prototype.preload = function () {
+    this.read_.apply(this, arguments)
+  }
+
+  jasmine.StyleFixtures.prototype.load = function () {
+    this.cleanUp()
+    this.createStyle_(this.read_.apply(this, arguments))
+  }
+
+  jasmine.StyleFixtures.prototype.appendLoad = function () {
+    this.createStyle_(this.read_.apply(this, arguments))
+  }
+
+  jasmine.StyleFixtures.prototype.cleanUp = function () {
+    while(this.fixturesNodes_.length) {
+      this.fixturesNodes_.pop().remove()
+    }
+  }
+
+  jasmine.StyleFixtures.prototype.createStyle_ = function (html) {
+    var styleText = $('<div></div>').html(html).text()
+      , style = $('<style>' + styleText + '</style>')
+
+    this.fixturesNodes_.push(style)
+    $('head').append(style)
+  }
+
+  jasmine.StyleFixtures.prototype.clearCache = jasmine.Fixtures.prototype.clearCache
+  jasmine.StyleFixtures.prototype.read_ = jasmine.Fixtures.prototype.read
+  jasmine.StyleFixtures.prototype.getFixtureHtml_ = jasmine.Fixtures.prototype.getFixtureHtml_
+  jasmine.StyleFixtures.prototype.loadFixtureIntoCache_ = jasmine.Fixtures.prototype.loadFixtureIntoCache_
+  jasmine.StyleFixtures.prototype.makeFixtureUrl_ = jasmine.Fixtures.prototype.makeFixtureUrl_
+  jasmine.StyleFixtures.prototype.proxyCallTo_ = jasmine.Fixtures.prototype.proxyCallTo_
+
+  jasmine.getJSONFixtures = function () {
+    return jasmine.currentJSONFixtures_ = jasmine.currentJSONFixtures_ || new jasmine.JSONFixtures()
+  }
+
+  jasmine.JSONFixtures = function () {
+    this.fixturesCache_ = {}
+    this.fixturesPath = 'spec/javascripts/fixtures/json'
+  }
+
+  jasmine.JSONFixtures.prototype.load = function () {
+    this.read.apply(this, arguments)
+    return this.fixturesCache_
+  }
+
+  jasmine.JSONFixtures.prototype.read = function () {
+    var fixtureUrls = arguments
+
+    for(var urlCount = fixtureUrls.length, urlIndex = 0; urlIndex < urlCount; urlIndex++) {
+      this.getFixtureData_(fixtureUrls[urlIndex])
+    }
+
+    return this.fixturesCache_
+  }
+
+  jasmine.JSONFixtures.prototype.clearCache = function () {
+    this.fixturesCache_ = {}
+  }
+
+  jasmine.JSONFixtures.prototype.getFixtureData_ = function (url) {
+    if (!this.fixturesCache_[url]) this.loadFixtureIntoCache_(url)
+    return this.fixturesCache_[url]
+  }
+
+  jasmine.JSONFixtures.prototype.loadFixtureIntoCache_ = function (relativeUrl) {
+    var self = this
+      , url = this.fixturesPath.match('/$') ? this.fixturesPath + relativeUrl : this.fixturesPath + '/' + relativeUrl
+
+    $.ajax({
+      async: false, // must be synchronous to guarantee that no tests are run before fixture is loaded
+      cache: false,
+      dataType: 'json',
+      url: url,
+      success: function (data) {
+        self.fixturesCache_[relativeUrl] = data
+      },
+      error: function ($xhr, status, err) {
+        throw new Error('JSONFixture could not be loaded: ' + url + ' (status: ' + status + ', message: ' + err.message + ')')
+      }
+    })
+  }
+
+  jasmine.JSONFixtures.prototype.proxyCallTo_ = function (methodName, passedArguments) {
+    return this[methodName].apply(this, passedArguments)
+  }
+
+  jasmine.jQuery = function () {}
+
+  jasmine.jQuery.browserTagCaseIndependentHtml = function (html) {
+    return $('<div/>').append(html).html()
+  }
+
+  jasmine.jQuery.elementToString = function (element) {
+    return $(element).map(function () { return this.outerHTML; }).toArray().join(', ')
+  }
+
+  var data = {
+      spiedEvents: {}
+    , handlers:    []
+  }
+
+  jasmine.jQuery.events = {
+    spyOn: function (selector, eventName) {
+      var handler = function (e) {
+        data.spiedEvents[jasmine.spiedEventsKey(selector, eventName)] = jasmine.util.argsToArray(arguments)
+      }
+
+      $(selector).on(eventName, handler)
+      data.handlers.push(handler)
+
+      return {
+        selector: selector,
+        eventName: eventName,
+        handler: handler,
+        reset: function (){
+          delete data.spiedEvents[jasmine.spiedEventsKey(selector, eventName)]
+        }
+      }
+    },
+
+    args: function (selector, eventName) {
+      var actualArgs = data.spiedEvents[jasmine.spiedEventsKey(selector, eventName)]
+
+      if (!actualArgs) {
+        throw "There is no spy for " + eventName + " on " + selector.toString() + ". Make sure to create a spy using spyOnEvent."
+      }
+
+      return actualArgs
+    },
+
+    wasTriggered: function (selector, eventName) {
+      return !!(data.spiedEvents[jasmine.spiedEventsKey(selector, eventName)])
+    },
+
+    wasTriggeredWith: function (selector, eventName, expectedArgs, util, customEqualityTesters) {
+      var actualArgs = jasmine.jQuery.events.args(selector, eventName).slice(1)
+
+      if (Object.prototype.toString.call(expectedArgs) !== '[object Array]')
+        actualArgs = actualArgs[0]
+
+      return util.equals(expectedArgs, actualArgs, customEqualityTesters)
+    },
+
+    wasPrevented: function (selector, eventName) {
+      var args = data.spiedEvents[jasmine.spiedEventsKey(selector, eventName)]
+        , e = args ? args[0] : undefined
+
+      return e && e.isDefaultPrevented()
+    },
+
+    wasStopped: function (selector, eventName) {
+      var args = data.spiedEvents[jasmine.spiedEventsKey(selector, eventName)]
+        , e = args ? args[0] : undefined
+      return e && e.isPropagationStopped()
+    },
+
+    cleanUp: function () {
+      data.spiedEvents = {}
+      data.handlers    = []
+    }
+  }
+
+  var hasProperty = function (actualValue, expectedValue) {
+    if (expectedValue === undefined)
+      return actualValue !== undefined
+
+    return actualValue === expectedValue
+  }
+
+  beforeEach(function () {
+    jasmine.addMatchers({
+      toHaveClass: function () {
+        return {
+          compare: function (actual, className) {
+            return { pass: $(actual).hasClass(className) }
+          }
+        }
+      },
+
+      toHaveCss: function () {
+        return {
+          compare: function (actual, css) {
+            for (var prop in css){
+              var value = css[prop]
+              // see issue #147 on gh
+              ;if (value === 'auto' && $(actual).get(0).style[prop] === 'auto') continue
+              if ($(actual).css(prop) !== value) return { pass: false }
+            }
+            return { pass: true }
+          }
+        }
+      },
+
+      toBeVisible: function () {
+        return {
+          compare: function (actual) {
+            return { pass: $(actual).is(':visible') }
+          }
+        }
+      },
+
+      toBeHidden: function () {
+        return {
+          compare: function (actual) {
+            return { pass: $(actual).is(':hidden') }
+          }
+        }
+      },
+
+      toBeSelected: function () {
+        return {
+          compare: function (actual) {
+            return { pass: $(actual).is(':selected') }
+          }
+        }
+      },
+
+      toBeChecked: function () {
+        return {
+          compare: function (actual) {
+            return { pass: $(actual).is(':checked') }
+          }
+        }
+      },
+
+      toBeEmpty: function () {
+        return {
+          compare: function (actual) {
+            return { pass: $(actual).is(':empty') }
+          }
+        }
+      },
+
+      toBeInDOM: function () {
+        return {
+          compare: function (actual) {
+            return { pass: $.contains(document.documentElement, $(actual)[0]) }
+          }
+        }
+      },
+
+      toExist: function () {
+        return {
+          compare: function (actual) {
+            return { pass: $(actual).length }
+          }
+        }
+      },
+
+      toHaveLength: function () {
+        return {
+          compare: function (actual, length) {
+            return { pass: $(actual).length === length }
+          }
+        }
+      },
+
+      toHaveAttr: function () {
+        return {
+          compare: function (actual, attributeName, expectedAttributeValue) {
+            return { pass: hasProperty($(actual).attr(attributeName), expectedAttributeValue) }
+          }
+        }
+      },
+
+      toHaveProp: function () {
+        return {
+          compare: function (actual, propertyName, expectedPropertyValue) {
+            return { pass: hasProperty($(actual).prop(propertyName), expectedPropertyValue) }
+          }
+        }
+      },
+
+      toHaveId: function () {
+        return {
+          compare: function (actual, id) {
+            return { pass: $(actual).attr('id') == id }
+          }
+        }
+      },
+
+      toHaveHtml: function () {
+        return {
+          compare: function (actual, html) {
+            return { pass: $(actual).html() == jasmine.jQuery.browserTagCaseIndependentHtml(html) }
+          }
+        }
+      },
+
+      toContainHtml: function () {
+        return {
+          compare: function (actual, html) {
+            var actualHtml = $(actual).html()
+              , expectedHtml = jasmine.jQuery.browserTagCaseIndependentHtml(html)
+
+            return { pass: (actualHtml.indexOf(expectedHtml) >= 0) }
+          }
+        }
+      },
+
+      toHaveText: function () {
+        return {
+          compare: function (actual, text) {
+            var actualText = $(actual).text()
+            var trimmedText = $.trim(actualText)
+
+            if (text && $.isFunction(text.test)) {
+              return { pass: text.test(actualText) || text.test(trimmedText) }
+            } else {
+              return { pass: (actualText == text || trimmedText == text) }
+            }
+          }
+        }
+      },
+
+      toContainText: function () {
+        return {
+          compare: function (actual, text) {
+            var trimmedText = $.trim($(actual).text())
+
+            if (text && $.isFunction(text.test)) {
+              return { pass: text.test(trimmedText) }
+            } else {
+              return { pass: trimmedText.indexOf(text) != -1 }
+            }
+          }
+        }
+      },
+
+      toHaveValue: function () {
+        return {
+          compare: function (actual, value) {
+            return { pass: $(actual).val() === value }
+          }
+        }
+      },
+
+      toHaveData: function () {
+        return {
+          compare: function (actual, key, expectedValue) {
+            return { pass: hasProperty($(actual).data(key), expectedValue) }
+          }
+        }
+      },
+
+      toContainElement: function () {
+        return {
+          compare: function (actual, selector) {
+            if (window.debug) debugger
+            return { pass: $(actual).find(selector).length }
+          }
+        }
+      },
+
+      toBeMatchedBy: function () {
+        return {
+          compare: function (actual, selector) {
+            return { pass: $(actual).filter(selector).length }
+          }
+        }
+      },
+
+      toBeDisabled: function () {
+        return {
+          compare: function (actual, selector) {
+            return { pass: $(actual).is(':disabled') }
+          }
+        }
+      },
+
+      toBeFocused: function (selector) {
+        return {
+          compare: function (actual, selector) {
+            return { pass: $(actual)[0] === $(actual)[0].ownerDocument.activeElement }
+          }
+        }
+      },
+
+      toHandle: function () {
+        return {
+          compare: function (actual, event) {
+            var events = $._data($(actual).get(0), "events")
+
+            if (!events || !event || typeof event !== "string") {
+              return { pass: false }
+            }
+
+            var namespaces = event.split(".")
+              , eventType = namespaces.shift()
+              , sortedNamespaces = namespaces.slice(0).sort()
+              , namespaceRegExp = new RegExp("(^|\\.)" + sortedNamespaces.join("\\.(?:.*\\.)?") + "(\\.|$)")
+
+            if (events[eventType] && namespaces.length) {
+              for (var i = 0; i < events[eventType].length; i++) {
+                var namespace = events[eventType][i].namespace
+
+                if (namespaceRegExp.test(namespace))
+                  return { pass: true }
+              }
+            } else {
+              return { pass: (events[eventType] && events[eventType].length > 0) }
+            }
+
+            return { pass: false }
+          }
+        }
+      },
+
+      toHandleWith: function () {
+        return {
+          compare: function (actual, eventName, eventHandler) {
+            var normalizedEventName = eventName.split('.')[0]
+              , stack = $._data($(actual).get(0), "events")[normalizedEventName]
+
+            for (var i = 0; i < stack.length; i++) {
+              if (stack[i].handler == eventHandler) return { pass: true }
+            }
+
+            return { pass: false }
+          }
+        }
+      },
+
+      toHaveBeenTriggeredOn: function () {
+        return {
+          compare: function (actual, selector) {
+            var result = { pass: jasmine.jQuery.events.wasTriggered(selector, actual) }
+
+            result.message = result.pass ?
+              "Expected event " + $(actual) + " not to have been triggered on " + selector :
+              "Expected event " + $(actual) + " to have been triggered on " + selector
+
+            return result;
+          }
+        }
+      },
+
+      toHaveBeenTriggered: function (){
+        return {
+          compare: function (actual) {
+            var eventName = actual.eventName
+              , selector = actual.selector
+              , result = { pass: jasmine.jQuery.events.wasTriggered(selector, eventName) }
+
+            result.message = result.pass ?
+            "Expected event " + eventName + " not to have been triggered on " + selector :
+              "Expected event " + eventName + " to have been triggered on " + selector
+
+            return result
+          }
+        }
+      },
+
+      toHaveBeenTriggeredOnAndWith: function (j$, customEqualityTesters) {
+        return {
+          compare: function (actual, selector, expectedArgs) {
+            var wasTriggered = jasmine.jQuery.events.wasTriggered(selector, actual)
+              , result = { pass: wasTriggered && jasmine.jQuery.events.wasTriggeredWith(selector, actual, expectedArgs, j$, customEqualityTesters) }
+
+              if (wasTriggered) {
+                var actualArgs = jasmine.jQuery.events.args(selector, actual, expectedArgs)[1]
+                result.message = result.pass ?
+                  "Expected event " + actual + " not to have been triggered with " + jasmine.pp(expectedArgs) + " but it was triggered with " + jasmine.pp(actualArgs) :
+                  "Expected event " + actual + " to have been triggered with " + jasmine.pp(expectedArgs) + "  but it was triggered with " + jasmine.pp(actualArgs)
+
+              } else {
+                // todo check on this
+                result.message = result.pass ?
+                  "Expected event " + actual + " not to have been triggered on " + selector :
+                  "Expected event " + actual + " to have been triggered on " + selector
+              }
+
+              return result
+          }
+        }
+      },
+
+      toHaveBeenPreventedOn: function () {
+        return {
+          compare: function (actual, selector) {
+            var result = { pass: jasmine.jQuery.events.wasPrevented(selector, actual) }
+
+            result.message = result.pass ?
+              "Expected event " + actual + " not to have been prevented on " + selector :
+              "Expected event " + actual + " to have been prevented on " + selector
+
+            return result
+          }
+        }
+      },
+
+      toHaveBeenPrevented: function () {
+        return {
+          compare: function (actual) {
+            var eventName = actual.eventName
+              , selector = actual.selector
+              , result = { pass: jasmine.jQuery.events.wasPrevented(selector, eventName) }
+
+            result.message = result.pass ?
+              "Expected event " + eventName + " not to have been prevented on " + selector :
+              "Expected event " + eventName + " to have been prevented on " + selector
+
+            return result
+          }
+        }
+      },
+
+      toHaveBeenStoppedOn: function () {
+        return {
+          compare: function (actual, selector) {
+            var result = { pass: jasmine.jQuery.events.wasStopped(selector, actual) }
+
+            result.message = result.pass ?
+              "Expected event " + actual + " not to have been stopped on " + selector :
+              "Expected event " + actual + " to have been stopped on " + selector
+
+            return result;
+          }
+        }
+      },
+
+      toHaveBeenStopped: function () {
+        return {
+          compare: function (actual) {
+            var eventName = actual.eventName
+              , selector = actual.selector
+              , result = { pass: jasmine.jQuery.events.wasStopped(selector, eventName) }
+
+            result.message = result.pass ?
+              "Expected event " + eventName + " not to have been stopped on " + selector :
+              "Expected event " + eventName + " to have been stopped on " + selector
+
+            return result
+          }
+        }
+      }
+    })
+
+    jasmine.getEnv().addCustomEqualityTester(function(a, b) {
+     if (a && b) {
+       if (a instanceof $ || jasmine.isDomNode(a)) {
+         var $a = $(a)
+
+         if (b instanceof $)
+           return $a.length == b.length && a.is(b)
+
+         return $a.is(b);
+       }
+
+       if (b instanceof $ || jasmine.isDomNode(b)) {
+         var $b = $(b)
+
+         if (a instanceof $)
+           return a.length == $b.length && $b.is(a)
+
+         return $(b).is(a);
+       }
+     }
+    })
+
+    jasmine.getEnv().addCustomEqualityTester(function (a, b) {
+     if (a instanceof $ && b instanceof $ && a.size() == b.size())
+        return a.is(b)
+    })
+  })
+
+  afterEach(function () {
+    jasmine.getFixtures().cleanUp()
+    jasmine.getStyleFixtures().cleanUp()
+    jasmine.jQuery.events.cleanUp()
+  })
+
+  window.readFixtures = function () {
+    return jasmine.getFixtures().proxyCallTo_('read', arguments)
+  }
+
+  window.preloadFixtures = function () {
+    jasmine.getFixtures().proxyCallTo_('preload', arguments)
+  }
+
+  window.loadFixtures = function () {
+    jasmine.getFixtures().proxyCallTo_('load', arguments)
+  }
+
+  window.appendLoadFixtures = function () {
+    jasmine.getFixtures().proxyCallTo_('appendLoad', arguments)
+  }
+
+  window.setFixtures = function (html) {
+    return jasmine.getFixtures().proxyCallTo_('set', arguments)
+  }
+
+  window.appendSetFixtures = function () {
+    jasmine.getFixtures().proxyCallTo_('appendSet', arguments)
+  }
+
+  window.sandbox = function (attributes) {
+    return jasmine.getFixtures().sandbox(attributes)
+  }
+
+  window.spyOnEvent = function (selector, eventName) {
+    return jasmine.jQuery.events.spyOn(selector, eventName)
+  }
+
+  window.preloadStyleFixtures = function () {
+    jasmine.getStyleFixtures().proxyCallTo_('preload', arguments)
+  }
+
+  window.loadStyleFixtures = function () {
+    jasmine.getStyleFixtures().proxyCallTo_('load', arguments)
+  }
+
+  window.appendLoadStyleFixtures = function () {
+    jasmine.getStyleFixtures().proxyCallTo_('appendLoad', arguments)
+  }
+
+  window.setStyleFixtures = function (html) {
+    jasmine.getStyleFixtures().proxyCallTo_('set', arguments)
+  }
+
+  window.appendSetStyleFixtures = function (html) {
+    jasmine.getStyleFixtures().proxyCallTo_('appendSet', arguments)
+  }
+
+  window.loadJSONFixtures = function () {
+    return jasmine.getJSONFixtures().proxyCallTo_('load', arguments)
+  }
+
+  window.getJSONFixture = function (url) {
+    return jasmine.getJSONFixtures().proxyCallTo_('read', arguments)[url]
+  }
+}(window, window.jasmine, window.jQuery);
+/**
+ * Sinon.JS 1.1.0, 2011/05/04
+ *
+ * @author Christian Johansen (christian@cjohansen.no)
+ *
+ * (The BSD License)
+ * 
+ * Copyright (c) 2010-2011, Christian Johansen, christian@cjohansen.no
+ * All rights reserved.
+ * 
+ * Redistribution and use in source and binary forms, with or without modification,
+ * are permitted provided that the following conditions are met:
+ * 
+ *     * Redistributions of source code must retain the above copyright notice,
+ *       this list of conditions and the following disclaimer.
+ *     * Redistributions in binary form must reproduce the above copyright notice,
+ *       this list of conditions and the following disclaimer in the documentation
+ *       and/or other materials provided with the distribution.
+ *     * Neither the name of Christian Johansen nor the names of his contributors
+ *       may be used to endorse or promote products derived from this software
+ *       without specific prior written permission.
+ * 
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+ * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+ * DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+ * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+ * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+ * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+ * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+ * OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+ * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+ */
+
+
+"use strict";
+/*jslint eqeqeq: false, onevar: false, forin: true, nomen: false, regexp: false, plusplus: false*/
+/*global module, require, __dirname, document*/
+/**
+ * Sinon core utilities. For internal use only.
+ *
+ * @author Christian Johansen (christian@cjohansen.no)
+ * @license BSD
+ *
+ * Copyright (c) 2010-2011 Christian Johansen
+ */
+
+var sinon = (function () {
+    var div = typeof document != "undefined" && document.createElement("div");
+
+    function isNode(obj) {
+        var success = false;
+
+        try {
+            obj.appendChild(div);
+            success = div.parentNode == obj;
+        } catch (e) {
+            return false;
+        } finally {
+            try {
+                obj.removeChild(div);
+            } catch (e) {}
+        }
+
+        return success;
+    }
+
+    function isElement(obj) {
+        return div && obj && obj.nodeType === 1 && isNode(obj);
+    }
+
+    return {
+        wrapMethod: function wrapMethod(object, property, method) {
+            if (!object) {
+                throw new TypeError("Should wrap property of object");
+            }
+
+            if (typeof method != "function") {
+                throw new TypeError("Method wrapper should be function");
+            }
+
+            var wrappedMethod = object[property];
+            var type = typeof wrappedMethod;
+
+            if (type != "function") {
+                throw new TypeError("Attempted to wrap " + type + " property " + property +
+                                    " as function");
+            }
+
+            if (wrappedMethod.restore && wrappedMethod.restore.sinon) {
+                throw new TypeError("Attempted to wrap " + property + " which is already wrapped");
+            }
+
+            if (wrappedMethod.calledBefore) {
+                var verb = !!wrappedMethod.returns ? "stubbed" : "spied on";
+                throw new TypeError("Attempted to wrap " + property + " which is already " + verb);
+            }
+
+            object[property] = method;
+            method.displayName = property;
+
+            method.restore = function () {
+                object[property] = wrappedMethod;
+            };
+
+            method.restore.sinon = true;
+
+            return method;
+        },
+
+        extend: function extend(target) {
+            for (var i = 1, l = arguments.length; i < l; i += 1) {
+                for (var prop in arguments[i]) {
+                    if (arguments[i].hasOwnProperty(prop)) {
+                        target[prop] = arguments[i][prop];
+                    }
+                }
+            }
+
+            return target;
+        },
+
+        create: function create(proto) {
+            var F = function () {};
+            F.prototype = proto;
+            return new F();
+        },
+
+        deepEqual: function deepEqual(a, b) {
+            if (typeof a != "object" || typeof b != "object") {
+                return a === b;
+            }
+
+            if (isElement(a) || isElement(b)) {
+                return a === b;
+            }
+
+            if (a === b) {
+                return true;
+            }
+
+            if (Object.prototype.toString.call(a) == "[object Array]") {
+                if (a.length !== b.length) {
+                    return false;
+                }
+
+                for (var i = 0, l = a.length; i < l; i += 1) {
+                    if (!deepEqual(a[i], b[i])) {
+                        return false;
+                    }
+                }
+
+                return true;
+            }
+
+            var prop, aLength = 0, bLength = 0;
+
+            for (prop in a) {
+                aLength += 1;
+
+                if (!deepEqual(a[prop], b[prop])) {
+                    return false;
+                }
+            }
+
+            for (prop in b) {
+                bLength += 1;
+            }
+
+            if (aLength != bLength) {
+                return false;
+            }
+
+            return true;
+        },
+
+        keys: function keys(object) {
+            var objectKeys = [];
+
+            for (var prop in object) {
+                if (object.hasOwnProperty(prop)) {
+                    objectKeys.push(prop);
+                }
+            }
+
+            return objectKeys.sort();
+        },
+
+        functionName: function functionName(func) {
+            var name = func.displayName || func.name;
+
+            // Use function decomposition as a last resort to get function
+            // name. Does not rely on function decomposition to work - if it
+            // doesn't debugging will be slightly less informative
+            // (i.e. toString will say 'spy' rather than 'myFunc').
+            if (!name) {
+                var matches = func.toString().match(/function ([^\s\(]+)/);
+                name = matches && matches[1];
+            }
+
+            return name;
+        },
+
+        functionToString: function toString() {
+            if (this.getCall && this.callCount) {
+                var thisValue, prop, i = this.callCount;
+
+                while (i--) {
+                    thisValue = this.getCall(i).thisValue;
+
+                    for (prop in thisValue) {
+                        if (thisValue[prop] === this) {
+                            return prop;
+                        }
+                    }
+                }
+            }
+
+            return this.displayName || "sinon fake";
+        },
+
+        getConfig: function (custom) {
+            var config = {};
+            custom = custom || {};
+            var defaults = sinon.defaultConfig;
+
+            for (var prop in defaults) {
+                if (defaults.hasOwnProperty(prop)) {
+                    config[prop] = custom.hasOwnProperty(prop) ? custom[prop] : defaults[prop];
+                }
+            }
+
+            return config;
+        },
+
+        format: function (val) {
+            return "" + val;
+        },
+
+        defaultConfig: {
+            injectIntoThis: true,
+            injectInto: null,
+            properties: ["spy", "stub", "mock", "clock", "server", "requests"],
+            useFakeTimers: true,
+            useFakeServer: true
+        }
+    };
+}());
+
+if (typeof module == "object" && typeof require == "function") {
+    module.exports = sinon;
+    module.exports.spy = require("./sinon/spy");
+    module.exports.stub = require("./sinon/stub");
+    module.exports.mock = require("./sinon/mock");
+    module.exports.collection = require("./sinon/collection");
+    module.exports.assert = require("./sinon/assert");
+    module.exports.sandbox = require("./sinon/sandbox");
+    module.exports.test = require("./sinon/test");
+    module.exports.testCase = require("./sinon/test_case");
+    module.exports.assert = require("./sinon/assert");
+}
+
+/* @depend ../sinon.js */
+/*jslint eqeqeq: false, onevar: false, plusplus: false*/
+/*global module, require, sinon*/
+/**
+ * Spy functions
+ *
+ * @author Christian Johansen (christian@cjohansen.no)
+ * @license BSD
+ *
+ * Copyright (c) 2010-2011 Christian Johansen
+ */
+
+(function (sinon) {
+    var commonJSModule = typeof module == "object" && typeof require == "function";
+    var spyCall;
+    var callId = 0;
+
+    if (!sinon && commonJSModule) {
+        sinon = require("sinon");
+    }
+
+    if (!sinon) {
+        return;
+    }
+
+    function spy(object, property) {
+        if (!property && typeof object == "function") {
+            return spy.create(object);
+        }
+
+        if (!object || !property) {
+            return spy.create(function () {});
+        }
+
+        var method = object[property];
+        return sinon.wrapMethod(object, property, spy.create(method));
+    }
+
+    sinon.extend(spy, (function () {
+        var slice = Array.prototype.slice;
+
+        function delegateToCalls(api, method, matchAny, actual) {
+            api[method] = function () {
+                if (!this.called) {
+                    return false;
+                }
+
+                var currentCall;
+                var matches = 0;
+
+                for (var i = 0, l = this.callCount; i < l; i += 1) {
+                    currentCall = this.getCall(i);
+
+                    if (currentCall[actual || method].apply(currentCall, arguments)) {
+                        matches += 1;
+
+                        if (matchAny) {
+                            return true;
+                        }
+                    }
+                }
+
+                return matches === this.callCount;
+            };
+        }
+
+        function matchingFake(fakes, args, strict) {
+            if (!fakes) {
+                return;
+            }
+
+            var alen = args.length;
+
+            for (var i = 0, l = fakes.length; i < l; i++) {
+                if (fakes[i].matches(args, strict)) {
+                    return fakes[i];
+                }
+            }
+        }
+
+        var uuid = 0;
+
+        // Public API
+        var spyApi = {
+            reset: function () {
+                this.called = false;
+                this.calledOnce = false;
+                this.calledTwice = false;
+                this.calledThrice = false;
+                this.callCount = 0;
+                this.args = [];
+                this.returnValues = [];
+                this.thisValues = [];
+                this.exceptions = [];
+                this.callIds = [];
+            },
+
+            create: function create(func) {
+                var name;
+
+                if (typeof func != "function") {
+                    func = function () {};
+                } else {
+                    name = sinon.functionName(func);
+                }
+
+                function proxy() {
+                    return proxy.invoke(func, this, slice.call(arguments));
+                }
+
+                sinon.extend(proxy, spy);
+                delete proxy.create;
+                sinon.extend(proxy, func);
+
+                proxy.reset();
+                proxy.prototype = func.prototype;
+                proxy.displayName = name || "spy";
+                proxy.toString = sinon.functionToString;
+                proxy._create = sinon.spy.create;
+                proxy.id = "spy#" + uuid++;
+
+                return proxy;
+            },
+
+            invoke: function invoke(func, thisValue, args) {
+                var matching = matchingFake(this.fakes, args);
+                var exception, returnValue;
+                this.called = true;
+                this.callCount += 1;
+                this.calledOnce = this.callCount == 1;
+                this.calledTwice = this.callCount == 2;
+                this.calledThrice = this.callCount == 3;
+                this.thisValues.push(thisValue);
+                this.args.push(args);
+                this.callIds.push(callId++);
+
+                try {
+                    if (matching) {
+                        returnValue = matching.invoke(func, thisValue, args);
+                    } else {
+                        returnValue = (this.func || func).apply(thisValue, args);
+                    }
+                } catch (e) {
+                    this.returnValues.push(undefined);
+                    exception = e;
+                    throw e;
+                } finally {
+                    this.exceptions.push(exception);
+                }
+
+                this.returnValues.push(returnValue);
+
+                return returnValue;
+            },
+
+            getCall: function getCall(i) {
+                if (i < 0 || i >= this.callCount) {
+                    return null;
+                }
+
+                return spyCall.create(this, this.thisValues[i], this.args[i],
+                                      this.returnValues[i], this.exceptions[i],
+                                      this.callIds[i]);
+            },
+
+            calledBefore: function calledBefore(spyFn) {
+                if (!this.called) {
+                    return false;
+                }
+
+                if (!spyFn.called) {
+                    return true;
+                }
+
+                return this.callIds[0] < spyFn.callIds[0];
+            },
+
+            calledAfter: function calledAfter(spyFn) {
+                if (!this.called || !spyFn.called) {
+                    return false;
+                }
+
+                return this.callIds[this.callCount - 1] > spyFn.callIds[spyFn.callCount - 1];
+            },
+
+            withArgs: function () {
+                var args = slice.call(arguments);
+
+                if (this.fakes) {
+                    var match = matchingFake(this.fakes, args, true);
+
+                    if (match) {
+                        return match;
+                    }
+                } else {
+                    this.fakes = [];
+                }
+
+                var original = this;
+                var fake = this._create();
+                fake.matchingAguments = args;
+                this.fakes.push(fake);
+
+                fake.withArgs = function () {
+                    return original.withArgs.apply(original, arguments);
+                };
+
+                return fake;
+            },
+
+            matches: function (args, strict) {
+                var margs = this.matchingAguments;
+
+                if (margs.length <= args.length &&
+                    sinon.deepEqual(margs, args.slice(0, margs.length))) {
+                    return !strict || margs.length == args.length;
+                }
+            }
+        };
+
+        delegateToCalls(spyApi, "calledOn", true);
+        delegateToCalls(spyApi, "alwaysCalledOn", false, "calledOn");
+        delegateToCalls(spyApi, "calledWith", true);
+        delegateToCalls(spyApi, "alwaysCalledWith", false, "calledWith");
+        delegateToCalls(spyApi, "calledWithExactly", true);
+        delegateToCalls(spyApi, "alwaysCalledWithExactly", false, "calledWithExactly");
+        delegateToCalls(spyApi, "threw", true);
+        delegateToCalls(spyApi, "alwaysThrew", false, "threw");
+        delegateToCalls(spyApi, "returned", true);
+        delegateToCalls(spyApi, "alwaysReturned", false, "returned");
+
+        return spyApi;
+    }()));
+
+    spyCall = (function () {
+        return {
+            create: function create(spy, thisValue, args, returnValue, exception, id) {
+                var proxyCall = sinon.create(spyCall);
+                delete proxyCall.create;
+                proxyCall.proxy = spy;
+                proxyCall.thisValue = thisValue;
+                proxyCall.args = args;
+                proxyCall.returnValue = returnValue;
+                proxyCall.exception = exception;
+                proxyCall.callId = typeof id == "number" && id || callId++;
+
+                return proxyCall;
+            },
+
+            calledOn: function calledOn(thisValue) {
+                return this.thisValue === thisValue;
+            },
+
+            calledWith: function calledWith() {
+                for (var i = 0, l = arguments.length; i < l; i += 1) {
+                    if (!sinon.deepEqual(arguments[i], this.args[i])) {
+                        return false;
+                    }
+                }
+
+                return true;
+            },
+
+            calledWithExactly: function calledWithExactly() {
+                return arguments.length == this.args.length &&
+                    this.calledWith.apply(this, arguments);
+            },
+
+            returned: function returned(value) {
+                return this.returnValue === value;
+            },
+
+            threw: function threw(error) {
+                if (typeof error == "undefined" || !this.exception) {
+                    return !!this.exception;
+                }
+
+                if (typeof error == "string") {
+                    return this.exception.name == error;
+                }
+
+                return this.exception === error;
+            },
+
+            calledBefore: function (other) {
+                return this.callId < other.callId;
+            },
+
+            calledAfter: function (other) {
+                return this.callId > other.callId;
+            },
+
+            toString: function () {
+                var callStr = this.proxy.toString() + "(";
+                var args = [];
+
+                for (var i = 0, l = this.args.length; i < l; ++i) {
+                    args.push(sinon.format(this.args[i]));
+                }
+
+                callStr = callStr + args.join(", ") + ")";
+
+                if (typeof this.returnValue != "undefined") {
+                    callStr += " => " + sinon.format(this.returnValue);
+                }
+
+                if (this.exception) {
+                    callStr += " !" + this.exception.name;
+
+                    if (this.exception.message) {
+                        callStr += "(" + this.exception.message + ")";
+                    }
+                }
+
+                return callStr;
+            }
+        };
+    }());
+
+    if (commonJSModule) {
+        module.exports = spy;
+    } else {
+        sinon.spy = spy;
+        sinon.spyCall = spyCall;
+    }
+}(typeof sinon == "object" && sinon || null));
+
+/**
+ * @depend ../sinon.js
+ * @depend spy.js
+ */
+/*jslint eqeqeq: false, onevar: false*/
+/*global module, require, sinon*/
+/**
+ * Stub functions
+ *
+ * @author Christian Johansen (christian@cjohansen.no)
+ * @license BSD
+ *
+ * Copyright (c) 2010-2011 Christian Johansen
+ */
+
+(function (sinon) {
+    var commonJSModule = typeof module == "object" && typeof require == "function";
+
+    if (!sinon && commonJSModule) {
+        sinon = require("sinon");
+    }
+
+    if (!sinon) {
+        return;
+    }
+
+    function stub(object, property, func) {
+        if (!!func && typeof func != "function") {
+            throw new TypeError("Custom stub should be function");
+        }
+
+        var wrapper;
+
+        if (func) {
+            wrapper = sinon.spy && sinon.spy.create ? sinon.spy.create(func) : func;
+        } else {
+            wrapper = stub.create();
+        }
+
+        if (!object && !property) {
+            return sinon.stub.create();
+        }
+
+        if (!property && !!object && typeof object == "object") {
+            for (var prop in object) {
+                if (object.hasOwnProperty(prop) && typeof object[prop] == "function") {
+                    stub(object, prop);
+                }
+            }
+
+            return object;
+        }
+
+        return sinon.wrapMethod(object, property, wrapper);
+    }
+
+    function getCallback(stub, args) {
+        if (stub.callArgAt < 0) {
+            for (var i = 0, l = args.length; i < l; ++i) {
+                if (!stub.callArgProp && typeof args[i] == "function") {
+                    return args[i];
+                }
+
+                if (stub.callArgProp && args[i] &&
+                    typeof args[i][stub.callArgProp] == "function") {
+                    return args[i][stub.callArgProp];
+                }
+            }
+
+            return null;
+        }
+
+        return args[stub.callArgAt];
+    }
+
+    var join = Array.prototype.join;
+
+    function getCallbackError(stub, func, args) {
+        if (stub.callArgAt < 0) {
+            var msg;
+
+            if (stub.callArgProp) {
+                msg = sinon.functionName(stub) +
+                    " expected to yield to '" + stub.callArgProp +
+                    "', but no object with such a property was passed."
+            } else {
+                msg = sinon.functionName(stub) +
+                            " expected to yield, but no callback was passed."
+            }
+
+            if (args.length > 0) {
+                msg += " Received [" + join.call(args, ", ") + "]";
+            }
+
+            return msg;
+        }
+
+        return "argument at index " + stub.callArgAt + " is not a function: " + func;
+    }
+
+    function callCallback(stub, args) {
+        if (typeof stub.callArgAt == "number") {
+            var func = getCallback(stub, args);
+
+            if (typeof func != "function") {
+                throw new TypeError(getCallbackError(stub, func, args));
+            }
+
+            func.apply(null, stub.callbackArguments);
+        }
+    }
+
+    var uuid = 0;
+
+    sinon.extend(stub, (function () {
+        var slice = Array.prototype.slice;
+
+        function throwsException(error, message) {
+            if (typeof error == "string") {
+                this.exception = new Error(message || "");
+                this.exception.name = error;
+            } else if (!error) {
+                this.exception = new Error("Error");
+            } else {
+                this.exception = error;
+            }
+            
+            return this;
+        }
+
+        return {
+            create: function create() {
+                var functionStub = function () {
+                    if (functionStub.exception) {
+                        throw functionStub.exception;
+                    }
+
+                    callCallback(functionStub, arguments);
+
+                    return functionStub.returnValue;
+                };
+
+                functionStub.id = "stub#" + uuid++;
+                var orig = functionStub;
+                functionStub = sinon.spy.create(functionStub);
+                functionStub.func = orig;
+
+                sinon.extend(functionStub, stub);
+                functionStub._create = sinon.stub.create;
+                functionStub.displayName = "stub";
+                functionStub.toString = sinon.functionToString;
+
+                return functionStub;
+            },
+
+            returns: function returns(value) {
+                this.returnValue = value;
+
+                return this;
+            },
+
+            "throws": throwsException,
+            throwsException: throwsException,
+
+            callsArg: function callsArg(pos) {
+                if (typeof pos != "number") {
+                    throw new TypeError("argument index is not number");
+                }
+
+                this.callArgAt = pos;
+                this.callbackArguments = [];
+
+                return this;
+            },
+
+            callsArgWith: function callsArgWith(pos) {
+                if (typeof pos != "number") {
+                    throw new TypeError("argument index is not number");
+                }
+
+                this.callArgAt = pos;
+                this.callbackArguments = slice.call(arguments, 1);
+
+                return this;
+            },
+
+            yields: function () {
+                this.callArgAt = -1;
+                this.callbackArguments = slice.call(arguments, 0);
+
+                return this;
+            },
+
+            yieldsTo: function (prop) {
+                this.callArgAt = -1;
+                this.callArgProp = prop;
+                this.callbackArguments = slice.call(arguments, 1);
+
+                return this;
+            }
+        };
+    }()));
+
+    if (commonJSModule) {
+        module.exports = stub;
+    } else {
+        sinon.stub = stub;
+    }
+}(typeof sinon == "object" && sinon || null));
+
+/**
+ * @depend ../sinon.js
+ * @depend stub.js
+ */
+/*jslint eqeqeq: false, onevar: false, nomen: false*/
+/*global module, require, sinon*/
+/**
+ * Mock functions.
+ *
+ * @author Christian Johansen (christian@cjohansen.no)
+ * @license BSD
+ *
+ * Copyright (c) 2010-2011 Christian Johansen
+ */
+
+(function (sinon) {
+    var commonJSModule = typeof module == "object" && typeof require == "function";
+
+    if (!sinon && commonJSModule) {
+        sinon = require("sinon");
+    }
+
+    if (!sinon) {
+        return;
+    }
+
+    function mock(object) {
+        if (!object) {
+            return sinon.expectation.create("Anonymous mock");
+        }
+
+        return mock.create(object);
+    }
+
+    sinon.mock = mock;
+
+    sinon.extend(mock, (function () {
+        function each(collection, callback) {
+            if (!collection) {
+                return;
+            }
+
+            for (var i = 0, l = collection.length; i < l; i += 1) {
+                callback(collection[i]);
+            }
+        }
+
+        return {
+            create: function create(object) {
+                if (!object) {
+                    throw new TypeError("object is null");
+                }
+
+                var mockObject = sinon.extend({}, mock);
+                mockObject.object = object;
+                delete mockObject.create;
+
+                return mockObject;
+            },
+
+            expects: function expects(method) {
+                if (!method) {
+                    throw new TypeError("method is falsy");
+                }
+
+                if (!this.expectations) {
+                    this.expectations = {};
+                    this.proxies = [];
+                }
+
+                if (!this.expectations[method]) {
+                    this.expectations[method] = [];
+                    var mockObject = this;
+
+                    sinon.wrapMethod(this.object, method, function () {
+                        return mockObject.invokeMethod(method, this, arguments);
+                    });
+
+                    this.proxies.push(method);
+                }
+
+                var expectation = sinon.expectation.create(method);
+                this.expectations[method].push(expectation);
+
+                return expectation;
+            },
+
+            restore: function restore() {
+                var object = this.object;
+
+                each(this.proxies, function (proxy) {
+                    if (typeof object[proxy].restore == "function") {
+                        object[proxy].restore();
+                    }
+                });
+            },
+
+            verify: function verify() {
+                var expectations = this.expectations || {};
+                var messages = [], met = [];
+
+                each(this.proxies, function (proxy) {
+                    each(expectations[proxy], function (expectation) {
+                        if (!expectation.met()) {
+                            messages.push(expectation.toString());
+                        } else {
+                            met.push(expectation.toString());
+                        }
+                    });
+                });
+
+                this.restore();
+
+                if (messages.length > 0) {
+                    err(messages.concat(met).join("\n"));
+                }
+
+                return true;
+            },
+
+            invokeMethod: function invokeMethod(method, thisValue, args) {
+                var expectations = this.expectations && this.expectations[method];
+                var length = expectations && expectations.length || 0;
+
+                for (var i = 0; i < length; i += 1) {
+                    if (!expectations[i].met() &&
+                        expectations[i].allowsCall(thisValue, args)) {
+                        return expectations[i].apply(thisValue, args);
+                    }
+                }
+
+                var messages = [];
+
+                for (i = 0; i < length; i += 1) {
+                    messages.push("    " + expectations[i].toString());
+                }
+
+                messages.unshift("Unexpected call: " + sinon.spyCall.toString.call({
+                    proxy: method,
+                    args: args
+                }));
+
+                err(messages.join("\n"));
+            }
+        };
+    }()));
+
+    function err(message) {
+        var exception = new Error(message);
+        exception.name = "ExpectationError";
+
+        throw exception;
+    }
+
+    sinon.expectation = (function () {
+        var slice = Array.prototype.slice;
+        var _invoke = sinon.spy.invoke;
+
+        function timesInWords(times) {
+            if (times == 0) {
+                return "never";
+            } else if (times == 1) {
+                return "once";
+            } else if (times == 2) {
+                return "twice";
+            } else if (times == 3) {
+                return "thrice";
+            }
+
+            return times + " times";
+        }
+
+        function callCountInWords(callCount) {
+            if (callCount == 0) {
+                return "never called";
+            } else {
+                return "called " + timesInWords(callCount);
+            }
+        }
+
+        function expectedCallCountInWords(expectation) {
+            var min = expectation.minCalls;
+            var max = expectation.maxCalls;
+
+            if (typeof min == "number" && typeof max == "number") {
+                var str = timesInWords(min);
+
+                if (min != max) {
+                    str = "at least " + str + " and at most " + timesInWords(max);
+                }
+
+                return str;
+            }
+
+            if (typeof min == "number") {
+                return "at least " + timesInWords(min);
+            }
+
+            return "at most " + timesInWords(max);
+        }
+
+        function receivedMinCalls(expectation) {
+            var hasMinLimit = typeof expectation.minCalls == "number";
+            return !hasMinLimit || expectation.callCount >= expectation.minCalls;
+        }
+
+        function receivedMaxCalls(expectation) {
+            if (typeof expectation.maxCalls != "number") {
+                return false;
+            }
+
+            return expectation.callCount == expectation.maxCalls;
+        }
+
+        return {
+            minCalls: 1,
+            maxCalls: 1,
+
+            create: function create(methodName) {
+                var expectation = sinon.extend(sinon.stub.create(), sinon.expectation);
+                delete expectation.create;
+                expectation.method = methodName;
+
+                return expectation;
+            },
+
+            invoke: function invoke(func, thisValue, args) {
+                this.verifyCallAllowed(thisValue, args);
+
+                return _invoke.apply(this, arguments);
+            },
+
+            atLeast: function atLeast(num) {
+                if (typeof num != "number") {
+                    throw new TypeError("'" + num + "' is not number");
+                }
+
+                if (!this.limitsSet) {
+                    this.maxCalls = null;
+                    this.limitsSet = true;
+                }
+
+                this.minCalls = num;
+
+                return this;
+            },
+
+            atMost: function atMost(num) {
+                if (typeof num != "number") {
+                    throw new TypeError("'" + num + "' is not number");
+                }
+
+                if (!this.limitsSet) {
+                    this.minCalls = null;
+                    this.limitsSet = true;
+                }
+
+                this.maxCalls = num;
+
+                return this;
+            },
+
+            never: function never() {
+                return this.exactly(0);
+            },
+
+            once: function once() {
+                return this.exactly(1);
+            },
+
+            twice: function twice() {
+                return this.exactly(2);
+            },
+
+            thrice: function thrice() {
+                return this.exactly(3);
+            },
+
+            exactly: function exactly(num) {
+                if (typeof num != "number") {
+                    throw new TypeError("'" + num + "' is not a number");
+                }
+
+                this.atLeast(num);
+                return this.atMost(num);
+            },
+
+            met: function met() {
+                return !this.failed && receivedMinCalls(this);
+            },
+
+            verifyCallAllowed: function verifyCallAllowed(thisValue, args) {
+                if (receivedMaxCalls(this)) {
+                    this.failed = true;
+                    err(this.method + " already called " + timesInWords(this.maxCalls));
+                }
+
+                if ("expectedThis" in this && this.expectedThis !== thisValue) {
+                    err(this.method + " called with " + thisValue + " as thisValue, expected " +
+                        this.expectedThis);
+                }
+
+                if (!("expectedArguments" in this)) {
+                    return;
+                }
+
+                if (!args || args.length === 0) {
+                    err(this.method + " received no arguments, expected " +
+                        this.expectedArguments.join());
+                }
+
+                if (args.length < this.expectedArguments.length) {
+                    err(this.method + " received too few arguments (" + args.join() +
+                        "), expected " + this.expectedArguments.join());
+                }
+
+                if (this.expectsExactArgCount &&
+                    args.length != this.expectedArguments.length) {
+                    err(this.method + " received too many arguments (" + args.join() +
+                        "), expected " + this.expectedArguments.join());
+                }
+
+                for (var i = 0, l = this.expectedArguments.length; i < l; i += 1) {
+                    if (!sinon.deepEqual(this.expectedArguments[i], args[i])) {
+                        err(this.method + " received wrong arguments (" + args.join() +
+                            "), expected " + this.expectedArguments.join());
+                    }
+                }
+            },
+
+            allowsCall: function allowsCall(thisValue, args) {
+                if (this.met()) {
+                    return false;
+                }
+
+                if ("expectedThis" in this && this.expectedThis !== thisValue) {
+                    return false;
+                }
+
+                if (!("expectedArguments" in this)) {
+                    return true;
+                }
+
+                args = args || [];
+
+                if (args.length < this.expectedArguments.length) {
+                    return false;
+                }
+
+                if (this.expectsExactArgCount &&
+                    args.length != this.expectedArguments.length) {
+                    return false;
+                }
+
+                for (var i = 0, l = this.expectedArguments.length; i < l; i += 1) {
+                    if (!sinon.deepEqual(this.expectedArguments[i], args[i])) {
+                        return false;
+                    }
+                }
+
+                return true;
+            },
+
+            withArgs: function withArgs() {
+                this.expectedArguments = slice.call(arguments);
+                return this;
+            },
+
+            withExactArgs: function withExactArgs() {
+                this.withArgs.apply(this, arguments);
+                this.expectsExactArgCount = true;
+                return this;
+            },
+
+            on: function on(thisValue) {
+                this.expectedThis = thisValue;
+                return this;
+            },
+
+            toString: function () {
+                var args = (this.expectedArguments || []).slice();
+
+                if (!this.expectsExactArgCount) {
+                    args.push("[...]");
+                }
+
+                var callStr = sinon.spyCall.toString.call({
+                    proxy: this.method, args: args
+                });
+
+                var message = callStr.replace(", [...", "[, ...") + " " +
+                    expectedCallCountInWords(this);
+
+                if (this.met()) {
+                    return "Expectation met: " + message;
+                }
+
+                return "Expected " + message + " (" +
+                    callCountInWords(this.callCount) + ")";
+            },
+
+            verify: function verify() {
+                if (!this.met()) {
+                    err(this.toString());
+                }
+
+                return true;
+            }
+        };
+    }());
+
+    if (commonJSModule) {
+        module.exports = mock;
+    } else {
+        sinon.mock = mock;
+    }
+}(typeof sinon == "object" && sinon || null));
+
+/**
+ * @depend ../sinon.js
+ * @depend stub.js
+ * @depend mock.js
+ */
+/*jslint eqeqeq: false, onevar: false, forin: true*/
+/*global module, require, sinon*/
+/**
+ * Collections of stubs, spies and mocks.
+ *
+ * @author Christian Johansen (christian@cjohansen.no)
+ * @license BSD
+ *
+ * Copyright (c) 2010-2011 Christian Johansen
+ */
+
+(function (sinon) {
+    var commonJSModule = typeof module == "object" && typeof require == "function";
+
+    if (!sinon && commonJSModule) {
+        sinon = require("sinon");
+    }
+
+    if (!sinon) {
+        return;
+    }
+
+    function getFakes(fakeCollection) {
+        if (!fakeCollection.fakes) {
+            fakeCollection.fakes = [];
+        }
+
+        return fakeCollection.fakes;
+    }
+
+    function each(fakeCollection, method) {
+        var fakes = getFakes(fakeCollection);
+
+        for (var i = 0, l = fakes.length; i < l; i += 1) {
+            if (typeof fakes[i][method] == "function") {
+                fakes[i][method]();
+            }
+        }
+    }
+
+    var collection = {
+        verify: function resolve() {
+            each(this, "verify");
+        },
+
+        restore: function restore() {
+            each(this, "restore");
+        },
+
+        verifyAndRestore: function verifyAndRestore() {
+            var exception;
+
+            try {
+                this.verify();
+            } catch (e) {
+                exception = e;
+            }
+
+            this.restore();
+
+            if (exception) {
+                throw exception;
+            }
+        },
+
+        add: function add(fake) {
+            getFakes(this).push(fake);
+
+            return fake;
+        },
+
+        spy: function spy() {
+            return this.add(sinon.spy.apply(sinon, arguments));
+        },
+
+        stub: function stub(object, property, value) {
+            if (property) {
+                var original = object[property];
+
+                if (typeof original != "function") {
+                    if (!object.hasOwnProperty(property)) {
+                        throw new TypeError("Cannot stub non-existent own property " + property);
+                    }
+
+                    object[property] = value;
+
+                    return this.add({
+                        restore: function () {
+                            object[property] = original;
+                        }
+                    });
+                }
+            }
+
+            return this.add(sinon.stub.apply(sinon, arguments));
+        },
+
+        mock: function mock() {
+            return this.add(sinon.mock.apply(sinon, arguments));
+        },
+
+        inject: function inject(obj) {
+            var col = this;
+
+            obj.spy = function () {
+                return col.spy.apply(col, arguments);
+            };
+
+            obj.stub = function () {
+                return col.stub.apply(col, arguments);
+            };
+
+            obj.mock = function () {
+                return col.mock.apply(col, arguments);
+            };
+
+            return obj;
+        }
+    };
+
+    if (commonJSModule) {
+        module.exports = collection;
+    } else {
+        sinon.collection = collection;
+    }
+}(typeof sinon == "object" && sinon || null));
+
+/*jslint eqeqeq: false, plusplus: false, evil: true, onevar: false, browser: true, forin: false*/
+/*global module, require, window*/
+/**
+ * Fake timer API
+ * setTimeout
+ * setInterval
+ * clearTimeout
+ * clearInterval
+ * tick
+ * reset
+ * Date
+ *
+ * Inspired by jsUnitMockTimeOut from JsUnit
+ *
+ * @author Christian Johansen (christian@cjohansen.no)
+ * @license BSD
+ *
+ * Copyright (c) 2010-2011 Christian Johansen
+ */
+
+if (typeof sinon == "undefined") {
+    var sinon = {};
+}
+
+sinon.clock = (function () {
+    var id = 0;
+
+    function addTimer(args, recurring) {
+        if (args.length === 0) {
+            throw new Error("Function requires at least 1 parameter");
+        }
+
+        var toId = id++;
+        var delay = args[1] || 0;
+
+        if (!this.timeouts) {
+            this.timeouts = {};
+        }
+
+        this.timeouts[toId] = {
+            id: toId,
+            func: args[0],
+            callAt: this.now + delay
+        };
+
+        if (recurring === true) {
+            this.timeouts[toId].interval = delay;
+        }
+
+        return toId;
+    }
+
+    function parseTime(str) {
+        if (!str) {
+            return 0;
+        }
+
+        var strings = str.split(":");
+        var l = strings.length, i = l;
+        var ms = 0, parsed;
+
+        if (l > 3 || !/^(\d\d:){0,2}\d\d?$/.test(str)) {
+            throw new Error("tick only understands numbers and 'h:m:s'");
+        }
+
+        while (i--) {
+            parsed = parseInt(strings[i], 10);
+
+            if (parsed >= 60) {
+                throw new Error("Invalid time " + str);
+            }
+
+            ms += parsed * Math.pow(60, (l - i - 1));
+        }
+
+        return ms * 1000;
+    }
+
+    function createObject(object) {
+        var newObject;
+
+        if (Object.create) {
+            newObject = Object.create(object);
+        } else {
+            var F = function () {};
+            F.prototype = object;
+            newObject = new F();
+        }
+
+        newObject.Date.clock = newObject;
+        return newObject;
+    }
+
+    return {
+        now: 0,
+
+        create: function create(now) {
+            var clock = createObject(this);
+
+            if (typeof now == "number") {
+                this.now = now;
+            }
+
+            return clock;
+        },
+
+        setTimeout: function setTimeout(callback, timeout) {
+            return addTimer.call(this, arguments, false);
+        },
+
+        clearTimeout: function clearTimeout(timerId) {
+            if (!this.timeouts) {
+                this.timeouts = [];
+            }
+
+            delete this.timeouts[timerId];
+        },
+
+        setInterval: function setInterval(callback, timeout) {
+            return addTimer.call(this, arguments, true);
+        },
+
+        clearInterval: function clearInterval(timerId) {
+            this.clearTimeout(timerId);
+        },
+
+        tick: function tick(ms) {
+            ms = typeof ms == "number" ? ms : parseTime(ms);
+            var tickFrom = this.now, tickTo = this.now + ms, previous = this.now;
+            var timer = this.firstTimerInRange(tickFrom, tickTo);
+
+            while (timer && tickFrom <= tickTo) {
+                if (this.timeouts[timer.id]) {
+                    tickFrom = this.now = timer.callAt;
+                    this.callTimer(timer);
+                }
+
+                timer = this.firstTimerInRange(previous, tickTo);
+                previous = tickFrom;
+            }
+
+            this.now = tickTo;
+        },
+
+        firstTimerInRange: function (from, to) {
+            var timer, smallest, originalTimer;
+
+            for (var id in this.timeouts) {
+                if (this.timeouts.hasOwnProperty(id)) {
+                    if (this.timeouts[id].callAt < from || this.timeouts[id].callAt > to) {
+                        continue;
+                    }
+
+                    if (!smallest || this.timeouts[id].callAt < smallest) {
+                        originalTimer = this.timeouts[id];
+                        smallest = this.timeouts[id].callAt;
+                        
+                        timer = {
+                            func: this.timeouts[id].func,
+                            callAt: this.timeouts[id].callAt,
+                            interval: this.timeouts[id].interval,
+                            id: this.timeouts[id].id
+                        };
+                    }
+                }
+            }
+            
+            return timer || null;
+        },
+
+        callTimer: function (timer) {
+            try {
+                if (typeof timer.func == "function") {
+                    timer.func.call(null);
+                } else {
+                    eval(timer.func);
+                }
+            } catch (e) {}
+
+            if (!this.timeouts[timer.id]) {
+                return;
+            }
+
+            if (typeof timer.interval == "number") {
+                this.timeouts[timer.id].callAt += timer.interval;
+            } else {
+                delete this.timeouts[timer.id];
+            }
+        },
+
+        reset: function reset() {
+            this.timeouts = {};
+        },
+
+        Date: (function () {
+            var NativeDate = Date;
+
+            function ClockDate(year, month, date, hour, minute, second, ms) {
+                // Defensive and verbose to avoid potential harm in passing
+                // explicit undefined when user does not pass argument
+                switch (arguments.length) {
+                case 0:
+                    return new NativeDate(ClockDate.clock.now);
+                case 1:
+                    return new NativeDate(year);
+                case 2:
+                    return new NativeDate(year, month);
+                case 3:
+                    return new NativeDate(year, month, date);
+                case 4:
+                    return new NativeDate(year, month, date, hour);
+                case 5:
+                    return new NativeDate(year, month, date, hour, minute);
+                case 6:
+                    return new NativeDate(year, month, date, hour, minute, second);
+                default:
+                    return new NativeDate(year, month, date, hour, minute, second, ms);
+                }
+            }
+
+            if (NativeDate.now) {
+                ClockDate.now = function now() {
+                    return ClockDate.clock.now;
+                };
+            }
+
+            if (NativeDate.toSource) {
+                ClockDate.toSource = function toSource() {
+                    return NativeDate.toSource();
+                };
+            }
+
+            ClockDate.toString = function toString() {
+                return NativeDate.toString();
+            };
+
+            ClockDate.prototype = NativeDate.prototype;
+            ClockDate.parse = NativeDate.parse;
+            ClockDate.UTC = NativeDate.UTC;
+
+            return ClockDate;
+        }())
+    };
+}());
+
+sinon.timers = {
+    setTimeout: setTimeout,
+    clearTimeout: clearTimeout,
+    setInterval: setInterval,
+    clearInterval: clearInterval,
+    Date: Date
+};
+
+sinon.useFakeTimers = (function (global) {
+    var methods = ["Date", "setTimeout", "setInterval", "clearTimeout", "clearInterval"];
+
+    function restore() {
+        var method;
+
+        for (var i = 0, l = this.methods.length; i < l; i++) {
+            method = this.methods[i];
+            global[method] = this["_" + method];
+        }
+    }
+
+    function stubGlobal(method, clock) {
+        clock["_" + method] = global[method];
+
+        global[method] = function () {
+            return clock[method].apply(clock, arguments);
+        };
+
+        for (var prop in clock[method]) {
+            if (clock[method].hasOwnProperty(prop)) {
+                global[method][prop] = clock[method][prop];
+            }
+        }
+
+        global[method].clock = clock;
+    }
+
+    return function useFakeTimers(now) {
+        var clock = sinon.clock.create(now);
+        clock.restore = restore;
+        clock.methods = Array.prototype.slice.call(arguments,
+                                                   typeof now == "number" ? 1 : 0);
+
+        if (clock.methods.length === 0) {
+            clock.methods = methods;
+        }
+
+        for (var i = 0, l = clock.methods.length; i < l; i++) {
+            stubGlobal(clock.methods[i], clock);
+        }
+
+        return clock;
+    };
+}(typeof global != "undefined" ? global : this));
+
+if (typeof module == "object" && typeof require == "function") {
+    module.exports = sinon;
+}
+
+/*jslint eqeqeq: false, onevar: false*/
+/*global sinon, module, require, ActiveXObject, XMLHttpRequest, DOMParser*/
+/**
+ * Fake XMLHttpRequest object
+ *
+ * @author Christian Johansen (christian@cjohansen.no)
+ * @license BSD
+ *
+ * Copyright (c) 2010-2011 Christian Johansen
+ */
+
+if (typeof sinon == "undefined") {
+    this.sinon = {};
+}
+
+sinon.xhr = { XMLHttpRequest: this.XMLHttpRequest };
+
+sinon.FakeXMLHttpRequest = (function () {
+    /*jsl:ignore*/
+    var unsafeHeaders = {
+        "Accept-Charset": true,
+        "Accept-Encoding": true,
+        "Connection": true,
+        "Content-Length": true,
+        "Cookie": true,
+        "Cookie2": true,
+        "Content-Transfer-Encoding": true,
+        "Date": true,
+        "Expect": true,
+        "Host": true,
+        "Keep-Alive": true,
+        "Referer": true,
+        "TE": true,
+        "Trailer": true,
+        "Transfer-Encoding": true,
+        "Upgrade": true,
+        "User-Agent": true,
+        "Via": true
+    };
+    /*jsl:end*/
+
+    function FakeXMLHttpRequest() {
+        this.readyState = FakeXMLHttpRequest.UNSENT;
+        this.requestHeaders = {};
+        this.requestBody = null;
+        this.status = 0;
+        this.statusText = "";
+
+        if (typeof FakeXMLHttpRequest.onCreate == "function") {
+            FakeXMLHttpRequest.onCreate(this);
+        }
+    }
+
+    function verifyState(xhr) {
+        if (xhr.readyState !== FakeXMLHttpRequest.OPENED) {
+            throw new Error("INVALID_STATE_ERR");
+        }
+
+        if (xhr.sendFlag) {
+            throw new Error("INVALID_STATE_ERR");
+        }
+    }
+
+    sinon.extend(FakeXMLHttpRequest.prototype, {
+        async: true,
+
+        open: function open(method, url, async, username, password) {
+            this.method = method;
+            this.url = url;
+            this.async = typeof async == "boolean" ? async : true;
+            this.username = username;
+            this.password = password;
+            this.responseText = null;
+            this.responseXML = null;
+            this.requestHeaders = {};
+            this.sendFlag = false;
+            this.readyStateChange(FakeXMLHttpRequest.OPENED);
+        },
+
+        readyStateChange: function readyStateChange(state) {
+            this.readyState = state;
+
+            if (typeof this.onreadystatechange == "function") {
+                this.onreadystatechange();
+            }
+        },
+
+        setRequestHeader: function setRequestHeader(header, value) {
+            verifyState(this);
+
+            if (unsafeHeaders[header] || /^(Sec-|Proxy-)/.test(header)) {
+                throw new Error("Refused to set unsafe header \"" + header + "\"");
+            }
+
+            if (this.requestHeaders[header]) {
+                this.requestHeaders[header] += "," + value; 
+            } else {
+                this.requestHeaders[header] = value;
+            }
+        },
+
+        // Helps testing
+        setResponseHeaders: function setResponseHeaders(headers) {
+            this.responseHeaders = {};
+
+            for (var header in headers) {
+                if (headers.hasOwnProperty(header)) {
+                    this.responseHeaders[header] = headers[header];
+                }
+            }
+
+            if (this.async) {
+                this.readyStateChange(FakeXMLHttpRequest.HEADERS_RECEIVED);
+            }
+        },
+
+        // Currently treats ALL data as a DOMString (i.e. no Document)
+        send: function send(data) {
+            verifyState(this);
+
+            if (!/^(get|head)$/i.test(this.method)) {
+                if (this.requestHeaders["Content-Type"]) {
+                    var value = this.requestHeaders["Content-Type"].split(";");
+                    this.requestHeaders["Content-Type"] = value[0] + ";charset=utf-8";
+                } else {
+                    this.requestHeaders["Content-Type"] = "text/plain;charset=utf-8";
+                }
+
+                this.requestBody = data;
+            }
+
+            this.errorFlag = false;
+            this.sendFlag = this.async;
+            this.readyStateChange(FakeXMLHttpRequest.OPENED);
+
+            if (typeof this.onSend == "function") {
+                this.onSend(this);
+            }
+        },
+
+        abort: function abort() {
+            this.aborted = true;
+            this.responseText = null;
+            this.errorFlag = true;
+            this.requestHeaders = {};
+
+            if (this.readyState > sinon.FakeXMLHttpRequest.OPENED) {
+                this.readyStateChange(sinon.FakeXMLHttpRequest.DONE);
+                this.sendFlag = false;
+            }
+
+            this.readyState = sinon.FakeXMLHttpRequest.UNSENT;
+        },
+
+        getResponseHeader: function getResponseHeader(header) {
+            if (this.readyState < FakeXMLHttpRequest.HEADERS_RECEIVED) {
+                return null;
+            }
+
+            if (/^Set-Cookie2?$/i.test(header)) {
+                return null;
+            }
+
+            header = header.toLowerCase();
+
+            for (var h in this.responseHeaders) {
+                if (h.toLowerCase() == header) {
+                    return this.responseHeaders[h];
+                }
+            }
+
+            return null;
+        },
+
+        getAllResponseHeaders: function getAllResponseHeaders() {
+            if (this.readyState < FakeXMLHttpRequest.HEADERS_RECEIVED) {
+                return "";
+            }
+
+            var headers = "";
+
+            for (var header in this.responseHeaders) {
+                if (this.responseHeaders.hasOwnProperty(header) &&
+                    !/^Set-Cookie2?$/i.test(header)) {
+                    headers += header + ": " + this.responseHeaders[header] + "\r\n";
+                }
+            }
+
+            return headers;
+        },
+
+        setResponseBody: function setResponseBody(body) {
+            if (this.readyState == FakeXMLHttpRequest.DONE) {
+                throw new Error("Request done");
+            }
+
+            if (this.async && this.readyState != FakeXMLHttpRequest.HEADERS_RECEIVED) {
+                throw new Error("No headers received");
+            }
+
+            var chunkSize = this.chunkSize || 10;
+            var index = 0;
+            this.responseText = "";
+
+            do {
+                if (this.async) {
+                    this.readyStateChange(FakeXMLHttpRequest.LOADING);
+                }
+
+                this.responseText += body.substring(index, index + chunkSize);
+                index += chunkSize;
+            } while (index < body.length);
+
+            var type = this.getResponseHeader("Content-Type");
+
+            if (this.responseText &&
+                (!type || /(text\/xml)|(application\/xml)|(\+xml)/.test(type))) {
+                try {
+                    this.responseXML = FakeXMLHttpRequest.parseXML(this.responseText);
+                } catch (e) {}
+            }
+
+            if (this.async) {
+                this.readyStateChange(FakeXMLHttpRequest.DONE);
+            } else {
+                this.readyState = FakeXMLHttpRequest.DONE;
+            }
+        },
+
+        respond: function respond(status, headers, body) {
+            this.setResponseHeaders(headers || {});
+            this.status = typeof status == "number" ? status : 200;
+            this.statusText = FakeXMLHttpRequest.statusCodes[this.status];
+            this.setResponseBody(body || "");
+        }
+    });
+
+    sinon.extend(FakeXMLHttpRequest, {
+        UNSENT: 0,
+        OPENED: 1,
+        HEADERS_RECEIVED: 2,
+        LOADING: 3,
+        DONE: 4
+    });
+
+    // Borrowed from JSpec
+    FakeXMLHttpRequest.parseXML = function parseXML(text) {
+        var xmlDoc;
+
+        if (typeof DOMParser != "undefined") {
+            var parser = new DOMParser();
+            xmlDoc = parser.parseFromString(text, "text/xml");
+        } else {
+            xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
+            xmlDoc.async = "false";
+            xmlDoc.loadXML(text);
+        }
+
+        return xmlDoc;
+    };
+
+    FakeXMLHttpRequest.statusCodes = {
+        100: "Continue",
+        101: "Switching Protocols",
+        200: "OK",
+        201: "Created",
+        202: "Accepted",
+        203: "Non-Authoritative Information",
+        204: "No Content",
+        205: "Reset Content",
+        206: "Partial Content",
+        300: "Multiple Choice",
+        301: "Moved Permanently",
+        302: "Found",
+        303: "See Other",
+        304: "Not Modified",
+        305: "Use Proxy",
+        307: "Temporary Redirect",
+        400: "Bad Request",
+        401: "Unauthorized",
+        402: "Payment Required",
+        403: "Forbidden",
+        404: "Not Found",
+        405: "Method Not Allowed",
+        406: "Not Acceptable",
+        407: "Proxy Authentication Required",
+        408: "Request Timeout",
+        409: "Conflict",
+        410: "Gone",
+        411: "Length Required",
+        412: "Precondition Failed",
+        413: "Request Entity Too Large",
+        414: "Request-URI Too Long",
+        415: "Unsupported Media Type",
+        416: "Requested Range Not Satisfiable",
+        417: "Expectation Failed",
+        422: "Unprocessable Entity",
+        500: "Internal Server Error",
+        501: "Not Implemented",
+        502: "Bad Gateway",
+        503: "Service Unavailable",
+        504: "Gateway Timeout",
+        505: "HTTP Version Not Supported"
+    };
+
+    return FakeXMLHttpRequest;
+}());
+
+(function (global) {
+    var GlobalXMLHttpRequest = global.XMLHttpRequest;
+    var GlobalActiveXObject = global.ActiveXObject;
+    var supportsActiveX = typeof ActiveXObject != "undefined";
+    var supportsXHR = typeof XMLHttpRequest != "undefined";
+
+    sinon.useFakeXMLHttpRequest = function () {
+        sinon.FakeXMLHttpRequest.restore = function restore(keepOnCreate) {
+            if (supportsXHR) {
+                global.XMLHttpRequest = GlobalXMLHttpRequest;
+            }
+
+            if (supportsActiveX) {
+                global.ActiveXObject = GlobalActiveXObject;
+            }
+
+            delete sinon.FakeXMLHttpRequest.restore;
+
+            if (keepOnCreate !== true) {
+                delete sinon.FakeXMLHttpRequest.onCreate;
+            }
+        };
+
+        if (supportsXHR) {
+            global.XMLHttpRequest = sinon.FakeXMLHttpRequest;
+        }
+
+        if (supportsActiveX) {
+            global.ActiveXObject = function ActiveXObject(objId) {
+                if (objId == "Microsoft.XMLHTTP" || /^Msxml2\.XMLHTTP/.test(objId)) {
+                    return new sinon.FakeXMLHttpRequest();
+                }
+
+                return new GlobalActiveXObject(objId);
+            };
+        }
+
+        return sinon.FakeXMLHttpRequest;
+    };
+}(this));
+
+if (typeof module == "object" && typeof require == "function") {
+    module.exports = sinon;
+}
+
+/**
+ * @depend fake_xml_http_request.js
+ */
+/*jslint eqeqeq: false, onevar: false, regexp: false, plusplus: false*/
+/*global module, require, window*/
+/**
+ * The Sinon "server" mimics a web server that receives requests from
+ * sinon.FakeXMLHttpRequest and provides an API to respond to those requests,
+ * both synchronously and asynchronously. To respond synchronuously, canned
+ * answers have to be provided upfront.
+ *
+ * @author Christian Johansen (christian@cjohansen.no)
+ * @license BSD
+ *
+ * Copyright (c) 2010-2011 Christian Johansen
+ */
+
+if (typeof sinon == "undefined") {
+    var sinon = {};
+}
+
+sinon.fakeServer = (function () {
+    function F() {}
+
+    function create(proto) {
+        F.prototype = proto;
+        return new F();
+    }
+
+    function responseArray(handler) {
+        var response = handler;
+
+        if (Object.prototype.toString.call(handler) != "[object Array]") {
+            response = [200, {}, handler];
+        }
+
+        if (typeof response[2] != "string") {
+            throw new TypeError("Fake server response body should be string, but was " +
+                                typeof response[2]);
+        }
+
+        return response;
+    }
+
+    var wloc = window.location;
+    var rCurrLoc = new RegExp("^" + wloc.protocol + "//" + wloc.host);
+
+    function matchOne(response, reqMethod, reqUrl) {
+        var rmeth = response.method;
+        var matchMethod = !rmeth || rmeth.toLowerCase() == reqMethod.toLowerCase();
+        var url = response.url;
+        var matchUrl = !url || url == reqUrl || (typeof url.test == "function" && url.test(reqUrl));
+
+        return matchMethod && matchUrl;
+    }
+
+    function match(response, request) {
+        var requestMethod = this.getHTTPMethod(request);
+        var requestUrl = request.url;
+
+        if (!/^https?:\/\//.test(requestUrl) || rCurrLoc.test(requestUrl)) {
+            requestUrl = requestUrl.replace(rCurrLoc, "");
+        }
+
+        if (matchOne(response, this.getHTTPMethod(request), requestUrl)) {
+            if (typeof response.response == "function") {
+                var args = [request].concat(requestUrl.match(response.url).slice(1));
+                return response.response.apply(response, args);
+            }
+
+            return true;
+        }
+
+        return false;
+    }
+
+    return {
+        create: function () {
+            var server = create(this);
+            this.xhr = sinon.useFakeXMLHttpRequest();
+            server.requests = [];
+
+            this.xhr.onCreate = function (xhrObj) {
+                server.addRequest(xhrObj);
+            };
+
+            return server;
+        },
+
+        addRequest: function addRequest(xhrObj) {
+            var server = this;
+            this.requests.push(xhrObj);
+
+            xhrObj.onSend = function () {
+                server.handleRequest(this);
+            };
+
+            if (this.autoRespond && !this.responding) {
+                setTimeout(function () {
+                    server.responding = false;
+                    server.respond();
+                }, this.autoRespondAfter || 10);
+
+                this.responding = true;
+            }
+        },
+
+        getHTTPMethod: function getHTTPMethod(request) {
+            if (this.fakeHTTPMethods && /post/i.test(request.method)) {
+                var matches = request.requestBody.match(/_method=([^\b;]+)/);
+                return !!matches ? matches[1] : request.method;
+            }
+
+            return request.method;
+        },
+
+        handleRequest: function handleRequest(xhr) {
+            if (xhr.async) {
+                if (!this.queue) {
+                    this.queue = [];
+                }
+
+                this.queue.push(xhr);
+            } else {
+                this.processRequest(xhr);
+            }
+        },
+
+        respondWith: function respondWith(method, url, body) {
+            if (arguments.length == 1) {
+                this.response = responseArray(method);
+            } else {
+                if (!this.responses) {
+                    this.responses = [];
+                }
+
+                if (arguments.length == 2) {
+                    body = url;
+                    url = method;
+                    method = null;
+                }
+
+                this.responses.push({
+                    method: method,
+                    url: url,
+                    response: typeof body == "function" ? body : responseArray(body)
+                });
+            }
+        },
+
+        respond: function respond() {
+            var queue = this.queue || [];
+            var request;
+
+            while(request = queue.shift()) {
+                this.processRequest(request);
+            }
+        },
+
+        processRequest: function processRequest(request) {
+            try {
+                if (request.aborted) {
+                    return;
+                }
+
+                var response = this.response || [404, {}, ""];
+
+                if (this.responses) {
+                    for (var i = 0, l = this.responses.length; i < l; i++) {
+                        if (match.call(this, this.responses[i], request)) {
+                            response = this.responses[i].response;
+                            break;
+                        }
+                    }
+                }
+
+                if (request.readyState != 4) {
+                    request.respond(response[0], response[1], response[2]);
+                }
+            } catch (e) {}
+        },
+
+        restore: function restore() {
+            return this.xhr.restore && this.xhr.restore.apply(this.xhr, arguments);
+        }
+    };
+}());
+
+if (typeof module == "object" && typeof require == "function") {
+    module.exports = sinon;
+}
+
+/**
+ * @depend fake_server.js
+ * @depend fake_timers.js
+ */
+/*jslint browser: true, eqeqeq: false, onevar: false*/
+/*global sinon*/
+/**
+ * Add-on for sinon.fakeServer that automatically handles a fake timer along with
+ * the FakeXMLHttpRequest. The direct inspiration for this add-on is jQuery
+ * 1.3.x, which does not use xhr object's onreadystatehandler at all - instead,
+ * it polls the object for completion with setInterval. Dispite the direct
+ * motivation, there is nothing jQuery-specific in this file, so it can be used
+ * in any environment where the ajax implementation depends on setInterval or
+ * setTimeout.
+ *
+ * @author Christian Johansen (christian@cjohansen.no)
+ * @license BSD
+ *
+ * Copyright (c) 2010-2011 Christian Johansen
+ */
+
+(function () {
+    function Server() {}
+    Server.prototype = sinon.fakeServer;
+
+    sinon.fakeServerWithClock = new Server();
+
+    sinon.fakeServerWithClock.addRequest = function addRequest(xhr) {
+        if (xhr.async) {
+            if (typeof setTimeout.clock == "object") {
+                this.clock = setTimeout.clock;
+            } else {
+                this.clock = sinon.useFakeTimers();
+                this.resetClock = true;
+            }
+
+            if (!this.longestTimeout) {
+                var clockSetTimeout = this.clock.setTimeout;
+                var clockSetInterval = this.clock.setInterval;
+                var server = this;
+
+                this.clock.setTimeout = function (fn, timeout) {
+                    server.longestTimeout = Math.max(timeout, server.longestTimeout || 0);
+
+                    return clockSetTimeout.apply(this, arguments);
+                };
+
+                this.clock.setInterval = function (fn, timeout) {
+                    server.longestTimeout = Math.max(timeout, server.longestTimeout || 0);
+
+                    return clockSetInterval.apply(this, arguments);
+                };
+            }
+        }
+
+        return sinon.fakeServer.addRequest.call(this, xhr);
+    };
+
+    sinon.fakeServerWithClock.respond = function respond() {
+        var returnVal = sinon.fakeServer.respond.apply(this, arguments);
+
+        if (this.clock) {
+            this.clock.tick(this.longestTimeout || 0);
+            this.longestTimeout = 0;
+
+            if (this.resetClock) {
+                this.clock.restore();
+                this.resetClock = false;
+            }
+        }
+
+        return returnVal;
+    };
+
+    sinon.fakeServerWithClock.restore = function restore() {
+        if (this.clock) {
+            this.clock.restore();
+        }
+
+        return sinon.fakeServer.restore.apply(this, arguments);
+    };
+}());
+
+/**
+ * @depend ../sinon.js
+ * @depend collection.js
+ * @depend util/fake_timers.js
+ * @depend util/fake_server_with_clock.js
+ */
+/*jslint eqeqeq: false, onevar: false, plusplus: false*/
+/*global require, module*/
+/**
+ * Manages fake collections as well as fake utilities such as Sinon's
+ * timers and fake XHR implementation in one convenient object.
+ *
+ * @author Christian Johansen (christian@cjohansen.no)
+ * @license BSD
+ *
+ * Copyright (c) 2010-2011 Christian Johansen
+ */
+
+if (typeof module == "object" && typeof require == "function") {
+    var sinon = require("sinon");
+    sinon.extend(sinon, require("./util/fake_timers"));
+}
+
+(function () {
+    function exposeValue(sandbox, config, key, value) {
+        if (!value) {
+            return;
+        }
+
+        if (config.injectInto) {
+            config.injectInto[key] = value;
+        } else {
+            sandbox.args.push(value);
+        }
+    }
+
+    function prepareSandboxFromConfig(config) {
+        var sandbox = sinon.create(sinon.sandbox);
+
+        if (config.useFakeServer) {
+            if (typeof config.useFakeServer == "object") {
+                sandbox.serverPrototype = config.useFakeServer;
+            }
+
+            sandbox.useFakeServer();
+        }
+
+        if (config.useFakeTimers) {
+            if (typeof config.useFakeTimers == "object") {
+                sandbox.useFakeTimers.apply(sandbox, config.useFakeTimers);
+            } else {
+                sandbox.useFakeTimers();
+            }
+        }
+
+        return sandbox;
+    }
+
+    sinon.sandbox = sinon.extend(sinon.create(sinon.collection), {
+        useFakeTimers: function useFakeTimers() {
+            this.clock = sinon.useFakeTimers.apply(sinon, arguments);
+
+            return this.add(this.clock);
+        },
+
+        serverPrototype: sinon.fakeServer,
+
+        useFakeServer: function useFakeServer() {
+            var proto = this.serverPrototype || sinon.fakeServer;
+
+            if (!proto || !proto.create) {
+                return null;
+            }
+
+            this.server = proto.create();
+            return this.add(this.server);
+        },
+
+        inject: function (obj) {
+            sinon.collection.inject.call(this, obj);
+
+            if (this.clock) {
+                obj.clock = this.clock;
+            }
+
+            if (this.server) {
+                obj.server = this.server;
+                obj.requests = this.server.requests;
+            }
+
+            return obj;
+        },
+
+        create: function (config) {
+            if (!config) {
+                return sinon.create(sinon.sandbox);
+            }
+
+            var sandbox = prepareSandboxFromConfig(config);
+            sandbox.args = sandbox.args || [];
+            var prop, value, exposed = sandbox.inject({});
+
+            if (config.properties) {
+                for (var i = 0, l = config.properties.length; i < l; i++) {
+                    prop = config.properties[i];
+                    value = exposed[prop] || prop == "sandbox" && sandbox;
+                    exposeValue(sandbox, config, prop, value);
+                }
+            } else {
+                exposeValue(sandbox, config, "sandbox", value);
+            }
+
+            return sandbox;
+        }
+    });
+
+    sinon.sandbox.useFakeXMLHttpRequest = sinon.sandbox.useFakeServer;
+
+    if (typeof module != "undefined") {
+        module.exports = sinon.sandbox;
+    }
+}());
+
+/**
+ * @depend ../sinon.js
+ * @depend stub.js
+ * @depend mock.js
+ * @depend sandbox.js
+ */
+/*jslint eqeqeq: false, onevar: false, forin: true, plusplus: false*/
+/*global module, require, sinon*/
+/**
+ * Test function, sandboxes fakes
+ *
+ * @author Christian Johansen (christian@cjohansen.no)
+ * @license BSD
+ *
+ * Copyright (c) 2010-2011 Christian Johansen
+ */
+
+(function (sinon) {
+    var commonJSModule = typeof module == "object" && typeof require == "function";
+
+    if (!sinon && commonJSModule) {
+        sinon = require("sinon");
+    }
+
+    if (!sinon) {
+        return;
+    }
+
+    function test(callback) {
+        var type = typeof callback;
+
+        if (type != "function") {
+            throw new TypeError("sinon.test needs to wrap a test function, got " + type);
+        }
+
+        return function () {
+            var config = sinon.getConfig(sinon.config);
+            config.injectInto = config.injectIntoThis && this || config.injectInto;
+            var sandbox = sinon.sandbox.create(config);
+            var exception, result;
+            var args = Array.prototype.slice.call(arguments).concat(sandbox.args);
+
+            try {
+                result = callback.apply(this, args);
+            } catch (e) {
+                exception = e;
+            }
+
+            sandbox.verifyAndRestore();
+
+            if (exception) {
+                throw exception;
+            }
+
+            return result;
+        };
+    }
+
+    test.config = {
+        injectIntoThis: true,
+        injectInto: null,
+        properties: ["spy", "stub", "mock", "clock", "server", "requests"],
+        useFakeTimers: true,
+        useFakeServer: true
+    };
+
+    if (commonJSModule) {
+        module.exports = test;
+    } else {
+        sinon.test = test;
+    }
+}(typeof sinon == "object" && sinon || null));
+
+/**
+ * @depend ../sinon.js
+ * @depend test.js
+ */
+/*jslint eqeqeq: false, onevar: false, eqeqeq: false*/
+/*global module, require, sinon*/
+/**
+ * Test case, sandboxes all test functions
+ *
+ * @author Christian Johansen (christian@cjohansen.no)
+ * @license BSD
+ *
+ * Copyright (c) 2010-2011 Christian Johansen
+ */
+
+(function (sinon) {
+    var commonJSModule = typeof module == "object" && typeof require == "function";
+
+    if (!sinon && commonJSModule) {
+        sinon = require("sinon");
+    }
+
+    if (!sinon || !Object.prototype.hasOwnProperty) {
+        return;
+    }
+
+    function createTest(property, setUp, tearDown) {
+        return function () {
+            if (setUp) {
+                setUp.apply(this, arguments);
+            }
+
+            var exception, result;
+
+            try {
+                result = property.apply(this, arguments);
+            } catch (e) {
+                exception = e;
+            }
+
+            if (tearDown) {
+                tearDown.apply(this, arguments);
+            }
+
+            if (exception) {
+                throw exception;
+            }
+
+            return result;
+        };
+    }
+
+    function testCase(tests, prefix) {
+        /*jsl:ignore*/
+        if (!tests || typeof tests != "object") {
+            throw new TypeError("sinon.testCase needs an object with test functions");
+        }
+        /*jsl:end*/
+
+        prefix = prefix || "test";
+        var rPrefix = new RegExp("^" + prefix);
+        var methods = {}, testName, property, method;
+        var setUp = tests.setUp;
+        var tearDown = tests.tearDown;
+
+        for (testName in tests) {
+            if (tests.hasOwnProperty(testName)) {
+                property = tests[testName];
+
+                if (/^(setUp|tearDown)$/.test(testName)) {
+                    continue;
+                }
+
+                if (typeof property == "function" && rPrefix.test(testName)) {
+                    method = property;
+
+                    if (setUp || tearDown) {
+                        method = createTest(property, setUp, tearDown);
+                    }
+
+                    methods[testName] = sinon.test(method);
+                } else {
+                    methods[testName] = tests[testName];
+                }
+            }
+        }
+
+        return methods;
+    }
+
+    if (commonJSModule) {
+        module.exports = testCase;
+    } else {
+        sinon.testCase = testCase;
+    }
+}(typeof sinon == "object" && sinon || null));
+
+/**
+ * @depend ../sinon.js
+ * @depend stub.js
+ */
+/*jslint eqeqeq: false, onevar: false, nomen: false, plusplus: false*/
+/*global module, require, sinon*/
+/**
+ * Assertions matching the test spy retrieval interface.
+ *
+ * @author Christian Johansen (christian@cjohansen.no)
+ * @license BSD
+ *
+ * Copyright (c) 2010-2011 Christian Johansen
+ */
+
+(function (sinon) {
+    var commonJSModule = typeof module == "object" && typeof require == "function";
+    var slice = Array.prototype.slice;
+    var assert;
+
+    if (!sinon && commonJSModule) {
+        sinon = require("sinon");
+    }
+
+    if (!sinon) {
+        return;
+    }
+
+    function times(count) {
+        return count == 1 && "once" ||
+            count == 2 && "twice" ||
+            count == 3 && "thrice" ||
+            (count || 0) + " times";
+    }
+
+    function verifyIsStub(method) {
+        if (!method) {
+            assert.fail("fake is not a spy");
+        }
+
+        if (typeof method != "function") {
+            assert.fail(method + " is not a function");
+        }
+
+        if (typeof method.getCall != "function") {
+            assert.fail(method + " is not stubbed");
+        }
+    }
+
+    function failAssertion(object, msg) {
+        var failMethod = object.fail || assert.fail;
+        failMethod.call(object, msg);
+    }
+
+    function mirrorAssertion(method, message) {
+        assert[method] = function (fake) {
+            verifyIsStub(fake);
+
+            var failed = typeof fake[method] == "function" ?
+                !fake[method].apply(fake, slice.call(arguments, 1)) : !fake[method];
+
+            if (failed) {
+                var msg = message.replace("%c", times(fake.callCount));
+                msg = msg.replace("%n", fake + "");
+
+                msg = msg.replace("%C", function (m) {
+                    return formatSpyCalls(fake);
+                });
+
+                msg = msg.replace("%t", function (m) {
+                    return formatThisValues(fake);
+                });
+
+                msg = msg.replace("%*", [].slice.call(arguments, 1).join(", "));
+
+                for (var i = 0, l = arguments.length; i < l; i++) {
+                    msg = msg.replace("%" + i, arguments[i]);
+                }
+
+                failAssertion(this, msg);
+            } else {
+                assert.pass(method);
+            }
+        };
+    }
+
+    function formatSpyCalls(spy) {
+        var calls = [];
+
+        for (var i = 0, l = spy.callCount; i < l; ++i) {
+            calls.push("    " + spy.getCall(i).toString());
+        }
+
+        return calls.length > 0 ? "\n" + calls.join("\n") : "";
+    }
+
+    function formatThisValues(spy) {
+        var objects = [];
+
+        for (var i = 0, l = spy.callCount; i < l; ++i) {
+            objects.push(sinon.format(spy.thisValues[i]));
+        }
+
+        return objects.join(", ");
+    }
+
+    assert = {
+        failException: "AssertError",
+
+        fail: function fail(message) {
+            var error = new Error(message);
+            error.name = this.failException || assert.failException;
+
+            throw error;
+        },
+
+        pass: function pass(assertion) {},
+
+        called: function assertCalled(method) {
+            verifyIsStub(method);
+
+            if (!method.called) {
+                failAssertion(this, "expected " + method +
+                              " to have been called at least once but was never called");
+            } else {
+                assert.pass("called");
+            }
+        },
+
+        notCalled: function assertNotCalled(method) {
+            verifyIsStub(method);
+
+            if (method.called) {
+                failAssertion(
+                    this, "expected " + method + " to not have been called but was " +
+                        "called " + times(method.callCount) + formatSpyCalls(method));
+            } else {
+                assert.pass("notCalled");
+            }
+        },
+
+        callOrder: function assertCallOrder() {
+            verifyIsStub(arguments[0]);
+            var expected = [];
+            var actual = [];
+            var failed = false;
+            expected.push(arguments[0]);
+
+            for (var i = 1, l = arguments.length; i < l; i++) {
+                verifyIsStub(arguments[i]);
+                expected.push(arguments[i]);
+
+                if (!arguments[i - 1].calledBefore(arguments[i])) {
+                    failed = true;
+                }
+            }
+
+            if (failed) {
+                actual = [].concat(expected).sort(function (a, b) {
+                    var aId = a.getCall(0).callId;
+                    var bId = b.getCall(0).callId;
+
+                    // uuid, won't ever be equal
+                    return aId < bId ? -1 : 1;
+                });
+
+                var expectedStr, actualStr;
+
+                try {
+                    expectedStr = expected.join(", ");
+                    actualStr = actual.join(", ");
+                } catch (e) {}
+
+                failAssertion(this, "expected " + (expectedStr || "") + " to be " +
+                              "called in order but were called as " + actualStr);
+            } else {
+                assert.pass("callOrder");
+            }
+        },
+
+        callCount: function assertCallCount(method, count) {
+            verifyIsStub(method);
+
+            if (method.callCount != count) {
+                failAssertion(this, "expected " + method + " to be called " +
+                              times(count) + " but was called " +
+                              times(method.callCount) + formatSpyCalls(method));
+            } else {
+                assert.pass("callCount");
+            }
+        },
+
+        expose: function expose(target, options) {
+            if (!target) {
+                throw new TypeError("target is null or undefined");
+            }
+
+            options = options || {};
+            var prefix = typeof options.prefix == "undefined" && "assert" || options.prefix;
+
+            var name = function (prop) {
+                if (!prefix) {
+                    return prop;
+                }
+
+                return prefix + prop.substring(0, 1).toUpperCase() + prop.substring(1);
+            };
+
+            for (var assertion in this) {
+                if (!/^(fail|expose)/.test(assertion)) {
+                    target[name(assertion)] = this[assertion];
+                }
+            }
+
+            if (typeof options.includeFail == "undefined" || !!options.includeFail) {
+                target.fail = this.fail;
+                target.failException = this.failException;
+            }
+
+            return target;
+        }
+    };
+
+    mirrorAssertion("calledOnce", "expected %n to be called once but was called %c%C");
+    mirrorAssertion("calledTwice", "expected %n to be called twice but was called %c%C");
+    mirrorAssertion("calledThrice", "expected %n to be called thrice but was called %c%C");
+    mirrorAssertion("calledOn", "expected %n to be called with %1 as this but was called with %t");
+    mirrorAssertion("alwaysCalledOn", "expected %n to always be called with %1 as this but was called with %t");
+    mirrorAssertion("calledWith", "expected %n to be called with arguments %*%C");
+    mirrorAssertion("alwaysCalledWith", "expected %n to always be called with arguments %*%C");
+    mirrorAssertion("calledWithExactly", "expected %n to be called with exact arguments %*%C");
+    mirrorAssertion("alwaysCalledWithExactly", "expected %n to always be called with exact arguments %*%C");
+    mirrorAssertion("threw", "%n did not throw exception%C");
+    mirrorAssertion("alwaysThrew", "%n did not always throw exception%C");
+
+    if (commonJSModule) {
+        module.exports = assert;
+    } else {
+        sinon.assert = assert;
+    }
+}(typeof sinon == "object" && sinon || null));
+
+GW.Testing = {};
+
+/*
+SB.Testing.MockModel = Backbone.Model.extend({
+  name: 'mock_model'
+});
+
+SB.Testing.inMobile = function(){
+  FastClick = function(){};
+  SB.Current.Device = {mobile : true};
+};
+
+SB.Testing.testRouteExpectaion = function(calledArgs, routeParams){
+  expect(calledArgs.args[0]).toEqual(routeParams.path);
+  expect(calledArgs.args[1]).toEqual(routeParams.name);
+  expect(calledArgs.args[2]).toBe(routeParams.fn);
+};
+
+SB.Testing.MockView = Backbone.View.extend({
+
+  model: SB.Testing.MockModel,
+
+  initialize: function(){
+    this.model.view = this;
+  }
+
+});
+*/
+
+GW.Testing.testWithMocks = function(mocks, test){
+
+  var mockObjects = [];
+  var callArgs = [];
+
+  _.each(mocks, function(mock){
+    // setup mock
+    console.log('times ', mock.times);
+
+    if(mock.times === undefined){
+      mock.times = 1
+    }
+
+    if(mock.klass === undefined ||
+        mock.expects === undefined){
+      throw("klass and/or expects missing or nil in testWithMocks");
+    }
+
+    var sinonMock = sinon.mock(mock.klass);
+    var expectation = sinonMock.expects(mock.expects)
+
+    if(mock.times > 0){
+      expectation.exactly(mock.times);
+      console.log('expected', mock.times);
+    }else{
+      console.log('never expected');
+      expectation.never();
+    }
+
+    
+    if(mock.withArgs){
+      expectation['withArgs'].apply(expectation, mock.withArgs);
+    }
+
+    if(mock.returns){
+      expectation.returns(mock.returns);
+    }
+
+    mockObjects.push([sinonMock, expectation]);
+  });
+
+  test.call();
+
+  _.each(mockObjects, function(mock){
+    callArgs.push(mock[1].args);
+    mock[0].verify();
+    mock[0].restore();
+  });
+
+  return callArgs;
+
+};
+
+/*
+SB.Testing.createAJAXResponse = function(status, response, test){
+  var sinonStub = sinon.stub(jQuery, 'ajax').yieldsTo(status, response);
+  test.call();
+  sinonStub.restore()
+};
+
+SB.Testing.createServerSingle = function(factory_name, url){
+
+  var response = JSON.stringify(BackboneFactory.create(factory_name).toJSON());
+  
+  var server = sinon.fakeServer.create();
+
+  server.respondWith("GET", url,
+                          [200, { "Content-Type": "application/json" },
+                          response
+                          ]);
+
+  return server;
+
+}
+
+SB.Testing.createJSONResponse = function(factory_name, count, meta){
+  var respArray = []
+  _(count).times(function(){
+    respArray.push(BackboneFactory.create(factory_name).toJSON()[factory_name])
+  });
+
+  var response = {};
+
+  _.extend(response, meta);
+  response[factory_name + 's'] = respArray;
+
+  return JSON.stringify(response);
+};
+
+SB.Testing.createServer = function(factory_name, count, url, meta){
+
+  var response = SB.Testing.createJSONResponse(factory_name, count, meta);
+
+  
+  var server = sinon.fakeServer.create();
+
+  server.respondWith("GET", url,
+                          [200, { "Content-Type": "application/json" },
+                          response
+                          ]);
+
+  return server;
+
+};
+
+(function(){
+
+  var attachmentAttr = function(){
+    return {
+      content_type: 'image/jpeg',
+      created_at: new Date,
+      filename: 'attachment.jpg',
+      url: {original: 'original_url'}
+    };
+  };
+
+  var labelAttr = function(){
+    return {
+      name: BackboneFactory.next('label_name')
+    }
+  };
+
+  var ticketLabelAttr = function(){
+    return {
+      label: BackboneFactory.create('label'),
+      ticket: BackboneFactory.create('ticket')
+    }
+  };
+
+  var replyAttr = function(){
+    return {
+      cc: [BackboneFactory.create('user').toJSON().user,
+        BackboneFactory.create('user').toJSON().user],
+      content: { text: 'Reply Content',
+                 html: 'Reply Content HTML',
+                 attachments: {}
+      },
+      summary: 'Reply Content',
+      replier: BackboneFactory.create('user').toJSON().user,
+      created_at: (new Date).toString(),
+      ticket: {comments_count: 0, replies_count: 1}
+    }
+  };
+  
+  var commentAttr = function(){
+    return {
+      content: { text: 'Comment Content',
+                 html: 'Comment Content HTML',
+                 attachments: {}
+      },
+      summary: 'Comment Content',
+      commenter: BackboneFactory.create('user').toJSON().user,
+      created_at: (new Date).toString(),
+      ticket: {comments_count: 1, replies_count: 0}
+    }
+  };
+
+  var dataPointAttr = function(){
+    return {
+      value: BackboneFactory.next('data_point_value'),
+      timestamp: BackboneFactory.next('data_point_timestamp')  
+    }
+  };
+
+  var ticketAttr = function(){
+   return {
+    subject: BackboneFactory.next('ticket_title'),
+    cc: [BackboneFactory.create('user').toJSON().user,
+      BackboneFactory.create('user').toJSON().user],
+    replies_count: 0,
+    agent_replies_count: 0,
+    comments_count: 0,
+    summary: "summary",
+    unanswered: true,
+    source: {email: 'demo@muziboo.com'},
+    spam: false,
+    trash: false,
+    // Change this to Factory
+    requester: BackboneFactory.create('user').toJSON().user,
+    current_assignee: BackboneFactory.create('user').toJSON(),
+    content: { body: 'Ticket Body',
+               html: 'HTML TIcket Body',
+               attachments: {}
+             },
+    archived: false,
+    last_activity_at: (new Date).toString()
+   }
+  };
+
+  SB.Config.URL['new_tickets'] = {url: "/new_tickets"};
+  SB.Config.URL['ongoing_tickets'] = {url: "/ongoing_tickets"};
+
+  var screenAttr = function(){
+    return {
+            title: 'Dashboard',
+            href: '/dashboard',
+            buttons: [SB.Views.ArchiveButton,
+                      SB.Views.ArchiveButton],
+            listings: [
+                        {
+                          title: 'New Tickets',
+                          url: 'new_tickets'
+                        },
+                        {
+                          title: 'Ongoing Tickets',
+                          url: 'ongoing_tickets',
+                        }
+            ]
+          }
+  };
+
+  var appAttr = function(){
+    return {
+        name: BackboneFactory.next('app_name'),
+        slug: BackboneFactory.next('app_slug'),
+        access: "public",
+        description: 'description',
+        category: 'project-management',
+        tags: ['github','issue tracking'],
+        video: 'https://vimeo.com/77796980',
+        developer: {
+          name: 'Anh Do',
+          email: 'anh@supportbee.com',
+          twitter: '@anhnk',
+          github: 'anhnk'
+        },
+        actions: {
+          button: {
+            overlay: {
+              template: 'Name<br>First name: <input name="person[name][first_name]" value="John"><br>Last name: <input name="person[name][last_name]" value="Doe"><br>Age: <input name="person[age]" value=36>Sex: <input type="radio" name="person[sex]" value="Male" checked="checked">Male<input type="radio" name="person[sex]" value="Female">Female',
+              fetch_data:false
+            },
+            screens:['ticket'],
+            label: 'Send To Github'
+          }
+        },
+        icon: 'http://localhost:9292/images/github/icon.png,',
+        screenshots:['http://localhost:9292/images/github/screenshot.png']
+    }
+  };
+
+  var userAttr = function(){
+    return {
+        name: BackboneFactory.next('name'),
+        email: BackboneFactory.next('email'),
+        picture: {thumb20: 'thumbnail-url-20px',
+                  thumb24: 'thumbnail-url',
+                  thumb48: 'thumbnail-url-48'}
+    }
+  };
+  
+  var groupAttr = function(){
+    return {
+        name: BackboneFactory.next('group_name'),
+        picture: {thumb20: 'thumbnail-url-20px',
+                  thumb24: 'thumbnail-url',
+                  thumb128: 'thumbnail-url-128px'}
+    }
+  };
+
+  var snippetAttr = function(){
+    return {
+      name: BackboneFactory.next('snippet_name'),
+      content: {
+        body: 'Hai',
+        html: '<p>Hai</p>'
+      }
+    }
+  }
+  
+  var filterAttr = function(){
+    return {
+      rule: BackboneFactory.create('rule').toJSON().rule,
+      consequence: BackboneFactory.create('consequence').toJSON().consequence
+    }
+  };
+
+  var consequenceAttr = function(){
+    return {
+      archive: "",
+      spam: "",
+      label: "",
+      assign_user:"1",
+      assign_group:""
+    }
+  };
+
+  var ruleAttr = function(){
+    return {
+      requester_email: "",
+      delivered_to: "*@supportbee.com",
+      subject:"",
+      body:""
+    }
+  };
+
+  var newReplyAttr = function(){
+    return {
+      draft: 'signature'
+    }
+  };
+
+  var forwardingAddressAttr = function() {
+      return {
+        "forward_to" : BackboneFactory.next('forward_to'),
+        "from" : "email",
+        "name" : "forward name"
+      }
+  };
+  
+  BackboneFactory.define_sequence('label_name', function(n){
+    return "Label" + n;
+  });
+  
+  BackboneFactory.define_sequence('app_slug', function(n){
+    return "app" + n;
+  });
+  
+  BackboneFactory.define_sequence('app_name', function(n){
+    return "App " + n;
+  });
+
+  BackboneFactory.define_sequence('ticket_title', function(n){
+    return "Ticket " + n;
+  });
+  
+  BackboneFactory.define_sequence('data_point_timestamp', function(n){
+    return (Date.now() + n);
+  });
+  
+  BackboneFactory.define_sequence('data_point_value', function(n){
+    return (n);
+  });
+
+  BackboneFactory.define_sequence('name', function(n){
+    return "User " + n;
+  });
+  
+  BackboneFactory.define_sequence('group_name', function(n){
+    return "Group " + n;
+  });
+  
+  BackboneFactory.define_sequence('email', function(n){
+    return "person" + n + "@example.com";
+  });
+
+  BackboneFactory.define_sequence('snippet_name', function(n){
+    return "snippet" + n;
+  });
+
+  BackboneFactory.define_sequence('forward_to', function(n){
+    return "forward_to" + n +"@supportbeemail.com";
+  });
+
+  BackboneFactory.define('user', SB.Models.User, userAttr);
+  BackboneFactory.define('app', SB.Models.App, appAttr);
+  BackboneFactory.define('group', SB.Models.Group, groupAttr);
+  BackboneFactory.define('screen', SB.Models.Screen, screenAttr);
+  BackboneFactory.define('ticket', SB.Models.Ticket, ticketAttr);
+  BackboneFactory.define('data_point', SB.Reports.Models.DataPoint, dataPointAttr);
+  BackboneFactory.define('reply', SB.Models.Reply, replyAttr);
+  BackboneFactory.define('comment', SB.Models.Comment, commentAttr);
+  BackboneFactory.define('attachment', SB.Models.Attachment, attachmentAttr);
+  BackboneFactory.define('label', SB.Models.Label, labelAttr);
+  BackboneFactory.define('ticket_label', SB.Models.TicketLabel, ticketLabelAttr);
+  BackboneFactory.define('new_reply', SB.Models.NewReply, newReplyAttr);  
+  BackboneFactory.define('snippet', SB.Models.Snippet, snippetAttr);  
+  BackboneFactory.define('forwarding_address', SB.Models.ForwardingAddress, forwardingAddressAttr);
+  BackboneFactory.define('filter', SB.Models.Filter, filterAttr);
+  BackboneFactory.define('rule', SB.Models.Rule, ruleAttr);
+  BackboneFactory.define('consequence', SB.Models.Consequence, consequenceAttr);
+})();
+*/
+;
+(function() {
+  describe("GW.Views.BackToLogButton", function() {
+    return it("sets button title to 'Back to Log'", function() {
+      var button;
+      button = new GW.Views.BackToLogButton;
+      return expect(button.title).toBe('Back to Log');
+    });
+  });
+
+}).call(this);
+(function() {
+  describe("GW.Views.BaseButton", function() {
+    beforeEach(function() {
+      return this.button = new GW.Views.BaseButton;
+    });
+    it("is a button element", function() {
+      return expect(this.button.el.nodeName).toBe("BUTTON");
+    });
+    it("has btn and btn-primary classes defined on it", function() {
+      expect($(this.button.el)).toHaveClass('btn');
+      return expect($(this.button.el)).toHaveClass('btn-primary');
+    });
+    return it("sets the name of the button to the given title", function() {
+      return expect($(this.button.el).html()).toBe("Button");
+    });
+  });
+
+}).call(this);
+(function() {
+  describe("GW.Views.CancelButton", function() {
+    return it("sets button title to 'Cancel'", function() {
+      var button;
+      button = new GW.Views.CancelButton;
+      return expect(button.title).toBe('Cancel');
+    });
+  });
+
+}).call(this);
+(function() {
+  describe("GW.Views.CheckinButton", function() {
+    return it("sets button title to 'Checkin'", function() {
+      var button;
+      button = new GW.Views.CheckinButton;
+      return expect(button.title).toBe('Checkin');
+    });
+  });
+
+}).call(this);
+(function() {
+  describe("GW.Views.HomeButton", function() {
+    return it("sets button title to 'Home'", function() {
+      var button;
+      button = new GW.Views.HomeButton;
+      return expect(button.title).toBe('Home');
+    });
+  });
+
+}).call(this);
+(function() {
+  describe("GW.Views.LogItButton", function() {
+    return it("sets button title to 'Log It'", function() {
+      var button;
+      button = new GW.Views.LogItButton;
+      return expect(button.title).toBe('Log it');
+    });
+  });
+
+}).call(this);
+(function() {
+  describe("GW.Views.NewLogButton", function() {
+    return it("sets button title to 'Log'", function() {
+      var button;
+      button = new GW.Views.NewLogButton;
+      return expect(button.title).toBe('Log');
+    });
+  });
+
+}).call(this);
+(function() {
+  describe("GW.Views.BaseTab", function() {
+    beforeEach(function() {
+      return this.view = new GW.Views.BaseTab;
+    });
+    it("is an li element", function() {
+      return expect(this.view.el.nodeName).toEqual("LI");
+    });
+    it("sets the title of the tab", function() {
+      return expect(this.view.$('a').html()).toEqual("Tab");
+    });
+    return it("tab is made active only when clicked", function() {
+      expect($(this.view.el)).not.toHaveClass('active');
+      $(this.view.el).trigger('click');
+      return expect($(this.view.el)).toHaveClass('active');
+    });
+  });
+
+}).call(this);
+(function() {
+  describe("GW.Views.DiscoverTab", function() {
+    return it("sets tab name to Discover", function() {
+      var tab;
+      tab = new GW.Views.DiscoverTab;
+      return expect(tab.title).toBe("Discover");
+    });
+  });
+
+}).call(this);
+(function() {
+  describe("GW.Views.LogTab", function() {
+    return it("sets tab name to Log", function() {
+      var tab;
+      tab = new GW.Views.LogTab;
+      return expect(tab.title).toBe("Log");
+    });
+  });
+
+}).call(this);
+(function() {
+  describe("GW.Views.TabList", function() {
+    beforeEach(function() {
+      return this.view = new GW.Views.TabList({
+        tabs: [GW.Views.DiscoverTab]
+      });
+    });
+    it("is a ul element", function() {
+      return expect(this.view.el.nodeName).toBe("UL");
+    });
+    it("has classes nav and nav-tabs", function() {
+      expect($(this.view.el)).toHaveClass('nav');
+      return expect($(this.view.el)).toHaveClass('nav-tabs');
+    });
+    return it("renders tabs", function() {
+      var tabView;
+      tabView = new Backbone.View;
+      GW.Testing.testWithMocks([
+        {
+          klass: GW.Views,
+          expects: 'DiscoverTab',
+          returns: tabView
+        }
+      ], (function(_this) {
+        return function() {
+          return _this.view = new GW.Views.TabList({
+            tabs: [GW.Views.DiscoverTab]
+          });
+        };
+      })(this));
+      return expect($(this.view.el).children().size()).toBe(1);
+    });
+  });
+
+}).call(this);
+
