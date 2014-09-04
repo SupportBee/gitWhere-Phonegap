@@ -15001,7 +15001,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   
 
 
-  return "<div id='login'>\n`<br><br><br><br><br><br><br>\n	<a class='btn btn-block btn-social btn-github'\n			<i class='fa fa-github'>\n				<span class='icon-github-01'>	\n				</span>\n			</i>\n		Sign in with Github\n	</a>\n</div>";
+  return "<div id='login' class='absolute-center'>\n	<a class='btn btn-block btn-social btn-github '\n			<i class='fa fa-github'>\n				<span class='icon-github-01'>	\n				</span>\n			</i>\n		Sign in with Github\n	</a>\n</div>";
   });
   return this.HandlebarsTemplates["sign_in/index"];
 }).call(this);
@@ -15407,7 +15407,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
     name: 'hacker',
     keepInSync: true,
     url: function() {
-      return "" + (this.get('login'));
+      return GW.Utils.getRelativeUrl() + "/" + ("" + (this.get('login')));
     },
     follow: function() {
       return $.ajax({
@@ -15421,7 +15421,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
       })(this));
     },
     follow_url: function() {
-      return GW.Utils.getRelativeUrl() + "/" + (this.get('login')) + "/follow";
+      return GW.Utils.getRelativeUrl() + "/" + ("" + (this.get('login')) + "/follow");
     },
     unfollow: function() {
       return $.ajax({
@@ -15491,36 +15491,6 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
     },
     url: function() {
       return GW.Utils.getRelativeUrl() + ("/places?ll=" + this.latlong);
-    }
-  });
-
-}).call(this);
-(function() {
-  GW.Views.App = Backbone.View.extend({
-    initialize: function() {
-      GW.Utils.setupAjax();
-      this.platformSetup();
-      return this.appInit();
-    },
-    appInit: function() {
-      var sign_in;
-      window.current_view = new GW.Views.CurrentView({
-        el: $("#main")
-      });
-      if (localStorage.auth_key) {
-        console.log("logged in");
-        return new GW.Views.Dashboard({
-          current_view: current_view
-        });
-      } else {
-        console.log("not logged in");
-        return sign_in = new GW.Views.SignIn();
-      }
-    },
-    platformSetup: function() {
-      if (device.platform === "iOS" && parseFloat(device.version) >= 7.0) {
-        return document.body.style.marginTop = "20px";
-      }
     }
   });
 
@@ -15880,6 +15850,28 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 
 }).call(this);
 (function() {
+  GW.Views.App = Backbone.View.extend({
+    initialize: function() {
+      GW.Utils.setupAjax();
+      return this.appInit();
+    },
+    appInit: function() {
+      var sign_in;
+      window.current_view = new GW.Views.CurrentView({
+        el: $("#main")
+      });
+      if (localStorage.auth_key) {
+        return new GW.Views.Dashboard({
+          current_view: current_view
+        });
+      } else {
+        return sign_in = new GW.Views.SignIn();
+      }
+    }
+  });
+
+}).call(this);
+(function() {
   GW.Views.NotificationsList = Backbone.View.extend({
     tagName: "ul",
     initialize: function() {
@@ -16008,7 +16000,8 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
       this.authWindow.close();
       this.setAuthKey();
       this.showDashBoard();
-      return this.setUserData();
+      this.setUserData();
+      return GW.Utils.setUserData();
     },
     getKeys: function(url) {
       var auth_key, error, login_name;
@@ -16025,10 +16018,15 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
       return localStorage.auth_key = this.auth_key;
     },
     setUserData: function() {
-      var url;
+      var hacker, url;
       url = GW.Utils.getRelativeUrl() + "/" + this.login_name;
-      return $.getJSON(url, function(result) {
-        return localStorage.hacker = JSON.stringify(result.hacker);
+      hacker = new GW.Models.Hacker({
+        login: this.login_name
+      });
+      return hacker.fetch({
+        success: function(model) {
+          return localStorage.hacker = JSON.stringify(result.hacker);
+        }
       });
     }
   });
@@ -16175,6 +16173,17 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
           } : void 0
         }
       });
+    },
+    setUserData: function() {
+      return GW.Current = {
+        Session: {
+          auth_key: localStorage.auth_key
+        },
+        User: new GW.Models.Hacker(JSON.parse(localStorage.hacker))
+      };
+    },
+    getCurrentUser: function() {
+      return GW.Current.User;
     }
   };
 
