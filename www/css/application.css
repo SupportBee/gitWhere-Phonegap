@@ -17193,6 +17193,13 @@ ul.places li {
   padding-bottom: 10px;
 }
 
+.absolute-center { 
+  position: absolute;
+  top: 50%;  
+}
+
+
+
 /* line 27, /home/maximus/code/gitWhere/app/assets/stylesheets/gitwhere.css.scss */
 .profile_info {
   padding: 30px 0px;

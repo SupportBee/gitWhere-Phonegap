@@ -14957,6 +14957,32 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 }).call(this);
 (function() {
   this.HandlebarsTemplates || (this.HandlebarsTemplates = {});
+  this.HandlebarsTemplates["notifications/summary"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  var buffer = "", stack1, helper, functionType="function", escapeExpression=this.escapeExpression;
+
+
+  buffer += "<img src=\"";
+  stack1 = ((stack1 = ((stack1 = (depth0 && depth0.logged_by)),stack1 == null || stack1 === false ? stack1 : stack1.avatar_url)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1);
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "&size=40\" width=\"40\" height=\"40\" alt=\"";
+  if (helper = helpers.login) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.login); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += "\" />\n<span class=\"name\">"
+    + escapeExpression(((stack1 = ((stack1 = (depth0 && depth0.logged_by)),stack1 == null || stack1 === false ? stack1 : stack1.name)),typeof stack1 === functionType ? stack1.apply(depth0) : stack1))
+    + "</span>\n<div class=\"message\"> ";
+  if (helper = helpers.message) { stack1 = helper.call(depth0, {hash:{},data:data}); }
+  else { helper = (depth0 && depth0.message); stack1 = typeof helper === functionType ? helper.call(depth0, {hash:{},data:data}) : helper; }
+  if(stack1 || stack1 === 0) { buffer += stack1; }
+  buffer += " </div>\n<hr>";
+  return buffer;
+  });
+  return this.HandlebarsTemplates["notifications/summary"];
+}).call(this);
+(function() {
+  this.HandlebarsTemplates || (this.HandlebarsTemplates = {});
   this.HandlebarsTemplates["places/list"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
   this.compilerInfo = [4,'>= 1.0.0'];
 helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
@@ -14966,6 +14992,18 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   return "<h4>Places Nearby (Provided by Foursquare)</h4>\n<ul class=\"places\"></ul>";
   });
   return this.HandlebarsTemplates["places/list"];
+}).call(this);
+(function() {
+  this.HandlebarsTemplates || (this.HandlebarsTemplates = {});
+  this.HandlebarsTemplates["sign_in/index"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
+  
+
+
+  return "<div id='login' class='absolute-center'>\n	<a class='btn btn-block btn-social btn-github '\n			<i class='fa fa-github'>\n				<span class='icon-github-01'>	\n				</span>\n			</i>\n		Sign in with Github\n	</a>\n</div>";
+  });
+  return this.HandlebarsTemplates["sign_in/index"];
 }).call(this);
 (function() {
   window.GW = {};
@@ -15369,7 +15407,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
     name: 'hacker',
     keepInSync: true,
     url: function() {
-      return "" + (this.get('login'));
+      return GW.Utils.getRelativeUrl() + "/" + ("" + (this.get('login')));
     },
     follow: function() {
       return $.ajax({
@@ -15383,7 +15421,7 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
       })(this));
     },
     follow_url: function() {
-      return GW.Utils.getRelativeUrl() + "/" + (this.get('login')) + "/follow";
+      return GW.Utils.getRelativeUrl() + "/" + ("" + (this.get('login')) + "/follow");
     },
     unfollow: function() {
       return $.ajax({
@@ -15428,6 +15466,18 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
       var base_url;
       base_url = GW.Utils.getRelativeUrl() + "/hackers/nearby?";
       return "" + base_url + "ll=" + this.latlong.lat + "," + this.latlong.lon;
+    }
+  });
+
+}).call(this);
+(function() {
+  GW.Collections.Notifications = Backbone.Collection.extend({
+    name: 'logs',
+    model: GW.Models.Log,
+    url: function() {
+      var current_user_login;
+      current_user_login = GW.Current.user.get('login');
+      return "/" + current_user_login + "/notifications";
     }
   });
 
@@ -15800,6 +15850,68 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
 
 }).call(this);
 (function() {
+  GW.Views.App = Backbone.View.extend({
+    initialize: function() {
+      GW.Utils.setupAjax();
+      return this.appInit();
+    },
+    appInit: function() {
+      var sign_in;
+      window.current_view = new GW.Views.CurrentView({
+        el: $("#main")
+      });
+      if (localStorage.auth_key) {
+        return new GW.Views.Dashboard({
+          current_view: current_view
+        });
+      } else {
+        return sign_in = new GW.Views.SignIn();
+      }
+    }
+  });
+
+}).call(this);
+(function() {
+  GW.Views.NotificationsList = Backbone.View.extend({
+    tagName: "ul",
+    initialize: function() {
+      _.bindAll(this, "render_notifications", "render_one_notification");
+      this.notifications_list = new GW.Collections.Notifications;
+      this.notifications_list.on("reset", this.render_notifications);
+      return this.notifications_list.fetch();
+    },
+    render_notifications: function() {
+      this.notifications_list.each(this.render_one_notification);
+      return console.log("List = ", this.el);
+    },
+    render_one_notification: function(notification) {
+      var view;
+      view = new GW.Views.NotificationSummary({
+        notification: notification
+      });
+      return this.$el.append(view.render().el);
+    }
+  });
+
+}).call(this);
+(function() {
+  GW.Views.NotificationSummary = Backbone.View.extend({
+    tagName: "li",
+    template: "notifications/summary",
+    initialize: function(options) {
+      return this.notification = options.notification;
+    },
+    render: function() {
+      var log;
+      log = this.notification.toJSON().log;
+      this.$el.html(HandlebarsTemplates[this.template](log));
+      console.log("Render retuning = ", this.el);
+      return this;
+    }
+  });
+
+}).call(this);
+(function() {
   GW.Views.Place = Backbone.View.extend({
     tagName: 'li',
     events: {
@@ -15848,6 +15960,74 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
     },
     place_clicked: function(place) {
       return this.trigger('place:selected', place);
+    }
+  });
+
+}).call(this);
+(function() {
+  GW.Views.SignIn = Backbone.View.extend({
+    events: {
+      'click a.btn-github': 'loginHandler'
+    },
+    initialize: function() {
+      var tmpl;
+      _.bindAll(this, "gitHubCallback", "getKeys", "afterSignIn");
+      tmpl = HandlebarsTemplates['sign_in/index']();
+      this.$el.html(tmpl);
+      return current_view.set(this);
+    },
+    loginHandler: function() {
+      var login_url;
+      login_url = GW.Utils.getRelativeUrl() + "/auth/github?api=true";
+      this.authWindow = window.open(login_url, "_blank", "location=no,toolbar=no");
+      return this.authWindow.addEventListener("loadstart", this.gitHubCallback);
+    },
+    showDashBoard: function() {
+      return new GW.Views.Dashboard({
+        current_view: current_view
+      });
+    },
+    gitHubCallback: function(e) {
+      var url;
+      url = (typeof e.url !== "undefined" ? e.url : e.originalEvent.url);
+      this.getKeys(url);
+      if (!this.auth_key) {
+        return;
+      }
+      return this.afterSignIn();
+    },
+    afterSignIn: function() {
+      this.authWindow.close();
+      this.setAuthKey();
+      this.showDashBoard();
+      this.setUserData();
+      return GW.Utils.setUserData();
+    },
+    getKeys: function(url) {
+      var auth_key, error, login_name;
+      auth_key = /\?auth_key=(.+)\&login/.exec(url);
+      login_name = /\&login=(.+)$/.exec(url);
+      error = /\?error=(.+)$/.exec(url);
+      if (!auth_key) {
+        return;
+      }
+      this.auth_key = auth_key[1];
+      return this.login_name = login_name[1];
+    },
+    setAuthKey: function() {
+      return localStorage.auth_key = this.auth_key;
+    },
+    setUserData: function() {
+      var hacker, url;
+      url = GW.Utils.getRelativeUrl() + "/" + this.login_name;
+      hacker = new GW.Models.Hacker({
+        login: this.login_name
+      });
+      return hacker.fetch({
+        success: function(model) {
+          return localStorage.hacker = JSON.stringify(result.hacker);
+        }
+      });
     }
   });
 
@@ -15984,21 +16164,26 @@ helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
       return relativeUrl;
     },
     setupAjax: function() {
-      console.log("auth_key = "+localStorage.auth_key)
       return $.ajaxSetup({
-      	
         headers: {
           "Content-Type": "application/json",
           "Accept": "application/json",
-         /* data: localStorage.auth_key ? {
+          data: localStorage.auth_key ? {
             auth_key: localStorage.auth_key
-          } : void 0*/
-        },
-        data: {
-        	auth_key: localStorage.auth_key
+          } : void 0
         }
-
       });
+    },
+    setUserData: function() {
+      return GW.Current = {
+        Session: {
+          auth_key: localStorage.auth_key
+        },
+        User: new GW.Models.Hacker(JSON.parse(localStorage.hacker))
+      };
+    },
+    getCurrentUser: function() {
+      return GW.Current.User;
     }
   };
 
