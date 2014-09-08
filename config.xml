@@ -1,10 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="com.supportbee.hackinat" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>hackinat</name>
+    <name>Hackin.at</name>
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+        An app that helps programmers meetup and socialize with other programmers
     </description>
-    <author email="dev@cordova.apache.org" href="http://cordova.io">
+    <author email="dev@supportbee.com" href="http://hackin.at">
         Apache Cordova Team
     </author>
     <content src="index.html" />
