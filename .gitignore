@@ -1,6 +1,7 @@
 www/assets/
 platforms/
 *.swp
+*.swo
 *.un~
 hackinat_production.keystore
 
