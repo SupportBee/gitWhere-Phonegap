@@ -34,6 +34,7 @@
     	</div>
         
         <script type="text/javascript" src="cordova.js"></script>
+        <script type="text/javascript" src="PushNotification.js"></script>
         <script type="text/javascript" src="assets/application.js"></script>
         <script type="text/javascript">
 
@@ -41,23 +42,69 @@
             document.addEventListener("deviceready", onDeviceReady, false);    
 
         
-
             function initialSetup(){
               if (device.platform === 'iOS' && parseFloat(device.version) >= 7.0) {
-                    document.body.style.marginTop = "20px";
-                }
+                document.body.style.marginTop = "20px";
+              }
             }      
 
             function onDeviceReady() {       
-                 console.log("Inside device ready");
+                console.log("Inside device ready");
                 initialSetup();
                 new GW.Views.App();
 
-             }
+                pushNotification = window.plugins.pushNotification;
+                pushNotification.register(successHandler, errorHandler, {"senderID": GW.Config.gcmSenderID ,"ecb":"onNotification"});
+            }
 
 
+            function successHandler(result) {
+              console.log("SUCCESS", result);
+            }
+            
+            function errorHandler(error) {
+              console.log("ERROR", error);
+            }
 
-       
+            function onNotification(e) {
+              /*console.log("Event Received", e.event);
+              switch(e.event)
+              {
+                case 'registered':
+					        if ( e.regid.length > 0 )
+					        {
+						        console.log("Event type: 'registered'; Registration ID:", e.regid);
+					        }
+                  break;
+                    
+                case 'message':
+                  if (e.foreground)
+                  {
+                    console.log("Event type: 'message'; State of App when Notified: 'inline'", e.payload);
+                    alert("Oh! You are already Hacking!")
+						      }
+						      else
+                  {	
+                    if (e.coldstart) {
+                      console.log("Event type: 'message'; State of App when Notified: 'coldstart'", e.payload);
+                      alert("Hackin.At wasn't running! Why? :(")
+                    }
+                    else{
+                      console.log("Event type: 'message'; State of App when Notified: 'background'", e.payload);
+                      alert("Hey! You have got a new message here!")
+                    }
+						      }
+							    break;
+                    
+                case 'error':
+                  console.log("Event type: 'error'", e);
+                  break;
+                    
+                default:
+                  console.log("Event type: 'unknown'", e);
+                  break;
+              }*/
+            }
         </script>
     </body>
 </html>
