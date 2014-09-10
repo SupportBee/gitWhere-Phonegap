@@ -1,7 +1,10 @@
 www/assets/
-platforms/
+platforms/android/assets
+platforms/android/ant-build
 *.swp
 *.swo
 *.un~
+*.swm
+*.swn
 hackinat_production.keystore
 
