@@ -9,5 +9,6 @@ platforms/android/ant-gen/
 *.un~
 *.swm
 *.swn
+*.DS_Store
 hackinat_production.keystore
 
