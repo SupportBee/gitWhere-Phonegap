@@ -65,8 +65,9 @@
                 setupAnalytics();
                 new GW.Views.App();
 
-                pushNotification = window.plugins.pushNotification;
-                pushNotification.register(successHandler, errorHandler, {"senderID": GW.Config.gcmSenderID ,"ecb":"onNotification"});
+                GW.GCMRegistration.check();
+                //pushNotification = window.plugins.pushNotification;
+                //pushNotification.register(successHandler, errorHandler, {"senderID": GW.Config.gcmSenderID ,"ecb":"onNotification"});
             }
 
 
