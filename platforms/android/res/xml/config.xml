@@ -8,6 +8,9 @@
     <feature name="PushPlugin">
         <param name="android-package" value="com.plugin.gcm.PushPlugin" />
     </feature>
+    <feature name="Cookies">
+        <param name="android-package" value="com.bez4pieci.cookies.Cookies" />
+    </feature>
     <icon density="mdpi" src="www/res/android/mdpi.png" />
     <icon density="hdpi" src="www/res/android/hdpi.png" />
     <icon density="xhdpi" src="www/res/android/xhdpi.png" />
