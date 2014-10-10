@@ -1,0 +1,33 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
+<!--
+2014-9-25: Created.
+-->
+<svg xmlns="http://www.w3.org/2000/svg">
+<metadata>
+Created by FontForge 20120731 at Thu Sep 25 17:06:30 2014
+ By Prateek
+Created by Prateek with FontForge 2.0 (http://fontforge.sf.net)
+</metadata>
+<defs>
+<font id="fontcustom" horiz-adv-x="512" >
+  <font-face 
+    font-family="fontcustom"
+    font-weight="500"
+    font-stretch="normal"
+    units-per-em="512"
+    panose-1="2 0 6 9 0 0 0 0 0 0"
+    ascent="448"
+    descent="-64"
+    bbox="0 -65.4248 373.182 448"
+    underline-thickness="25.6"
+    underline-position="-51.2"
+    unicode-range="U+F100-F101"
+  />
+    <missing-glyph />
+    <glyph glyph-name="uniF101" unicode="&#xf101;" 
+d="M0.267578 448h372.914v-513.425h-372.914v513.425z" />
+    <glyph glyph-name="uniF100" unicode="&#xf100;" 
+d="M0 308.363v139.637h139.637v-139.637h-139.637zM0 122.182v139.637h139.637v-139.637h-139.637zM0 -64v139.637h139.637v-139.637h-139.637z" />
+  </font>
+</defs></svg>

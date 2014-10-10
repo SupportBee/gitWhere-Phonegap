@@ -1,0 +1,78 @@
+2014-10-10 12:32:06.158 Hackin.at.dev[43631:1107865] DiskCookieStorage changing policy from 2 to 0, cookie file: file:///Users/prateekdayal/Library/Developer/CoreSimulator/Devices/D8AF5314-9EA4-4BCA-B0F8-924DE21AC145/data/Containers/Data/Application/655C8F92-EF79-479F-9F77-64C9EE2A00B7/Library/Cookies/Cookies.binarycookies
+2014-10-10 12:32:06.238 Hackin.at.dev[43631:1107865] Multi-tasking -> Device: YES, App: YES
+2014-10-10 12:32:06.269 Hackin.at.dev[43631:1107865] Unlimited access to network resources
+2014-10-10 12:32:06.292 Hackin.at.dev[43631:1107865] 
+
+Started backup to iCloud! Please be careful.
+Your application might rejected by Apple if you store too much data.
+For more information please read "iOS Data Storage Guidelines"
+You could find it at the following address https://developer.apple.com/icloud/documentation/data-storage/ .
+
+2014-10-10 12:32:06.946 Hackin.at.dev[43631:1107865] active
+2014-10-10 12:32:06.949 Hackin.at.dev[43631:1107865] Attempting to badge the application icon but haven't received permission from the user to badge the application
+2014-10-10 12:32:07.334 Hackin.at.dev[43631:1107865] Resetting plugins due to page load.
+2014-10-10 12:32:07.672 Hackin.at.dev[43631:1107865] Finished load of: file:///Users/prateekdayal/Library/Developer/CoreSimulator/Devices/D8AF5314-9EA4-4BCA-B0F8-924DE21AC145/data/Containers/Bundle/Application/BEBCA11E-6E49-4532-BC6C-95AA42B245B7/Hackin.at.dev.app/www/index.html
+2014-10-10 12:32:08.015 Hackin.at.dev[43631:1107865] PushPlugin.register: Push notification type is set to none
+2014-10-10 12:32:08.016 Hackin.at.dev[43631:1107865] registerForRemoteNotificationTypes: is not supported in iOS 8.0 and later.
+2014-10-10 12:32:08.016 Hackin.at.dev[43631:1107865] Inside device ready
+2014-10-10 12:32:08.016 Hackin.at.dev[43631:1107865] Generating a new header
+2014-10-10 12:32:08.016 Hackin.at.dev[43631:1107865] No identifiers in localStorage found, creating an empty map
+2014-10-10 12:32:08.017 Hackin.at.dev[43631:1107865] LocalyticsSession successfully initialized
+2014-10-10 12:32:08.017 Hackin.at.dev[43631:1107865] No event store found, searching localStorage
+2014-10-10 12:32:08.017 Hackin.at.dev[43631:1107865] No event storage in localStorage found, creating an empty array
+2014-10-10 12:32:08.017 Hackin.at.dev[43631:1107865] Pushing event to event store
+2014-10-10 12:32:08.017 Hackin.at.dev[43631:1107865] Appended open tag to event store
+2014-10-10 12:32:08.018 Hackin.at.dev[43631:1107865] Beginning to poll for closes
+2014-10-10 12:32:08.018 Hackin.at.dev[43631:1107865] Uploading blob: 
+{"dt":"h","pa":1412969527,"seq":1,"u":"598d4d81-f7e1-eff0-96a9-e891f64be216","attrs":{"dt":"a","au":"dbd67aafacf11bafe6a2fb4-a53ba0a2-4558-11e4-4c1f-00a426b17dd8","iu":"6afc01a9-f7cf-e660-19bc-c5d8f53e3658","lv":"html5_2.6","ua":"Mozilla/5.0 (iPhone; CPU iPhone OS 10_9_4 like Mac OS X) AppleWebKit/600.1.4 (KHTML, like Gecko) Mobile/12A365 (2098360592)","dmo":"iPhone Simulator","dp":"iPhone Simulator","dll":"EN","dov":"iOS 10.9","dc":"US","dma":"Apple Computer, Inc."}}
+{"dt":"s","ct":1412969527,"u":"87ad570a-4db0-589f-5303-fdda9ad02449","nth":1}
+2014-10-10 12:32:08.018 Hackin.at.dev[43631:1107865] Request length: 1027
+2014-10-10 12:32:08.018 Hackin.at.dev[43631:1107865] Generating a new header
+2014-10-10 12:32:08.019 Hackin.at.dev[43631:1107865] No identifiers in localStorage found, creating an empty map
+2014-10-10 12:32:08.019 Hackin.at.dev[43631:1107865] isPresent  view3 false
+2014-10-10 12:32:08.019 Hackin.at.dev[43631:1107865] renderAndSave
+2014-10-10 12:32:08.245 Hackin.at.dev[43631:1107865] Callback called with response:
+2014-10-10 12:32:08.245 Hackin.at.dev[43631:1107865] Response code: 202
+2014-10-10 12:32:08.245 Hackin.at.dev[43631:1107865] Upload succeeded, clearing uploaded items.
+2014-10-10 12:32:08.246 Hackin.at.dev[43631:1107865] Unloading script tag from header
+2014-10-10 12:32:10.254 Hackin.at.dev[43631:1107865] Setting the WebView's frame to {{0, 0}, {320, 436}}
+2014-10-10 12:32:10.254 Hackin.at.dev[43631:1107865] Setting the WebView's frame to {{0, 0}, {320, 480}}
+2014-10-10 12:32:10.256 Hackin.at.dev[43631:1107865] THREAD WARNING: ['InAppBrowser'] took '121.256836' ms. Plugin should use a background thread.
+2014-10-10 12:32:18.340 Hackin.at.dev[43631:1107865] Marking a new close.
+2014-10-10 12:32:29.337 Hackin.at.dev[43631:1107865] Marking a new close.
+2014-10-10 12:32:40.337 Hackin.at.dev[43631:1107865] Marking a new close.
+2014-10-10 12:32:51.335 Hackin.at.dev[43631:1107865] Marking a new close.
+2014-10-10 12:33:02.334 Hackin.at.dev[43631:1107865] Marking a new close.
+2014-10-10 12:33:13.335 Hackin.at.dev[43631:1107865] Marking a new close.
+2014-10-10 12:33:24.333 Hackin.at.dev[43631:1107865] Marking a new close.
+2014-10-10 12:33:35.334 Hackin.at.dev[43631:1107865] Marking a new close.
+2014-10-10 12:33:46.333 Hackin.at.dev[43631:1107865] Marking a new close.
+2014-10-10 12:33:57.333 Hackin.at.dev[43631:1107865] Marking a new close.
+2014-10-10 12:34:08.332 Hackin.at.dev[43631:1107865] Marking a new close.
+2014-10-10 12:34:19.332 Hackin.at.dev[43631:1107865] Marking a new close.
+2014-10-10 12:34:30.331 Hackin.at.dev[43631:1107865] Marking a new close.
+2014-10-10 12:34:41.330 Hackin.at.dev[43631:1107865] Marking a new close.
+2014-10-10 12:34:52.331 Hackin.at.dev[43631:1107865] Marking a new close.
+2014-10-10 12:35:03.331 Hackin.at.dev[43631:1107865] Marking a new close.
+2014-10-10 12:35:14.330 Hackin.at.dev[43631:1107865] Marking a new close.
+2014-10-10 12:35:24.600 Hackin.at.dev[43631:1107865] Tried to show IAB while already shown
+2014-10-10 12:35:25.329 Hackin.at.dev[43631:1107865] Marking a new close.
+2014-10-10 12:35:35.248 Hackin.at.dev[43631:1107865] Can't find keyplane that supports type 5 for keyboard iPhone-Portrait-PhonePad; using 2870935746_Portrait_iPhone-Complex-Pad_Default
+2014-10-10 12:35:36.328 Hackin.at.dev[43631:1107865] Marking a new close.
+2014-10-10 12:35:41.369 Hackin.at.dev[43631:1107865] isPresent view3 view6 false
+2014-10-10 12:35:41.369 Hackin.at.dev[43631:1107865] renderAndSave
+2014-10-10 12:35:41.374 Hackin.at.dev[43631:1107865] GCM Register call: In Sync
+2014-10-10 12:35:46.329 Hackin.at.dev[43631:1107865] Marking a new close.
+2014-10-10 12:35:56.330 Hackin.at.dev[43631:1107865] Marking a new close.
+2014-10-10 12:36:06.329 Hackin.at.dev[43631:1107865] Marking a new close.
+2014-10-10 12:36:16.329 Hackin.at.dev[43631:1107865] Marking a new close.
+2014-10-10 12:36:26.330 Hackin.at.dev[43631:1107865] Marking a new close.
+2014-10-10 12:36:36.330 Hackin.at.dev[43631:1107865] Marking a new close.
+2014-10-10 12:36:46.330 Hackin.at.dev[43631:1107865] Marking a new close.
+2014-10-10 12:36:56.330 Hackin.at.dev[43631:1107865] Marking a new close.
+2014-10-10 12:37:06.331 Hackin.at.dev[43631:1107865] Marking a new close.
+2014-10-10 12:37:16.332 Hackin.at.dev[43631:1107865] Marking a new close.
+2014-10-10 12:37:26.332 Hackin.at.dev[43631:1107865] Marking a new close.
+2014-10-10 12:37:36.332 Hackin.at.dev[43631:1107865] Marking a new close.
+2014-10-10 12:37:46.333 Hackin.at.dev[43631:1107865] Marking a new close.
+2014-10-10 12:37:56.333 Hackin.at.dev[43631:1107865] Marking a new close.

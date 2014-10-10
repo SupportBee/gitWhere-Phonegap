@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.supportbee.hackinat" version="0.1.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>Hackin.at</name>
+<widget id="com.supportbee.hackinat.dev" version="0.0.8" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Hackin.at.dev</name>
     <description>
         An app that helps programmers meetup and socialize with other programmers
     </description>
@@ -26,8 +26,4 @@
       <icon src="www/res/android/xxhdpi.png" density="xxhdpi" />
       <icon src="www/res/android/xxxhdpi.png" density="xxxhdpi" />
     </platform>
-
-    <preference name="SplashScreen" value="screen" />
-    <preference name="SplashScreenDelay" value="4000" />
-
 </widget>
